@@ -39,6 +39,7 @@
     "test:adversarial": "vitest run --config vitest.config.ts tests/adversarial",
     "test:redteam": "vitest run --config vitest.redteam.config.ts",
     "test:assurance": "vitest run --config vitest.config.ts tests/adversarial && vitest run --config vitest.redteam.config.ts",
+    "demo": "npx tsx examples/full-shieldkit-demo.ts",
     "docs:dev": "vitepress dev website",
     "docs:build": "vitepress build website",
     "docs:preview": "vitepress preview website",
