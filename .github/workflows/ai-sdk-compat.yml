@@ -1,0 +1,198 @@
+name: AI SDK Compatibility
+
+on:
+  schedule:
+    # Monday 08:00 UTC — after Dependabot (06:00). See docs/contributing/ci-and-automation.md
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - package.json
+      - package-lock.json
+      - src/**
+      - tests/**
+      - scripts/check-ai-sdk-version.mjs
+      - .github/workflows/ai-sdk-compat.yml
+      - .github/dependabot.yml
+
+concurrency:
+  group: ai-sdk-compat-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    name: Version drift report
+    runs-on: ubuntu-latest
+    outputs:
+      locked: ${{ steps.check.outputs.locked }}
+      latest: ${{ steps.check.outputs.latest }}
+      drift: ${{ steps.check.outputs.drift }}
+      provider_locked: ${{ steps.check.outputs.provider_locked }}
+      provider_latest: ${{ steps.check.outputs.provider_latest }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Compare lockfile vs npm latest
+        id: check
+        run: node scripts/check-ai-sdk-version.mjs --github-output
+
+      - name: Write job summary
+        run: node scripts/check-ai-sdk-version.mjs --github-summary
+
+  compat:
+    name: ${{ matrix.label }}
+    needs: report
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: pinned lockfile
+            ai-spec: pinned
+          - label: latest on npm
+            ai-spec: latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install latest ai
+        if: matrix.ai-spec == 'latest'
+        run: npm install --save-dev ai@latest --no-audit --no-fund
+
+      - name: Show resolved versions
+        id: versions
+        run: |
+          AI_VER=$(node -e "console.log(require('ai/package.json').version)")
+          echo "ai=$AI_VER" >> "$GITHUB_OUTPUT"
+          echo "Resolved \`ai\`: \`$AI_VER\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm run test:run
+
+      - name: Build
+        run: npm run build
+
+      - name: Matrix result
+        if: always()
+        run: |
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**${{ matrix.label }}** — \`ai@${{ steps.versions.outputs.ai }}\`: ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
+
+  schedule-notify:
+    name: Weekly notify
+    needs: [report, compat]
+    if: >-
+      always() &&
+      github.event_name == 'schedule' &&
+      (needs.report.outputs.drift == 'true' || needs.compat.result != 'success')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Open drift or compatibility issue
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const locked = '${{ needs.report.outputs.locked }}';
+            const latest = '${{ needs.report.outputs.latest }}';
+            const providerLocked = '${{ needs.report.outputs.provider_locked }}';
+            const providerLatest = '${{ needs.report.outputs.provider_latest }}';
+            const drift = '${{ needs.report.outputs.drift }}' === 'true';
+            const compatOk = '${{ needs.compat.result }}' === 'success';
+            const docs = 'https://github.com/${{ github.repository }}/blob/main/docs/contributing/ci-and-automation.md';
+
+            async function findOpen(label, titlePrefix) {
+              const { data: issues } = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                labels: label,
+              });
+              return issues.find((issue) => issue.title.startsWith(titlePrefix));
+            }
+
+            if (!compatOk) {
+              const title = `fix(ci): shieldkit incompatible with ai@${latest}`;
+              if (await findOpen('ai-sdk-compat-failure', 'fix(ci): shieldkit incompatible')) {
+                core.info('Compatibility failure issue already open');
+              } else {
+                await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title,
+                  labels: ['dependencies', 'ai-sdk-compat-failure', 'automated'],
+                  body: [
+                    'The weekly **AI SDK Compatibility** workflow failed.',
+                    '',
+                    `- Lockfile pin: \`ai@${locked}\``,
+                    `- npm latest: \`ai@${latest}\``,
+                    providerLocked ? `- \`@ai-sdk/provider\` lockfile: \`${providerLocked}\`` : '',
+                    providerLatest ? `- \`@ai-sdk/provider\` latest: \`${providerLatest}\`` : '',
+                    '',
+                    'At least one matrix leg (pinned or latest) did not pass typecheck, tests, or build.',
+                    '',
+                    '**Next steps**',
+                    `1. Check the [failed workflow run](${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID})`,
+                    '2. Reproduce locally: `npm run verify:ai-sdk-latest`',
+                    '3. Read the [AI SDK changelog](https://github.com/vercel/ai/releases)',
+                    '4. Fix `src/` / tests and update [verification matrix](docs/testing/verification-matrix.md) if behavior changed',
+                    '',
+                    `[CI and automation docs](${docs})`,
+                  ].filter(Boolean).join('\n'),
+                });
+              }
+            }
+
+            if (compatOk && drift) {
+              const title = `chore(deps): bump ai devDependency ${locked} → ${latest}`;
+              if (await findOpen('ai-sdk-drift', 'chore(deps): bump ai devDependency')) {
+                core.info('Drift reminder already open');
+              } else {
+                await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title,
+                  labels: ['dependencies', 'ai-sdk-drift', 'automated'],
+                  body: [
+                    'The weekly **AI SDK Compatibility** workflow detected version drift.',
+                    '',
+                    `- Lockfile: \`ai@${locked}\``,
+                    `- npm latest: \`ai@${latest}\``,
+                    '- Compatibility against `ai@latest`: **passed** (typecheck, tests, build)',
+                    '',
+                    'Dependabot may already have an open PR in the `ai-sdk` group. If not:',
+                    '',
+                    '```bash',
+                    'npm install --save-dev ai@latest',
+                    'npm run ci',
+                    '```',
+                    '',
+                    `[CI and automation docs](${docs})`,
+                  ].join('\n'),
+                });
+              }
+            }

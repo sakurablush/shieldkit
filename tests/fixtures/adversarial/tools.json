@@ -1,0 +1,24 @@
+[
+  {
+    "id": "tool-001",
+    "category": "tools",
+    "toolName": "denied",
+    "modes": {
+      "strict": "expect_block",
+      "balanced": "expect_block",
+      "local": "expect_block"
+    },
+    "tags": ["deny-list"]
+  },
+  {
+    "id": "tool-002",
+    "category": "tools",
+    "toolName": "allowed",
+    "modes": {
+      "strict": "expect_allow",
+      "balanced": "expect_allow",
+      "local": "expect_allow"
+    },
+    "tags": ["allow-list"]
+  }
+]

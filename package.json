@@ -1,0 +1,93 @@
+{
+  "name": "shieldkit",
+  "version": "0.1.0",
+  "description": "Production guardrails, structured output repair, and compliance for Vercel AI SDK",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint .",
+    "lint:check": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:adversarial": "vitest run --config vitest.config.ts tests/adversarial",
+    "test:redteam": "vitest run --config vitest.redteam.config.ts",
+    "test:assurance": "vitest run --config vitest.config.ts tests/adversarial && vitest run --config vitest.redteam.config.ts",
+    "docs:dev": "vitepress dev website",
+    "docs:build": "vitepress build website",
+    "docs:preview": "vitepress preview website",
+    "ci": "npm run lint:check && npm run format:check && npm run typecheck && npm run test:run && npm audit --audit-level=moderate",
+    "check:ai-sdk": "node scripts/check-ai-sdk-version.mjs",
+    "verify:ai-sdk-latest": "npm install --save-dev ai@latest --no-audit --no-fund && npm run typecheck && npm run test:run && npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "ai",
+    "vercel-ai-sdk",
+    "guardrails",
+    "shieldkit",
+    "ollama",
+    "structured-output",
+    "middleware"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakurablush/shieldkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sakurablush/shieldkit/issues"
+  },
+  "homepage": "https://github.com/sakurablush/shieldkit#readme",
+  "overrides": {
+    "esbuild": "^0.28.1",
+    "vite": "^6.4.3"
+  },
+  "peerDependencies": {
+    "ai": ">=6.0.0",
+    "zod": "^3.25.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.19.21",
+    "ai": "^6.0.207",
+    "eslint": "^10.5.0",
+    "ollama-ai-provider-v2": "^3.6.0",
+    "prettier": "^3.8.4",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1",
+    "vitepress": "^1.6.4",
+    "vitest": "^4.1.9",
+    "zod": "^4.4.3"
+  }
+}

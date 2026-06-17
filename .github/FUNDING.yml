@@ -1,0 +1,8 @@
+# Cryptocurrency donations (block explorers show the full address).
+# Enable: repo Settings → General → Features → Sponsorships → Set up sponsor button.
+
+custom:
+  - 'https://mempool.space/address/bc1qcrj9wreunffxm75fcz0a2gjkw87jshcwvmxv68'
+  - 'https://etherscan.io/address/0x3A265D72AB43f9C55bD71E0FD5c1b3304601ce33'
+  - 'https://blockchair.com/litecoin/address/ltc1q0nsarncmnz8vk34dav7l0vgu9m5k48drr8z6js'
+  - 'https://blockchair.com/dogecoin/address/D6YGoYWpFZxW8JXvEfT5iB9uNXcs8AeY7L'

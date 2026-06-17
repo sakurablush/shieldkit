@@ -1,0 +1,56 @@
+# Dependabot — npm dependency updates
+#
+# The ai-sdk group is verified by .github/workflows/ai-sdk-compat.yml
+# (lockfile pin + ai@latest matrix). See docs/contributing/dependency-policy.md.
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: UTC
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: deps
+    labels:
+      - dependencies
+      - automated
+    ignore:
+      # @types/node major tracks Node major; CI uses Node 22 — stay on 22.x until CI bumps.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+    groups:
+      ai-sdk:
+        applies-to: version-updates
+        patterns:
+          - ai
+          - '@ai-sdk/*'
+      testing:
+        applies-to: version-updates
+        patterns:
+          - vitest*
+          - '@vitest/*'
+      typescript-and-build:
+        applies-to: version-updates
+        patterns:
+          - typescript
+          - tsup
+          - esbuild
+      linting-and-formatting:
+        applies-to: version-updates
+        patterns:
+          - eslint*
+          - prettier*
+          - typescript-eslint*
+      docs:
+        applies-to: version-updates
+        patterns:
+          - vitepress
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'

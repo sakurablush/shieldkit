@@ -1,0 +1,38 @@
+ci:
+  - changed-files:
+      - any-glob-to-any-file: '.github/**'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - package.json
+          - package-lock.json
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/**
+          - website/**
+          - '*.md'
+          - SECURITY.md
+
+code:
+  - changed-files:
+      - any-glob-to-any-file: src/**
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - tests/**
+          - '**/*.test.ts'
+
+examples:
+  - changed-files:
+      - any-glob-to-any-file: examples/**
+
+security:
+  - changed-files:
+      - any-glob-to-any-file:
+          - SECURITY.md
+          - src/guards/**
+          - src/middleware/**
