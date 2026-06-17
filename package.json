@@ -1,6 +1,6 @@
 {
   "name": "shieldkit",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Production guardrails, structured output repair, and compliance for Vercel AI SDK",
   "type": "module",
   "engines": {

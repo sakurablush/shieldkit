@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-18
+
+### Added
+
+- `normalizeGuardText()` — strips zero-width characters and folds common Cyrillic homoglyphs before injection/keyword guards.
+- GitHub **Release automation** on tag publish (`scripts/extract-changelog-section.mjs` + `softprops/action-gh-release`).
+- Extended `shieldStreamText` tests (strict injection block on stream path, audit lifecycle).
+
+### Changed
+
+- **Security:** `inj-010` (homoglyph) and `inj-011` (zero-width) adversarial fixtures now `expect_block` in all modes.
+- Test inventory: **155** tests in merge gate (**37** files).
+- README: `npm run demo` quick start, npm provenance badge.
+- [Getting started](docs/getting-started.md): full feature demo section.
+
+### Security
+
+- Injection and keyword guards normalize prompt text before pattern matching (PII guards unchanged).
+
 ## [0.1.2] - 2026-06-18
 
 ### Added
@@ -62,7 +81,8 @@ Initial public release on npm as **shieldkit** ([sakurablush/shieldkit](https://
 - Dev toolchain: ESLint 10, TypeScript 6, `typescript-eslint` 8.61; `vite` override `^6.4.3` for VitePress transitive CVEs.
 - CI audits all dependencies (`npm audit --audit-level=moderate`, not `--omit=dev`).
 
-[Unreleased]: https://github.com/sakurablush/shieldkit/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/sakurablush/shieldkit/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/sakurablush/shieldkit/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/sakurablush/shieldkit/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/sakurablush/shieldkit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/sakurablush/shieldkit/releases/tag/v0.1.0

@@ -1,6 +1,7 @@
 # shieldkit
 
 [![npm version](https://img.shields.io/npm/v/shieldkit.svg)](https://www.npmjs.com/package/shieldkit)
+[![npm provenance](https://img.shields.io/badge/provenance-SLSA-blue)](https://www.npmjs.com/package/shieldkit)
 
 Production guardrails, structured output repair, and basic compliance for the [Vercel AI SDK](https://ai-sdk.dev/).
 
@@ -10,6 +11,12 @@ Works with frontier models and local models (Ollama). Peer dependency: `ai >=6`,
 
 ```bash
 npm install shieldkit ai zod
+```
+
+**Try the full feature tour locally** (mock + optional Ollama):
+
+```bash
+git clone https://github.com/sakurablush/shieldkit.git && cd shieldkit && npm ci && npm run demo
 ```
 
 ## Documentation
