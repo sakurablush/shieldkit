@@ -11,4 +11,5 @@ npm pack --dry-run
 npm publish --access public
 
 Write-Host "Published shieldkit@$version"
-Write-Host "Next: git tag v$version; git push origin v$version (or rely on publish.yml if already tagged)"
+Write-Host "Next: git tag v$version; git push origin v$version"
+Write-Host "Tag push creates npm release + GitHub Release via publish.yml (preferred)."

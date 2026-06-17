@@ -72,6 +72,12 @@
 | `token-estimator.ts`  | known/unknown models                        | zero cost/text                | `token-estimator.test.ts`        | covered |
 | `json-repair.ts`      | repair + validate                           | invalid schema                | `json-repair.test.ts`            | covered |
 
+## Release tooling
+
+| Script / workflow                         | Positive (+)                | Negative (−)              | Unit test file                              | Status  |
+| ----------------------------------------- | --------------------------- | ------------------------- | ------------------------------------------- | ------- |
+| `extract-changelog-section.mjs` + publish | section extract, `v` prefix | missing / invalid version | `scripts/extract-changelog-section.test.ts` | covered |
+
 ## Explicit non-goals (no unit tests required)
 
 | Capability                        | Notes                               |

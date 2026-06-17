@@ -37,6 +37,7 @@ cd shieldkit
 npm ci
 npm run ci        # all tests pass (Ollama integration skipped when unavailable)
 npm run build
+npm run demo      # optional — 9-section feature tour (sections 1–8 mock-only)
 ```
 
 ## Choose your path
@@ -81,4 +82,4 @@ await generateText({
 
 ## Peer dependencies
 
-Consumers install: `ai-shield`, `ai` (≥5), `zod` (^3.25 or ^4). Ollama is optional (`ollama-ai-provider-v2`).
+Consumers install: `shieldkit`, `ai` (≥6), `zod` (^3.25 or ^4). Ollama is optional (`ollama-ai-provider-v2`).

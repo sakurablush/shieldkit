@@ -123,6 +123,7 @@ CI also runs `npm run build`, `npm run docs:build`, and `npm pack --dry-run` (se
 | Ollama integration        | CI (skipped if Ollama off)  | Yes (non-blocking skip)   |
 | `ai@latest` compatibility | AI SDK Compatibility matrix | On triggered PRs + weekly |
 | Live injection red team   | Red Team workflow           | No (advisory)             |
+| GitHub Release on tag     | Publish workflow            | N/A (release only)        |
 | CodeQL                    | codeql.yml                  | Advisory                  |
 
 See [CI and automation](../contributing/ci-and-automation.md).

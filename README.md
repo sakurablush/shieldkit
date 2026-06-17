@@ -76,6 +76,8 @@ const { text } = await generateText({
 | `cheap`              | injection warn only                                                  | 1 attempt                               | enforce $0.10        | basic, console off |
 | `local`              | injection warn, PII redact                                           | 3 attempts                              | track only           | detailed           |
 
+**0.2.0+:** injection and keyword guards normalize homoglyphs and zero-width characters before pattern matching (PII guards stay literal).
+
 ```ts
 const model = shield(ollama('llama3.2'), { mode: 'local' });
 ```

@@ -13,11 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `normalizeGuardText()` — strips zero-width characters and folds common Cyrillic homoglyphs before injection/keyword guards.
 - GitHub **Release automation** on tag publish (`scripts/extract-changelog-section.mjs` + `softprops/action-gh-release`).
-- Extended `shieldStreamText` tests (strict injection block on stream path, audit lifecycle).
+- Extended `shieldStreamText` tests (strict injection block on stream path, homoglyph block, audit lifecycle).
+- Unit tests for `scripts/extract-changelog-section.mjs` (release notes extraction).
 
 ### Changed
 
 - **Security:** `inj-010` (homoglyph) and `inj-011` (zero-width) adversarial fixtures now `expect_block` in all modes.
+- `npm run demo` — 9-section tour adds homoglyph and zero-width injection blocks (`examples/full-shieldkit-demo.ts`).
+- [Input guardrails](docs/features/input-guardrails.md) documents `normalizeGuardText()` before pattern matching.
 - Test inventory: **163** tests in merge gate (**38** files).
 - README: `npm run demo` quick start, npm provenance badge.
 - [Getting started](docs/getting-started.md): full feature demo section.

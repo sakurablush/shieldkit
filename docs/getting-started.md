@@ -169,14 +169,14 @@ All shield errors extend `AISDKError` from the AI SDK.
 
 ## Full feature demo
 
-From a clone of the repository, run the interactive tour (injection, PII, repair, tools, budgets, optional live Ollama):
+From a clone of the repository, run the interactive tour (injection, homoglyph evasion, PII, repair, tools, budgets, optional live Ollama):
 
 ```bash
 npm ci
 npm run demo
 ```
 
-See [Examples](./examples/index.md) for `agent-with-tools.ts` and the Next.js API route pattern.
+Nine labeled sections — sections 1–8 use a mock model; section 9 needs Ollama. See [Examples](./examples/index.md) for the full list and `agent-with-tools.ts`.
 
 ## Next steps
 

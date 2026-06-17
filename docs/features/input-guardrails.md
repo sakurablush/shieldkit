@@ -44,7 +44,7 @@ Redacted text uses placeholders: `[REDACTED_PII:email]`, `[REDACTED_PII:phone]`,
 
 ### Keyword matching
 
-`src/guards/keywords.ts` uses word-boundary regex (`\bkeyword\b`) case-insensitively.
+`src/guards/keywords.ts` uses word-boundary regex (`\bkeyword\b`) case-insensitively. Deny-list matching uses the same `normalizeGuardText()` preprocessing as injection guards.
 
 ## Why this approach
 

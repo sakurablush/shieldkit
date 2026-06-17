@@ -46,15 +46,15 @@ GitHub Actions (`.github/workflows/ci.yml`) also runs `build`, `docs:build`, and
 
 ## Where to change what
 
-| Change                            | Location                                 |
-| --------------------------------- | ---------------------------------------- |
-| Shield wrapper / middleware chain | `src/shield.ts`, `src/middleware/`       |
-| Guard logic (patterns, PII)       | `src/guards/`                            |
-| JSON repair                       | `src/repair/`                            |
-| Tool policies                     | `src/tools/guard-tools.ts`               |
-| Config presets                    | `src/config.ts`                          |
-| Errors                            | `src/errors.ts`                          |
-| Public exports                    | `src/index.ts` + `docs/api/reference.md` |
+| Change                            | Location                                      |
+| --------------------------------- | --------------------------------------------- |
+| Shield wrapper / middleware chain | `src/shield.ts`, `src/middleware/`            |
+| Guard logic (patterns, PII)       | `src/guards/`, `src/utils/guard-normalize.ts` |
+| JSON repair                       | `src/repair/`                                 |
+| Tool policies                     | `src/tools/guard-tools.ts`                    |
+| Config presets                    | `src/config.ts`                               |
+| Errors                            | `src/errors.ts`                               |
+| Public exports                    | `src/index.ts` + `docs/api/reference.md`      |
 
 ## Version & CHANGELOG (mandatory)
 

@@ -46,15 +46,16 @@ This runs, in order:
 
 Individual commands:
 
-| Command              | Purpose                         |
-| -------------------- | ------------------------------- |
-| `npm run build`      | Build library to `dist/`        |
-| `npm run test`       | Vitest watch mode               |
-| `npm run test:run`   | Single test run                 |
-| `npm run lint`       | Auto-fix lint issues            |
-| `npm run format`     | Auto-format with Prettier       |
-| `npm run docs:dev`   | VitePress local preview         |
-| `npm run docs:build` | Build static documentation site |
+| Command              | Purpose                                    |
+| -------------------- | ------------------------------------------ |
+| `npm run build`      | Build library to `dist/`                   |
+| `npm run test`       | Vitest watch mode                          |
+| `npm run test:run`   | Single test run                            |
+| `npm run lint`       | Auto-fix lint issues                       |
+| `npm run format`     | Auto-format with Prettier                  |
+| `npm run docs:dev`   | VitePress local preview                    |
+| `npm run docs:build` | Build static documentation site            |
+| `npm run demo`       | Full feature tour (mock + optional Ollama) |
 
 ## Ollama integration tests
 
@@ -109,7 +110,7 @@ git tag v$(node -p "require('./package.json').version")
 git push origin v$(node -p "require('./package.json').version")
 ```
 
-Create a GitHub Release from the matching `[version]` section in `CHANGELOG.md`. `prepublishOnly` runs `npm run build` automatically on publish.
+Tag push triggers [Publish workflow](.github/workflows/publish.yml) — npm OIDC publish **and** GitHub Release from `CHANGELOG` (via `scripts/extract-changelog-section.mjs`). Manual release notes are not required. `prepublishOnly` runs `npm run build` automatically on publish.
 
 ## License
 

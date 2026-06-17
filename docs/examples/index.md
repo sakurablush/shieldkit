@@ -102,15 +102,16 @@ npx tsx examples/agent-with-tools.ts
 Walks through all major shieldkit capabilities with labeled console output:
 
 1. Input injection block (strict)
-2. Input PII redact
-3. Input keyword deny
-4. Structured output repair (mock retry)
-5. Output PII redact (stream)
-6. `guardTools` (allow / deny / max calls)
-7. Session cost budget
-8. Live Ollama agent (skipped when Ollama is off)
+2. Injection evasion — homoglyph & zero-width (**0.2.0+**)
+3. Input PII redact
+4. Input keyword deny
+5. Structured output repair (mock retry)
+6. Output PII redact (stream)
+7. `guardTools` (allow / deny / max calls)
+8. Session cost budget
+9. Live Ollama agent (skipped when Ollama is off)
 
-Sections 1–7 use a mock model (no GPU). Section 8 needs `ollama pull llama3.2`.
+Sections 1–8 use a mock model (no GPU). Section 9 needs `ollama pull llama3.2`.
 
 ```bash
 OLLAMA_MODEL=llama3.2 npm run demo
@@ -120,13 +121,14 @@ OLLAMA_MODEL=llama3.2 npm run demo
 
 The `tests/` directory contains additional usage patterns:
 
-| File                                             | Pattern                            |
-| ------------------------------------------------ | ---------------------------------- |
-| `tests/helpers/mock-model.ts`                    | Deterministic model for unit tests |
-| `tests/unit/middleware/input-guardrails.test.ts` | Testing injection block            |
-| `tests/unit/middleware/cost-tracking.test.ts`    | Budget enforcement                 |
-| `tests/unit/tools/guard-tools.test.ts`           | Tool policy combinations           |
-| `tests/integration/ollama.test.ts`               | Live end-to-end with Ollama        |
+| File                                             | Pattern                              |
+| ------------------------------------------------ | ------------------------------------ |
+| `tests/helpers/mock-model.ts`                    | Deterministic model for unit tests   |
+| `tests/unit/middleware/input-guardrails.test.ts` | Testing injection block              |
+| `tests/unit/utils/guard-normalize.test.ts`       | Homoglyph / zero-width normalization |
+| `tests/unit/middleware/cost-tracking.test.ts`    | Budget enforcement                   |
+| `tests/unit/tools/guard-tools.test.ts`           | Tool policy combinations             |
+| `tests/integration/ollama.test.ts`               | Live end-to-end with Ollama          |
 
 See [Writing tests](../testing/writing-tests.md).
 
