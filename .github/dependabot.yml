@@ -19,6 +19,10 @@ updates:
     labels:
       - dependencies
       - automated
+    ignore:
+      # @types/node major tracks Node major; CI uses Node 22 — stay on 22.x until CI bumps.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
     groups:
       ai-sdk:
         applies-to: version-updates
