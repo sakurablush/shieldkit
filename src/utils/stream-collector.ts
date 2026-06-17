@@ -7,11 +7,11 @@ export function createStreamTextCollector(): {
   const textBlocks = new Map<string, string>();
   let generatedText = '';
 
-  const transform = new TransformStream<
-    LanguageModelV3StreamPart,
-    LanguageModelV3StreamPart
-  >({
-    transform(chunk, controller) {
+  const transform = new TransformStream({
+    transform(
+      chunk: LanguageModelV3StreamPart,
+      controller: TransformStreamDefaultController<LanguageModelV3StreamPart>,
+    ) {
       switch (chunk.type) {
         case 'text-start': {
           textBlocks.set(chunk.id, '');

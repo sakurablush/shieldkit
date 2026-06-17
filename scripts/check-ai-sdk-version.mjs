@@ -10,6 +10,29 @@ import { appendFileSync, readFileSync } from 'node:fs';
 const AI_PACKAGE = 'ai';
 const PROVIDER_PACKAGE = '@ai-sdk/provider';
 
+function sanitizeSemver(version, label) {
+  if (
+    typeof version !== 'string' ||
+    !/^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]*)?$/.test(version)
+  ) {
+    throw new Error(
+      `Refusing untrusted ${label} version for output: ${String(version)}`,
+    );
+  }
+  return version;
+}
+
+function sanitizeRange(range, label) {
+  const value = String(range ?? '');
+  if (!value) {
+    return '';
+  }
+  if (value.length > 32 || !/^[\d\s.+^~>=<*-]+$/.test(value)) {
+    throw new Error(`Refusing untrusted ${label} range for output: ${value}`);
+  }
+  return value;
+}
+
 function parseVersion(version) {
   const match = /^(\d+)\.(\d+)\.(\d+)/.exec(version);
   if (!match) {
@@ -66,7 +89,7 @@ async function fetchLatestVersion(pkg) {
     throw new Error(`npm registry responded with ${response.status} for ${pkg}`);
   }
   const data = await response.json();
-  return data.version;
+  return sanitizeSemver(data.version, pkg);
 }
 
 function buildReport(locked, latest, peer, declared, providerLocked, providerLatest) {
@@ -96,27 +119,51 @@ function buildReport(locked, latest, peer, declared, providerLocked, providerLat
 function writeGithubOutput(report) {
   const file = process.env.GITHUB_OUTPUT;
   if (!file) return;
+
+  const locked = sanitizeSemver(report.locked, 'locked');
+  const latest = sanitizeSemver(report.latest, 'latest');
+  const peer = sanitizeRange(report.peer, 'peer');
+  const providerLocked = report.provider.locked
+    ? sanitizeSemver(report.provider.locked, 'provider_locked')
+    : '';
+  const providerLatest = report.provider.latest
+    ? sanitizeSemver(report.provider.latest, 'provider_latest')
+    : '';
+
   appendFileSync(
     file,
     [
-      `locked=${report.locked}`,
-      `latest=${report.latest}`,
+      `locked=${locked}`,
+      `latest=${latest}`,
       `drift=${report.drift}`,
-      `peer=${report.peer}`,
-      `provider_locked=${report.provider.locked ?? ''}`,
-      `provider_latest=${report.provider.latest ?? ''}`,
+      `peer=${peer}`,
+      `provider_locked=${providerLocked}`,
+      `provider_latest=${providerLatest}`,
     ].join('\n') + '\n',
   );
 }
 
 function writeGithubSummary(report) {
-  const providerRow =
+  const locked = sanitizeSemver(report.locked, 'locked');
+  const latest = sanitizeSemver(report.latest, 'latest');
+  const declared = sanitizeRange(report.declared, 'declared');
+  const peer = sanitizeRange(report.peer, 'peer');
+  const providerLocked =
     report.provider.locked != null
-      ? `| \`@ai-sdk/provider\` (lockfile) | \`${report.provider.locked}\` |`
+      ? sanitizeSemver(report.provider.locked, 'provider_locked')
+      : null;
+  const providerLatest =
+    report.provider.latest != null
+      ? sanitizeSemver(report.provider.latest, 'provider_latest')
+      : null;
+
+  const providerRow =
+    providerLocked != null
+      ? `| \`@ai-sdk/provider\` (lockfile) | \`${providerLocked}\` |`
       : '';
   const providerLatestRow =
-    report.provider.latest != null
-      ? `| \`@ai-sdk/provider\` (npm latest) | \`${report.provider.latest}\` |`
+    providerLatest != null
+      ? `| \`@ai-sdk/provider\` (npm latest) | \`${providerLatest}\` |`
       : '';
 
   const lines = [
@@ -124,12 +171,12 @@ function writeGithubSummary(report) {
     '',
     '| | Version |',
     '|---|---|',
-    `| \`ai\` lockfile (dev) | \`${report.locked}\` |`,
-    `| \`ai\` npm latest | \`${report.latest}\` |`,
+    `| \`ai\` lockfile (dev) | \`${locked}\` |`,
+    `| \`ai\` npm latest | \`${latest}\` |`,
     providerRow,
     providerLatestRow,
-    `| package.json range | \`${report.declared}\` |`,
-    `| Peer range | \`${report.peer}\` |`,
+    `| package.json range | \`${declared}\` |`,
+    `| Peer range | \`${peer}\` |`,
     `| \`ai\` drift | ${report.drift ? '**yes** — merge Dependabot or `npm install ai@latest --save-dev`' : 'no'} |`,
     '',
     'shieldkit requires **AI SDK v6** (`LanguageModelV3`). The compatibility workflow runs typecheck, tests, and build against both the lockfile pin and `ai@latest`.',
