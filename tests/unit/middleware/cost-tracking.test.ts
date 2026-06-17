@@ -118,4 +118,42 @@ describe('cost tracking middleware', () => {
       providerOptions: { aiShield: { sessionId: 'track-only' } },
     });
   });
+
+  it('sets budgetExceeded when session cost reaches the cap', async () => {
+    resetSession('budget-flag');
+
+    const model = createMockModel({
+      text: 'ok',
+      usage: { inputTokens: 5000, outputTokens: 5000, totalTokens: 10000 },
+    });
+
+    const safeModel = shield(model, {
+      cost: {
+        maxCostPerSession: 0.01,
+        trackOnly: false,
+        defaultPricing: { inputPer1M: 1000, outputPer1M: 1000 },
+      },
+      guardrails: {
+        input: {
+          injection: { enabled: false },
+          pii: { enabled: false },
+          keywords: { enabled: false, deny: [] },
+        },
+        output: {
+          repair: { enabled: false },
+          pii: { enabled: false },
+          keywords: { enabled: false, deny: [] },
+        },
+      },
+      audit: { console: false },
+    });
+
+    await generateText({
+      model: safeModel,
+      prompt: 'expensive',
+      providerOptions: { aiShield: { sessionId: 'budget-flag' } },
+    });
+
+    expect(sessionStore.get('budget-flag')?.budgetExceeded).toBe(true);
+  });
 });

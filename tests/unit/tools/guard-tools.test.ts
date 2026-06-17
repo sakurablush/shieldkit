@@ -70,6 +70,37 @@ describe('guardTools', () => {
     expect(result).toEqual({ echo: 'approved' });
   });
 
+  it('allows tools when nested experimental_context.aiShield.approved is true', async () => {
+    const guarded = guardTools(tools, {
+      allow: ['allowed'],
+      requireApproval: true,
+    });
+
+    const result = await guarded.allowed.execute?.(
+      { value: 'nested' },
+      {
+        toolCallId: 'call-n',
+        messages: [],
+        experimental_context: { aiShield: { approved: true } },
+      },
+    );
+
+    expect(result).toEqual({ echo: 'nested' });
+  });
+
+  it('invokes onBlocked callback when tool is denied', async () => {
+    const blocked: Array<{ name: string; reason: string }> = [];
+    const guarded = guardTools(tools, {
+      deny: ['denied'],
+      onBlocked: (name, reason) => blocked.push({ name, reason }),
+    });
+
+    await expect(guarded.denied.execute!({ value: 'x' })).rejects.toBeInstanceOf(
+      ShieldToolError,
+    );
+    expect(blocked).toEqual([{ name: 'denied', reason: 'Tool is denied' }]);
+  });
+
   it('uses a shared requestId for all tool audit events', async () => {
     const auditLogs: Array<{ type: string; requestId?: string }> = [];
     const guarded = guardTools(tools, {
@@ -105,5 +136,16 @@ describe('guardTools integration shape', () => {
 
     const guarded = guardTools(tools);
     expect(Object.keys(guarded)).toEqual(['search']);
+  });
+
+  it('passes through tools without execute unchanged', async () => {
+    const tools = {
+      noop: tool({
+        description: 'No execute',
+        inputSchema: z.object({ q: z.string() }),
+      }),
+    };
+    const guarded = guardTools(tools, { deny: ['noop'] });
+    expect(guarded.noop.execute).toBeUndefined();
   });
 });

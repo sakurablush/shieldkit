@@ -141,14 +141,35 @@ expect(text).not.toContain('user@example.com');
 
 Remember: shield buffers streams before output guards run.
 
+## Verbose test logging
+
+Use `TEST_VERBOSE=1` to print runtime decisions during tests (audit chains, contrast deltas, red team lines). Default CI runs are silent.
+
+```bash
+TEST_VERBOSE=1 npm run test:run
+TEST_VERBOSE=1 npm run test -- tests/unit/middleware/cost-warn.test.ts
+```
+
+`CONTRAST_VERBOSE=1` is an alias. Helpers: `tests/helpers/test-logger.ts`, `tests/helpers/security-logger.ts`.
+
+## Positive and negative cases
+
+Every new capability should have at least:
+
+1. **Positive** — allow, redact, repair success, or expected transform
+2. **Negative** — block, budget exceeded, repair exhausted, or tool denied
+
+Record both in [unit-coverage-audit.md](./unit-coverage-audit.md).
+
 ## Adding a new test
 
 1. Place unit tests in `tests/unit/` mirroring `src/` structure
 2. Name files `*.test.ts`
-3. Update [verification-matrix.md](./verification-matrix.md) with the new capability row
+3. Update [verification-matrix.md](./verification-matrix.md) and [unit-coverage-audit.md](./unit-coverage-audit.md) with the new capability row
 4. Run `npm run ci` before submitting
 
 ## Related docs
 
 - [Running tests](./running-tests.md)
 - [Verification matrix](./verification-matrix.md)
+- [Unit coverage audit](./unit-coverage-audit.md)

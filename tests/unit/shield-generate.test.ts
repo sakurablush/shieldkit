@@ -94,4 +94,33 @@ describe('shieldGenerateText', () => {
       }),
     ).rejects.toBeInstanceOf(ShieldRepairError);
   });
+
+  it('rethrows non-NoObjectGeneratedError errors', async () => {
+    const generic = new Error('network down');
+    generateTextMock.mockRejectedValueOnce(generic);
+
+    await expect(
+      shieldGenerateText({
+        model: mockModel,
+        prompt: 'Generate profile',
+        outputSchema: schema,
+      }),
+    ).rejects.toThrow('network down');
+  });
+
+  it('returns successful generateText without repair when output is valid', async () => {
+    generateTextMock.mockResolvedValueOnce({
+      text: '{"name":"Eve","age":31}',
+      output: { name: 'Eve', age: 31 },
+    });
+
+    const result = await shieldGenerateText({
+      model: mockModel,
+      prompt: 'Generate profile',
+      outputSchema: schema,
+    });
+
+    expect(result.output).toEqual({ name: 'Eve', age: 31 });
+    expect(generateTextMock).toHaveBeenCalledTimes(1);
+  });
 });
