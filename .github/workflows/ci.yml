@@ -43,3 +43,6 @@ jobs:
         env:
           VITEPRESS_BASE: /${{ github.event.repository.name }}/
         run: npm run docs:build
+
+      - name: Verify npm package contents
+        run: npm pack --dry-run

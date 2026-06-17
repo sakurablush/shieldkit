@@ -15,6 +15,19 @@ cd ai-shield
 npm ci
 ```
 
+## Cursor Agent Skills
+
+This repo includes project skills in `.cursor/skills/` for AI-assisted development. Attach in Agent chat with `@`:
+
+| Skill                     | Use for                     |
+| ------------------------- | --------------------------- |
+| `ai-shield-onboarding`    | New to the repo             |
+| `ai-shield-contributing`  | Code changes and PRs        |
+| `ai-shield-local-testing` | Tests and Ollama setup      |
+| `ai-shield-docs`          | Documentation and VitePress |
+
+Full guide: [docs/contributing/cursor-skills.md](docs/contributing/cursor-skills.md).
+
 ## Quality gate
 
 All changes must pass the full CI gate before merge:
@@ -75,6 +88,27 @@ When adding or changing behavior:
 - Keep changes focused — avoid unrelated refactors
 - Comments only for non-obvious business logic
 
+## Publishing (maintainers)
+
+The library is published to npm as **`shieldkit`**:
+
+```bash
+npm login
+npm run ci && npm run build && npm run docs:build
+npm pack --dry-run
+npm publish --access public
+git tag v0.1.0 && git push origin v0.1.0
+```
+
+See `scripts/publish.sh` for a single-script flow. `prepublishOnly` runs `npm run build` automatically.
+
 ## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
+
+## Community
+
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Contributors](CONTRIBUTORS.md)
+- [Changelog](CHANGELOG.md)
+- [Security policy](SECURITY.md)
