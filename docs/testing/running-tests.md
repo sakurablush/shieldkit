@@ -140,12 +140,12 @@ CI **does** run `npm run build` and `npm run docs:build` on every push and PR.
 
 ## Troubleshooting
 
-| Issue                     | Solution                                                                                |
-| ------------------------- | --------------------------------------------------------------------------------------- |
-| Integration tests skipped | Start Ollama and verify `curl $OLLAMA_HOST/api/tags`                                    |
-| Test timeout              | Increase per-test timeout or check Ollama model load time                               |
-| `npm audit` fails CI      | Production audit uses `--omit=dev`; update prod deps or check dev-only vulns separately |
-| ESLint warnings fail CI   | `lint:check` uses `--max-warnings 0`                                                    |
+| Issue                     | Solution                                                                          |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| Integration tests skipped | Start Ollama and verify `curl $OLLAMA_HOST/api/tags`                              |
+| Test timeout              | Increase per-test timeout or check Ollama model load time                         |
+| `npm audit` fails CI      | Run `npm audit`; fix or override transitive deps (see `package.json` `overrides`) |
+| ESLint warnings fail CI   | `lint:check` uses `--max-warnings 0`                                              |
 
 ## Cursor Agent Skills
 

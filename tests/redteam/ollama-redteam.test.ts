@@ -60,7 +60,7 @@ describe.skipIf(!ollamaAvailable)('ollama red team', () => {
         audit: { console: false },
       });
 
-      let rawLen = 0;
+      let rawLen: number;
       try {
         const raw = await generateText({ model: rawModel, prompt });
         rawLen = raw.text.length;

@@ -42,7 +42,7 @@
     "docs:dev": "vitepress dev website",
     "docs:build": "vitepress build website",
     "docs:preview": "vitepress preview website",
-    "ci": "npm run lint:check && npm run format:check && npm run typecheck && npm run test:run && npm audit --audit-level=moderate --omit=dev",
+    "ci": "npm run lint:check && npm run format:check && npm run typecheck && npm run test:run && npm audit --audit-level=moderate",
     "check:ai-sdk": "node scripts/check-ai-sdk-version.mjs",
     "verify:ai-sdk-latest": "npm install --save-dev ai@latest --no-audit --no-fund && npm run typecheck && npm run test:run && npm run build",
     "prepublishOnly": "npm run build"
@@ -69,24 +69,25 @@
   },
   "homepage": "https://github.com/sakurablush/ai-shield#readme",
   "overrides": {
-    "esbuild": "^0.28.1"
+    "esbuild": "^0.28.1",
+    "vite": "^6.4.3"
   },
   "peerDependencies": {
     "ai": ">=6.0.0",
     "zod": "^3.25.0 || ^4.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.28.0",
-    "@types/node": "^22.15.29",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.19.21",
     "ai": "^6.0.207",
-    "eslint": "^9.28.0",
-    "ollama-ai-provider-v2": "^3.5.1",
-    "prettier": "^3.5.3",
+    "eslint": "^10.5.0",
+    "ollama-ai-provider-v2": "^3.6.0",
+    "prettier": "^3.8.4",
     "tsup": "^8.5.1",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.33.1",
-    "vitepress": "^1.6.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1",
+    "vitepress": "^1.6.4",
     "vitest": "^4.1.9",
-    "zod": "^4.0.16"
+    "zod": "^4.4.3"
   }
 }

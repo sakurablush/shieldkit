@@ -83,10 +83,10 @@ This is the central **"how we know it works"** artifact. Each row maps a capabil
 All merges require `npm run ci` to pass:
 
 ```
-lint:check → format:check → typecheck → test:run → npm audit --omit=dev
+lint:check → format:check → typecheck → test:run → npm audit
 ```
 
-Production dependencies only (`--omit=dev` excludes VitePress/vite dev-only advisories).
+All dependencies audited at moderate+ severity (`npm audit --audit-level=moderate`).
 
 This proves:
 

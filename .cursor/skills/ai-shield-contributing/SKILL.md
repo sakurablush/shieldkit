@@ -28,7 +28,7 @@ npm run docs:build  # also run in CI
 2. `format:check` — Prettier
 3. `typecheck` — `tsc --noEmit`
 4. `test:run` — full Vitest suite (Ollama integration optional; see `docs/testing/running-tests.md`)
-5. `npm audit --audit-level=moderate --omit=dev` — production deps only
+5. `npm audit --audit-level=moderate` — full dependency audit
 
 GitHub Actions (`.github/workflows/ci.yml`) also runs `build`, `docs:build`, and `npm pack --dry-run`.
 

@@ -42,7 +42,7 @@ This runs, in order:
 2. `npm run format:check` — Prettier
 3. `npm run typecheck` — TypeScript (`tsc --noEmit`)
 4. `npm run test:run` — Vitest (unit + integration)
-5. `npm audit --audit-level=moderate --omit=dev` — production dependency audit
+5. `npm audit --audit-level=moderate` — full dependency audit (dev + prod)
 
 Individual commands:
 
