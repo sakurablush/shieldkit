@@ -1,6 +1,6 @@
 # Unit Coverage Audit
 
-**Status:** complete · **Last updated:** 2026-06-17 (shieldkit@0.1.1)  
+**Status:** complete · **Last updated:** 2026-06-18 (shieldkit@0.2.0)  
 **Policy:** every implemented runtime capability in `src/` has **positive (+)** and **negative (−)** unit tests in `tests/unit/`. Adversarial/integration layers add breadth; they do not replace this matrix.
 
 ## Sign-off checklist
@@ -18,7 +18,7 @@
 | `shield()`                                         | passthrough generation       | strict injection block                     | `config.test.ts`                            | covered |
 | `resolveConfig` balanced/strict/cheap/local/custom | preset values                | —                                          | `config.test.ts`                            | covered |
 | `shieldGenerateText`                               | valid output, repair success | repair exhausted, non-repair error rethrow | `shield-generate.test.ts`                   | covered |
-| `shieldStreamText`                                 | schema merge + stream        | —                                          | `shield-stream-text.test.ts`                | covered |
+| `shieldStreamText`                                 | schema merge + stream        | strict injection block on stream           | `shield-stream-text.test.ts`                | covered |
 | `guardTools`                                       | allow, approval, audit       | deny, max calls, require approval          | `guard-tools.test.ts`                       | covered |
 | `createShieldContext` / `getOrCreateSession`       | create + reuse               | —                                          | `context.test.ts`                           | covered |
 | `resetSession`                                     | clears session               | —                                          | `context.test.ts`, `cost-tracking.test.ts`  | covered |
@@ -68,6 +68,7 @@
 | `output-guards.ts`    | generate redact                   | keyword block                 | `utils/output-guards.test.ts`    | covered |
 | `audit.ts`            | console basic/detailed            | disabled, sink swallow        | `utils/audit.test.ts`            | covered |
 | `stream-collector.ts` | collect text + usage              | —                             | `utils/stream-collector.test.ts` | covered |
+| `guard-normalize.ts`  | homoglyph + zero-width fold       | —                             | `utils/guard-normalize.test.ts`  | covered |
 | `token-estimator.ts`  | known/unknown models              | zero cost/text                | `token-estimator.test.ts`        | covered |
 | `json-repair.ts`      | repair + validate                 | invalid schema                | `json-repair.test.ts`            | covered |
 

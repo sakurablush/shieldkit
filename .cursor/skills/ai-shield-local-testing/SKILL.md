@@ -12,7 +12,7 @@ Human doc: `docs/testing/running-tests.md` · Skill index: `docs/contributing/cu
 
 | Layer       | Command                                | Hardware     | Proves                                       |
 | ----------- | -------------------------------------- | ------------ | -------------------------------------------- |
-| CI gate     | `npm run ci`                           | CPU          | lint, types, **149 tests**, full-tree audit  |
+| CI gate     | `npm run ci`                           | CPU          | lint, types, **155 tests**, full-tree audit  |
 | Build       | `npm run build`                        | CPU          | `dist/` compiles                             |
 | Docs        | `npm run docs:build`                   | CPU          | VitePress links valid                        |
 | Package     | `npm pack --dry-run`                   | CPU          | tarball = dist + README + LICENSE            |
