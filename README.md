@@ -1,6 +1,6 @@
 # shieldkit
 
-[![npm version](https://img.shields.io/npm/v/shieldkit.svg)](https://www.npmjs.com/package/shieldkit) _(badge live after first `npm publish`)_
+[![npm version](https://img.shields.io/npm/v/shieldkit.svg)](https://www.npmjs.com/package/shieldkit)
 
 Production guardrails, structured output repair, and basic compliance for the [Vercel AI SDK](https://ai-sdk.dev/).
 
