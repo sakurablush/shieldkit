@@ -1,0 +1,70 @@
+{
+  "name": "ai-shield",
+  "version": "0.1.0",
+  "description": "Production guardrails, structured output repair, and compliance for Vercel AI SDK",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint .",
+    "lint:check": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "ci": "npm run lint:check && npm run format:check && npm run typecheck && npm run test:run && npm audit --audit-level=moderate"
+  },
+  "keywords": [
+    "ai",
+    "vercel-ai-sdk",
+    "guardrails",
+    "ollama",
+    "structured-output",
+    "middleware"
+  ],
+  "license": "MIT",
+  "overrides": {
+    "esbuild": "^0.28.1"
+  },
+  "peerDependencies": {
+    "ai": ">=5.0.0",
+    "zod": "^3.25.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@types/node": "^22.15.29",
+    "ai": "^6.0.207",
+    "eslint": "^9.28.0",
+    "ollama-ai-provider-v2": "^3.5.1",
+    "prettier": "^3.5.3",
+    "tsup": "^8.5.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1",
+    "vitest": "^4.1.9",
+    "zod": "^4.0.16"
+  }
+}
