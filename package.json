@@ -1,6 +1,6 @@
 {
   "name": "shieldkit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Production guardrails, structured output repair, and compliance for Vercel AI SDK",
   "type": "module",
   "engines": {
@@ -39,6 +39,7 @@
     "test:adversarial": "vitest run --config vitest.config.ts tests/adversarial",
     "test:redteam": "vitest run --config vitest.redteam.config.ts",
     "test:assurance": "vitest run --config vitest.config.ts tests/adversarial && vitest run --config vitest.redteam.config.ts",
+    "demo": "npx tsx examples/full-shieldkit-demo.ts",
     "docs:dev": "vitepress dev website",
     "docs:build": "vitepress build website",
     "docs:preview": "vitepress preview website",
@@ -68,7 +69,7 @@
   "bugs": {
     "url": "https://github.com/sakurablush/shieldkit/issues"
   },
-  "homepage": "https://github.com/sakurablush/shieldkit#readme",
+  "homepage": "https://sakurablush.github.io/shieldkit/",
   "overrides": {
     "esbuild": "^0.28.1",
     "vite": "^6.4.3"

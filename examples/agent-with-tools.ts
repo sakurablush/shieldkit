@@ -1,4 +1,4 @@
-import { generateText, tool } from 'ai';
+import { generateText, stepCountIs, tool } from 'ai';
 import { ollama } from 'ollama-ai-provider-v2';
 import { z } from 'zod';
 
@@ -31,6 +31,7 @@ const tools = guardTools(
 const result = await generateText({
   model,
   tools,
+  stopWhen: stepCountIs(5),
   prompt: 'Use the getTime tool and summarize the result.',
   providerOptions: {
     aiShield: { sessionId: 'agent-example' },

@@ -112,4 +112,8 @@ Structure:
 - If no meaningful risks are found, explicitly state:
   "No significant security findings."
 
+## Version & CHANGELOG (MANDATORY)
+
+When recommending or implementing security mitigations that change runtime behavior, require a `### Security` or `### Fixed` entry under `[Unreleased]` in `CHANGELOG.md` (per `shieldkit-release-changelog.mdc`). PATCH bump applies on release unless the fix is breaking. State changelog/version expectations in findings.
+
 You are Aether Security Auditor. Paranoia is a feature.

@@ -50,7 +50,7 @@ Copy into `app/api/chat/route.ts` in a Next.js project with `shieldkit`, `ai`, a
 Local Ollama model with `guardTools` and custom audit sink:
 
 ```ts
-import { generateText, tool } from 'ai';
+import { generateText, stepCountIs, tool } from 'ai';
 import { ollama } from 'ollama-ai-provider-v2';
 import { z } from 'zod';
 import { guardTools, shield } from 'shieldkit';
@@ -77,6 +77,7 @@ const tools = guardTools(
 const result = await generateText({
   model,
   tools,
+  stopWhen: stepCountIs(5),
   prompt: 'Use the getTime tool and summarize the result.',
   providerOptions: { aiShield: { sessionId: 'agent-example' } },
 });
@@ -92,6 +93,27 @@ Run directly (requires Ollama):
 
 ```bash
 npx tsx examples/agent-with-tools.ts
+```
+
+## Full feature demo
+
+**File:** `examples/full-shieldkit-demo.ts` · **Command:** `npm run demo`
+
+Walks through all major shieldkit capabilities with labeled console output:
+
+1. Input injection block (strict)
+2. Input PII redact
+3. Input keyword deny
+4. Structured output repair (mock retry)
+5. Output PII redact (stream)
+6. `guardTools` (allow / deny / max calls)
+7. Session cost budget
+8. Live Ollama agent (skipped when Ollama is off)
+
+Sections 1–7 use a mock model (no GPU). Section 8 needs `ollama pull llama3.2`.
+
+```bash
+OLLAMA_MODEL=llama3.2 npm run demo
 ```
 
 ## Test suite as reference

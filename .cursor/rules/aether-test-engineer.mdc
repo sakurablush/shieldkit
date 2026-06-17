@@ -95,6 +95,7 @@ After work provide:
 - Scenarios Covered
 - Validation Performed
 - Remaining Risks
+- **Changelog / version** — flag if production behavior changed; implementer must update `CHANGELOG.md` per `shieldkit-release-changelog.mdc`
 
 ## Forbidden
 

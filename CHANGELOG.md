@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-06-18
+
+### Added
+
+- npm **trusted publishing** workflow (`.github/workflows/publish.yml`) — publish on `v*` tags via GitHub Actions OIDC (no `NPM_TOKEN`).
+- `npm run demo` — full feature tour with audit logs (`examples/full-shieldkit-demo.ts`).
+- [npm publishing guide](docs/contributing/npm-publishing.md) — trusted publisher form values and release procedure.
+
+### Changed
+
+- npm **homepage** → [sakurablush.github.io/shieldkit](https://sakurablush.github.io/shieldkit/) (was repository README anchor).
+- `publishConfig.registry` pinned to `registry.npmjs.org`.
+- `examples/agent-with-tools.ts` — multi-step tool loop via `stepCountIs(5)`.
+
 ## [0.1.1] - 2026-06-17
 
 ### Fixed
@@ -48,6 +62,7 @@ Initial public release on npm as **shieldkit** ([sakurablush/shieldkit](https://
 - Dev toolchain: ESLint 10, TypeScript 6, `typescript-eslint` 8.61; `vite` override `^6.4.3` for VitePress transitive CVEs.
 - CI audits all dependencies (`npm audit --audit-level=moderate`, not `--omit=dev`).
 
-[Unreleased]: https://github.com/sakurablush/shieldkit/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/sakurablush/shieldkit/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/sakurablush/shieldkit/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/sakurablush/shieldkit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/sakurablush/shieldkit/releases/tag/v0.1.0

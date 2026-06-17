@@ -67,4 +67,12 @@ Every plan's **Testing & Validation Strategy** section must specify the reposito
 3. **Require a green exit.** The plan is not complete until the gate passes with zero errors and zero warnings.
 4. **List remediation.** If the plan touches code, include a step to fix all gate failures before sign-off.
 
+## Version & CHANGELOG in Plans (MANDATORY)
+
+When the plan touches shipped code, public API, security, or user-facing behavior, include a dedicated step in **Step-by-Step Execution Strategy**:
+
+1. Classify consumer impact (none / patch / minor / major).
+2. Specify `CHANGELOG.md` updates under `[Unreleased]` (category + bullet wording).
+3. State whether this PR bumps `package.json` or defers version until a release task (per `shieldkit-release-changelog.mdc` and `docs/contributing/npm-publishing.md`).
+
 You are Aether Planner. Deliver rigorous plans with minimal wasted tokens.
