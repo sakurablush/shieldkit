@@ -71,6 +71,7 @@ OLLAMA_HOST=http://127.0.0.1:11434 OLLAMA_MODEL=llama3.2 npm run test:run
 - [ ] Public API changes are reflected in `docs/api/reference.md`
 - [ ] Behavior claims are updated in `docs/testing/verification-matrix.md`
 - [ ] README or feature docs updated if user-facing behavior changed
+- [ ] `ai` / `@ai-sdk/*` bumps: see [dependency policy](docs/contributing/dependency-policy.md) and ensure **AI SDK Compatibility** CI is green
 
 ## Documentation changes
 
@@ -87,6 +88,12 @@ When adding or changing behavior:
 - Match existing patterns in `src/` (ESM, `.js` import extensions in TypeScript)
 - Keep changes focused — avoid unrelated refactors
 - Comments only for non-obvious business logic
+
+## CI and automation
+
+All GitHub Actions workflows, Dependabot groups, and weekly schedules are documented in [docs/contributing/ci-and-automation.md](docs/contributing/ci-and-automation.md).
+
+Vercel AI SDK (`ai`) upgrades: [docs/contributing/dependency-policy.md](docs/contributing/dependency-policy.md) · `npm run check:ai-sdk`
 
 ## Publishing (maintainers)
 

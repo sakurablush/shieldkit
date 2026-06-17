@@ -6,7 +6,7 @@ Production guardrails, structured output repair, and basic compliance for the [V
 
 Published on npm as **`shieldkit`**. Source repository: [sakurablush/ai-shield](https://github.com/sakurablush/ai-shield).
 
-Works with frontier models and local models (Ollama). Peer dependency: `ai >=5`, `zod`.
+Works with frontier models and local models (Ollama). Peer dependency: `ai >=6`, `zod`.
 
 ```bash
 npm install shieldkit ai zod
@@ -25,6 +25,8 @@ Full documentation lives in [`docs/`](docs/README.md):
 - [Examples](docs/examples/index.md) — Next.js route and agent with tools
 
 Browse locally: `npm run docs:dev` (VitePress). Deploy: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Security: [SECURITY.md](SECURITY.md). See [Contributing](docs/contributing.md).
+
+**Automation:** [CI and automation](docs/contributing/ci-and-automation.md) · [Dependency policy](docs/contributing/dependency-policy.md) · `npm run check:ai-sdk`
 
 **Cursor users:** project [Agent Skills](docs/contributing/cursor-skills.md) in `.cursor/skills/` guide the AI through development, testing, and docs — attach with `@ai-shield-contributing`, `@ai-shield-local-testing`, etc.
 

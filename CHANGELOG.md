@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- AI SDK Compatibility workflow (`.github/workflows/ai-sdk-compat.yml`) — weekly and PR matrix against lockfile pin and `ai@latest`.
+- `scripts/check-ai-sdk-version.mjs` and `npm run check:ai-sdk` / `verify:ai-sdk-latest`.
+- Documentation: [CI and automation](docs/contributing/ci-and-automation.md), [dependency policy](docs/contributing/dependency-policy.md).
+
+### Changed
+
+- Peer dependency `ai` corrected to `>=6.0.0` (v6 / `LanguageModelV3` required).
+
 ## [0.1.0] - 2026-06-17
 
 Initial public release on npm as **shieldkit** (source repo: `ai-shield`).

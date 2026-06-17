@@ -95,16 +95,32 @@ This proves:
 - All non-skipped tests pass
 - No moderate+ vulnerabilities in production dependencies
 
-CI also runs `npm run build` and `npm run docs:build` (see `.github/workflows/ci.yml`).
+CI also runs `npm run build`, `npm run docs:build`, and `npm pack --dry-run` (see `.github/workflows/ci.yml`).
+
+**AI SDK compatibility** is verified separately: weekly and on dependency-related PRs via [AI SDK Compatibility](../contributing/ci-and-automation.md#ai-sdk-compatibility). Local check: `npm run check:ai-sdk`.
+
+## Automation coverage
+
+| Concern                   | Verified by                 | In merge gate?            |
+| ------------------------- | --------------------------- | ------------------------- |
+| Lint / format / types     | CI `npm run ci`             | Yes                       |
+| Unit + adversarial tests  | CI `npm run ci`             | Yes                       |
+| Ollama integration        | CI (skipped if Ollama off)  | Yes (non-blocking skip)   |
+| `ai@latest` compatibility | AI SDK Compatibility matrix | On triggered PRs + weekly |
+| Live injection red team   | Red Team workflow           | No (advisory)             |
+| CodeQL                    | codeql.yml                  | Advisory                  |
+
+See [CI and automation](../contributing/ci-and-automation.md).
 
 ## Test layers
 
-| Layer       | Location             | In `npm run ci`?            |
-| ----------- | -------------------- | --------------------------- |
-| Unit        | `tests/unit/`        | Yes                         |
-| Integration | `tests/integration/` | Yes (Ollama optional)       |
-| Adversarial | `tests/adversarial/` | Yes                         |
-| Red team    | `tests/redteam/`     | No (`npm run test:redteam`) |
+| Layer         | Location                      | In `npm run ci`?            |
+| ------------- | ----------------------------- | --------------------------- |
+| Unit          | `tests/unit/`                 | Yes                         |
+| Integration   | `tests/integration/`          | Yes (Ollama optional)       |
+| Adversarial   | `tests/adversarial/`          | Yes                         |
+| Red team      | `tests/redteam/`              | No (`npm run test:redteam`) |
+| AI SDK latest | AI SDK Compatibility workflow | No (separate matrix)        |
 
 See [Unit coverage audit](./unit-coverage-audit.md) for the full +/- matrix.
 
@@ -125,4 +141,5 @@ See [Contributing](../contributing.md).
 - [Adversarial assurance plan](./adversarial-assurance-plan.md)
 - [Security assurance report](./SECURITY_ASSURANCE_REPORT.md)
 - [Unit coverage audit](./unit-coverage-audit.md)
+- [CI and automation](../contributing/ci-and-automation.md)
 - [Limitations](../design/limitations.md)

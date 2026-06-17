@@ -43,6 +43,8 @@
     "docs:build": "vitepress build website",
     "docs:preview": "vitepress preview website",
     "ci": "npm run lint:check && npm run format:check && npm run typecheck && npm run test:run && npm audit --audit-level=moderate --omit=dev",
+    "check:ai-sdk": "node scripts/check-ai-sdk-version.mjs",
+    "verify:ai-sdk-latest": "npm install --save-dev ai@latest --no-audit --no-fund && npm run typecheck && npm run test:run && npm run build",
     "prepublishOnly": "npm run build"
   },
   "publishConfig": {
@@ -70,7 +72,7 @@
     "esbuild": "^0.28.1"
   },
   "peerDependencies": {
-    "ai": ">=5.0.0",
+    "ai": ">=6.0.0",
     "zod": "^3.25.0 || ^4.0.0"
   },
   "devDependencies": {

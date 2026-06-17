@@ -30,7 +30,9 @@ npm run docs:build  # also run in CI
 4. `test:run` — full Vitest suite (Ollama integration optional; see `docs/testing/running-tests.md`)
 5. `npm audit --audit-level=moderate --omit=dev` — production deps only
 
-GitHub Actions (`.github/workflows/ci.yml`) also runs `build` and `docs:build`.
+GitHub Actions (`.github/workflows/ci.yml`) also runs `build`, `docs:build`, and `npm pack --dry-run`.
+
+**All workflows:** `docs/contributing/ci-and-automation.md` · **AI SDK:** `docs/contributing/dependency-policy.md` · `npm run check:ai-sdk`
 
 ## Code conventions
 
@@ -65,6 +67,7 @@ GitHub Actions (`.github/workflows/ci.yml`) also runs `build` and `docs:build`.
 - [ ] docs/testing/verification-matrix.md updated for new proven behavior
 - [ ] Feature doc under docs/features/ updated if user-facing
 - [ ] No unrelated refactors
+- [ ] `ai` / `@ai-sdk/*` bumps: dependency policy + AI SDK Compatibility CI green
 ```
 
 ## Adding behavior
@@ -85,10 +88,13 @@ For live-model behavior, extend `tests/integration/ollama.test.ts` — attach `@
 | `npm run test`            | Vitest watch mode                             |
 | `npm run lint` / `format` | Auto-fix before `ci`                          |
 | `npm pack --dry-run`      | Verify tarball (dist + README + LICENSE only) |
+| `npm run check:ai-sdk`    | Lockfile `ai` vs npm latest                   |
 
 ## Related
 
 - `CONTRIBUTING.md` — contributor guide (repo root)
+- `docs/contributing/ci-and-automation.md` — all GitHub Actions workflows
+- `docs/contributing/dependency-policy.md` — Vercel AI SDK upgrade policy
 - `docs/testing/writing-tests.md` — mock model, audit spies, errors
 - `docs/architecture/overview.md` — request lifecycle
 - `docs/design/limitations.md` — known gaps

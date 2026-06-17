@@ -2,28 +2,44 @@
 
 ai-shield uses [Vitest](https://vitest.dev/) for unit and integration tests.
 
-## Commands
-
-| Command                    | Purpose                                                       |
-| -------------------------- | ------------------------------------------------------------- |
-| `npm run test`             | Vitest watch mode (re-runs on file changes)                   |
-| `npm run test:run`         | Single run — used in CI (unit + integration + adversarial)    |
-| `npm run test:adversarial` | Adversarial corpus + contrast harness (mock model)            |
-| `npm run test:redteam`     | Ollama live red team (skipped if Ollama off)                  |
-| `npm run test:assurance`   | Adversarial + red team combined                               |
-| `npm run ci`               | Full quality gate (lint, format, typecheck, test, prod audit) |
-
 ## CI pipeline
 
-GitHub Actions workflow `.github/workflows/ci.yml` runs on push/PR to `main`/`master`:
+GitHub Actions runs on every push and PR to `main` / `master`. Full reference: **[CI and automation](../contributing/ci-and-automation.md)**.
 
-1. Node 22
-2. `npm ci`
-3. `npm run ci`
-4. `npm run build`
-5. `npm run docs:build`
+### Merge gate (`ci.yml`)
 
-The quality gate must pass with **zero errors and zero warnings**.
+| Step         | Command                                                  |
+| ------------ | -------------------------------------------------------- |
+| Quality gate | `npm run ci` (lint, format, typecheck, test, prod audit) |
+| Library      | `npm run build`                                          |
+| Docs         | `npm run docs:build`                                     |
+| Package      | `npm pack --dry-run`                                     |
+
+Node **22**. Must pass with **zero errors and zero warnings**.
+
+### Other workflows
+
+| Workflow                                                                          | Blocks merge?        | Purpose                        |
+| --------------------------------------------------------------------------------- | -------------------- | ------------------------------ |
+| [AI SDK Compatibility](../contributing/ci-and-automation.md#ai-sdk-compatibility) | When triggered on PR | `ai` lockfile vs latest matrix |
+| [Red Team](../contributing/ci-and-automation.md#red-team-advisory)                | No                   | Nightly Ollama injection tests |
+| [Docs](../contributing/ci-and-automation.md#docs-deployment)                      | When docs change     | VitePress / GitHub Pages       |
+| [CodeQL](../contributing/ci-and-automation.md#codeql)                             | Advisory             | Static security analysis       |
+
+**Vercel AI SDK updates:** [Dependency policy](../contributing/dependency-policy.md) · `npm run check:ai-sdk`
+
+## Commands
+
+| Command                        | Purpose                                                       |
+| ------------------------------ | ------------------------------------------------------------- |
+| `npm run test`                 | Vitest watch mode (re-runs on file changes)                   |
+| `npm run test:run`             | Single run — used in CI (unit + integration + adversarial)    |
+| `npm run test:adversarial`     | Adversarial corpus + contrast harness (mock model)            |
+| `npm run test:redteam`         | Ollama live red team (skipped if Ollama off)                  |
+| `npm run test:assurance`       | Adversarial + red team combined                               |
+| `npm run ci`                   | Full quality gate (lint, format, typecheck, test, prod audit) |
+| `npm run check:ai-sdk`         | Compare lockfile `ai` pin vs npm latest                       |
+| `npm run verify:ai-sdk-latest` | Typecheck + test + build on `ai@latest` (run `npm ci` after)  |
 
 ## Test layout
 
@@ -142,4 +158,6 @@ For adversarial / red-team work, see the [Adversarial assurance plan](./adversar
 - [Writing tests](./writing-tests.md)
 - [Verification matrix](./verification-matrix.md)
 - [Unit coverage audit](./unit-coverage-audit.md)
+- [CI and automation](../contributing/ci-and-automation.md)
+- [Dependency policy](../contributing/dependency-policy.md)
 - [Contributing](/contributing)

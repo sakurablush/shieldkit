@@ -39,15 +39,28 @@ This runs, in order:
 
 Individual commands:
 
-| Command              | Purpose                         |
-| -------------------- | ------------------------------- |
-| `npm run build`      | Build library to `dist/`        |
-| `npm run test`       | Vitest watch mode               |
-| `npm run test:run`   | Single test run                 |
-| `npm run lint`       | Auto-fix lint issues            |
-| `npm run format`     | Auto-format with Prettier       |
-| `npm run docs:dev`   | VitePress local preview         |
-| `npm run docs:build` | Build static documentation site |
+| Command                | Purpose                                 |
+| ---------------------- | --------------------------------------- |
+| `npm run build`        | Build library to `dist/`                |
+| `npm run test`         | Vitest watch mode                       |
+| `npm run test:run`     | Single test run                         |
+| `npm run lint`         | Auto-fix lint issues                    |
+| `npm run format`       | Auto-format with Prettier               |
+| `npm run docs:dev`     | VitePress local preview                 |
+| `npm run docs:build`   | Build static documentation site         |
+| `npm run check:ai-sdk` | Compare lockfile `ai` pin vs npm latest |
+
+## Vercel AI SDK updates
+
+shieldkit targets **AI SDK v6** (`LanguageModelV3`). Dependabot opens weekly PRs for `ai` and `@ai-sdk/*`; the **AI SDK Compatibility** workflow verifies both the lockfile pin and `ai@latest`.
+
+- [Dependency policy](./contributing/dependency-policy.md) — peer range, local commands, upgrade checklist
+- [CI and automation](./contributing/ci-and-automation.md) — all workflows, schedules, issue labels
+
+```bash
+npm run check:ai-sdk              # lockfile vs npm latest
+npm run verify:ai-sdk-latest      # full test on latest (then npm ci)
+```
 
 ## Ollama integration tests
 
@@ -64,6 +77,7 @@ OLLAMA_HOST=http://127.0.0.1:11434 OLLAMA_MODEL=llama3.2 npm run test:run
 - [ ] Public API changes are reflected in `docs/api/reference.md`
 - [ ] Behavior claims are updated in `docs/testing/verification-matrix.md`
 - [ ] README or feature docs updated if user-facing behavior changed
+- [ ] `ai` bumps: [dependency policy](./contributing/dependency-policy.md) + AI SDK Compatibility CI green
 
 ## Documentation changes
 

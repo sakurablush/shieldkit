@@ -31,16 +31,18 @@ CI sets `VITEPRESS_BASE=/${{ github.event.repository.name }}/` for GitHub Pages.
 
 ## Documentation map
 
-| Topic           | Path                                     |
-| --------------- | ---------------------------------------- |
-| Getting started | `docs/getting-started.md`                |
-| Cursor skills   | `docs/contributing/cursor-skills.md`     |
-| Architecture    | `docs/architecture/`                     |
-| Features        | `docs/features/`                         |
-| API reference   | `docs/api/reference.md`                  |
-| Testing         | `docs/testing/`                          |
-| Deployment      | `docs/DEPLOYMENT.md`                     |
-| Security        | `docs/security-policy.md`, `SECURITY.md` |
+| Topic             | Path                                     |
+| ----------------- | ---------------------------------------- |
+| Getting started   | `docs/getting-started.md`                |
+| Cursor skills     | `docs/contributing/cursor-skills.md`     |
+| Architecture      | `docs/architecture/`                     |
+| Features          | `docs/features/`                         |
+| API reference     | `docs/api/reference.md`                  |
+| Testing           | `docs/testing/`                          |
+| CI / automation   | `docs/contributing/ci-and-automation.md` |
+| Dependency policy | `docs/contributing/dependency-policy.md` |
+| Deployment        | `docs/DEPLOYMENT.md`                     |
+| Security          | `docs/security-policy.md`, `SECURITY.md` |
 
 ## When behavior changes
 
@@ -51,6 +53,7 @@ CI sets `VITEPRESS_BASE=/${{ github.event.repository.name }}/` for GitHub Pages.
 5. Architecture / design — if trade-offs change
 6. README — if install or quick-start changes
 7. Cursor skills — if workflows change (`.cursor/skills/`, `docs/contributing/cursor-skills.md`)
+8. CI / automation docs — if GitHub Actions or Dependabot change (`docs/contributing/ci-and-automation.md`, `.github/workflows/README.md`)
 
 ## Verification matrix
 

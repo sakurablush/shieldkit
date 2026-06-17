@@ -114,5 +114,7 @@ Ephemeral plan files under `.cursor/plans/` are listed in `.gitignore`, `.cursor
 ## Related
 
 - [Contributing](../contributing.md)
+- [CI and automation](./ci-and-automation.md)
+- [Dependency policy](./dependency-policy.md)
 - [Running tests](../testing/running-tests.md)
 - [Verification matrix](../testing/verification-matrix.md)

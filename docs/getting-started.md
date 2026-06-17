@@ -7,7 +7,7 @@ Source repository: [sakurablush/ai-shield](https://github.com/sakurablush/ai-shi
 ## Prerequisites
 
 - **Node.js** ≥ 20
-- **Vercel AI SDK** (`ai` ≥ 5) and **Zod** (`^3.25` or `^4`) as peer dependencies
+- **Vercel AI SDK** (`ai` ≥ 6) and **Zod** (`^3.25` or `^4`) as peer dependencies
 
 ## Installation
 

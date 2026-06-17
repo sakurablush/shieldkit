@@ -1,3 +1,8 @@
+# Dependabot — npm dependency updates
+#
+# The ai-sdk group is verified by .github/workflows/ai-sdk-compat.yml
+# (lockfile pin + ai@latest matrix). See docs/contributing/dependency-policy.md.
+
 version: 2
 
 updates:

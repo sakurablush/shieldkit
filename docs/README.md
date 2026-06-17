@@ -11,6 +11,8 @@ Production guardrails, structured output repair, and basic compliance for the [V
 | [Features](./features/input-guardrails.md)                       | Guards, repair, cost, audit, tools                 |
 | [Design](./design/why-middleware.md)                             | Rationale, trade-offs, limitations                 |
 | [Testing](./testing/running-tests.md)                            | How to run tests and verify correctness            |
+| [CI and automation](./contributing/ci-and-automation.md)         | GitHub Actions, Dependabot, schedules              |
+| [Dependency policy](./contributing/dependency-policy.md)         | Vercel AI SDK version strategy                     |
 | [Adversarial assurance](./testing/adversarial-assurance-plan.md) | Hardcore tests, contrast harness, red team         |
 | [API reference](./api/reference.md)                              | Public exports                                     |
 | [Examples](./examples/index.md)                                  | Runnable examples in the repo                      |
@@ -71,6 +73,8 @@ docs/
 ├── api/
 │   └── reference.md
 ├── contributing/
+│   ├── ci-and-automation.md
+│   ├── dependency-policy.md
 │   └── cursor-skills.md
 ├── DEPLOYMENT.md
 └── examples/
