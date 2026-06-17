@@ -79,7 +79,7 @@
     "@eslint/js": "^9.28.0",
     "@types/node": "^22.15.29",
     "ai": "^6.0.207",
-    "eslint": "^9.28.0",
+    "eslint": "^10.5.0",
     "ollama-ai-provider-v2": "^3.5.1",
     "prettier": "^3.5.3",
     "tsup": "^8.5.1",
