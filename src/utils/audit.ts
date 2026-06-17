@@ -32,5 +32,5 @@ function writeConsoleAudit(log: AuditLog, level: AuditLogLevel): void {
           modelId: log.modelId,
         };
 
-  console.info('[ai-shield]', JSON.stringify(payload));
+  console.info('[shieldkit]', JSON.stringify(payload));
 }

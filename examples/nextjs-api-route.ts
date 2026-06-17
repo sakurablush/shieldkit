@@ -6,7 +6,7 @@
 import { generateText } from 'ai';
 import { ollama } from 'ollama-ai-provider-v2';
 
-import { createShieldContext, shield } from 'ai-shield';
+import { createShieldContext, shield } from 'shieldkit';
 
 const model = shield(ollama(process.env.OLLAMA_MODEL ?? 'llama3.2'), {
   mode: 'balanced',
