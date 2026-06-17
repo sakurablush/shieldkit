@@ -53,13 +53,13 @@ flowchart TB
 **Node:** 22  
 **Concurrency:** one run per ref; PRs cancel in-progress runs.
 
-| Step            | Command              | What it proves                                               |
-| --------------- | -------------------- | ------------------------------------------------------------ |
-| Install         | `npm ci`             | Reproducible lockfile                                        |
-| Quality gate    | `npm run ci`         | Lint (0 warnings), Prettier, `tsc`, Vitest, prod `npm audit` |
-| Library         | `npm run build`      | `dist/` compiles via tsup                                    |
-| Documentation   | `npm run docs:build` | VitePress links and MD valid                                 |
-| Package tarball | `npm pack --dry-run` | npm publish surface = `dist` + README + LICENSE              |
+| Step            | Command              | What it proves                                                                |
+| --------------- | -------------------- | ----------------------------------------------------------------------------- |
+| Install         | `npm ci`             | Reproducible lockfile                                                         |
+| Quality gate    | `npm run ci`         | Lint (0 warnings), Prettier, `tsc`, Vitest (149 tests), full-tree `npm audit` |
+| Library         | `npm run build`      | `dist/` compiles via tsup                                                     |
+| Documentation   | `npm run docs:build` | VitePress links and MD valid                                                  |
+| Package tarball | `npm pack --dry-run` | npm publish surface = `dist` + README + LICENSE                               |
 
 `npm run ci` includes `tests/adversarial/` but **not** `tests/redteam/` (see [Running tests](../testing/running-tests.md)).
 
