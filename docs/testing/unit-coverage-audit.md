@@ -1,6 +1,6 @@
 # Unit Coverage Audit
 
-**Status:** complete · **Last updated:** 2026-06-17  
+**Status:** complete · **Last updated:** 2026-06-17 (shieldkit@0.1.1)  
 **Policy:** every implemented runtime capability in `src/` has **positive (+)** and **negative (−)** unit tests in `tests/unit/`. Adversarial/integration layers add breadth; they do not replace this matrix.
 
 ## Sign-off checklist

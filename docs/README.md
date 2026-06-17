@@ -30,6 +30,7 @@ Production guardrails, structured output repair, and basic compliance for the [V
 - **Cost tracking** — per-session token and USD budgets
 - **Audit logging** — structured lifecycle events to console or custom sinks
 - **Tool guards** — allow/deny lists, call limits, approval gates
+- **Verified** — [149 automated tests](./testing/verification-matrix.md#test-inventory) in the CI merge gate
 
 ```ts
 import { generateText } from 'ai';

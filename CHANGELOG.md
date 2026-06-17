@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-06-17
+
+### Fixed
+
+- Stream text collector: use a `ReadableStream` / `WritableStream` pair instead of `new TransformStream({...})` to clear the CodeQL `js/superfluous-trailing-arguments` alert (no behavior change).
+- Documentation: correct test inventory (149 tests in merge gate, not 39); align audit wording with full-tree `npm audit`.
+
 ## [0.1.0] - 2026-06-17
 
 Initial public release on npm as **shieldkit** ([sakurablush/shieldkit](https://github.com/sakurablush/shieldkit)).
@@ -41,5 +48,6 @@ Initial public release on npm as **shieldkit** ([sakurablush/shieldkit](https://
 - Dev toolchain: ESLint 10, TypeScript 6, `typescript-eslint` 8.61; `vite` override `^6.4.3` for VitePress transitive CVEs.
 - CI audits all dependencies (`npm audit --audit-level=moderate`, not `--omit=dev`).
 
-[Unreleased]: https://github.com/sakurablush/shieldkit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/sakurablush/shieldkit/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/sakurablush/shieldkit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/sakurablush/shieldkit/releases/tag/v0.1.0

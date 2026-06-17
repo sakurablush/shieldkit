@@ -2,6 +2,20 @@
 
 This is the central **"how we know it works"** artifact. Each row maps a capability to the tests that prove it and the confidence level we assign.
 
+## Test inventory
+
+**As of shieldkit@0.1.1** (re-check with `npm run test:run` after adding tests).
+
+| Metric              | Count                         | Notes                                                                                           |
+| ------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------- |
+| Test files          | **36**                        | Under `tests/unit/`, `tests/integration/`, `tests/adversarial/`                                 |
+| Test cases          | **149**                       | All in the merge gate (`npm run ci`)                                                            |
+| CI without Ollama   | **145 passed**, **4 skipped** | `tests/integration/ollama.test.ts` skips when Ollama is unreachable (typical on GitHub Actions) |
+| CI with Ollama      | **149 passed**                | Run locally with Ollama up                                                                      |
+| Red team (optional) | **8** in **2** files          | `npm run test:redteam` — not part of `npm run ci`                                               |
+
+Vitest default config (`vitest.config.ts`) includes `tests/**/*.test.ts` and excludes `tests/redteam/`.
+
 **Confidence levels:**
 
 - **High** — Deterministic unit tests cover the behavior thoroughly
@@ -93,7 +107,7 @@ This proves:
 - No lint or format regressions
 - TypeScript compiles
 - All non-skipped tests pass
-- No moderate+ vulnerabilities in production dependencies
+- No moderate+ vulnerabilities in the dependency tree (`npm audit --audit-level=moderate`, dev + prod)
 
 CI also runs `npm run build`, `npm run docs:build`, and `npm pack --dry-run` (see `.github/workflows/ci.yml`).
 
