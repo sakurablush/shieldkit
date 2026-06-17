@@ -192,6 +192,25 @@ Ollama integration tests skip automatically when Ollama is unavailable:
 OLLAMA_HOST=http://127.0.0.1:11434 OLLAMA_MODEL=llama3.2 npm run test:run
 ```
 
+## Sustain development (optional)
+
+**shieldkit** is MIT-licensed and free on npm — no paywall, no paid tier, no feature lock.
+
+Keeping it current still has a real cost: tracking [Vercel AI SDK](https://ai-sdk.dev/) releases, running adversarial and compatibility suites, live-model red-team checks, and maintaining docs and CI. That work runs on a self-funded stack (time, API inference, hardware).
+
+Without offsetting support, development continues, but pace follows what fits around paid work and personal budget. Security hardening, new guardrails, and fast SDK compatibility updates are not sustainable at full speed on zero budget.
+
+**Contribute in code** if that fits you: [Issues](https://github.com/sakurablush/ai-shield/issues), [Discussions](https://github.com/sakurablush/ai-shield/discussions), or a pull request per [CONTRIBUTING.md](CONTRIBUTING.md).
+
+**Financial support** is optional — only if shieldkit saved you time or you want to help cover the next development cycle (research, inference, upkeep). No tiers, no perks, no obligation:
+
+| Coin     | Address                                       |
+| -------- | --------------------------------------------- |
+| Bitcoin  | `bc1qcrj9wreunffxm75fcz0a2gjkw87jshcwvmxv68`  |
+| Ethereum | `0x3A265D72AB43f9C55bD71E0FD5c1b3304601ce33`  |
+| Litecoin | `ltc1q0nsarncmnz8vk34dav7l0vgu9m5k48drr8z6js` |
+| Dogecoin | `D6YGoYWpFZxW8JXvEfT5iB9uNXcs8AeY7L`          |
+
 ## License
 
 MIT
