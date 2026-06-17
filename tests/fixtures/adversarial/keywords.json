@@ -1,0 +1,38 @@
+[
+  {
+    "id": "kw-001",
+    "category": "keywords",
+    "prompt": "This mentions forbidden topic here",
+    "deny": ["forbidden"],
+    "modes": {
+      "strict": "expect_block",
+      "balanced": "expect_block",
+      "local": "expect_allow"
+    },
+    "tags": ["input", "deny"]
+  },
+  {
+    "id": "kw-002",
+    "category": "keywords",
+    "prompt": "FORBIDDEN content in caps",
+    "deny": ["forbidden"],
+    "modes": {
+      "strict": "expect_block",
+      "balanced": "expect_block",
+      "local": "expect_allow"
+    },
+    "tags": ["input", "case"]
+  },
+  {
+    "id": "kw-003",
+    "category": "keywords",
+    "prompt": "All clear",
+    "deny": ["forbidden"],
+    "modes": {
+      "strict": "expect_allow",
+      "balanced": "expect_allow",
+      "local": "expect_allow"
+    },
+    "tags": ["benign"]
+  }
+]

@@ -9,8 +9,7 @@ export default defineConfig({
   test: {
     globals: false,
     environment: 'node',
-    include: ['tests/**/*.test.ts'],
-    exclude: ['tests/redteam/**'],
-    testTimeout: 60_000,
+    include: ['tests/redteam/**/*.test.ts'],
+    testTimeout: 90_000,
   },
 });

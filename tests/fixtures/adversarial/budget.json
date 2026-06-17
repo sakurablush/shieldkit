@@ -1,0 +1,13 @@
+[
+  {
+    "id": "budget-001",
+    "category": "budget",
+    "prompt": "expensive call",
+    "modes": {
+      "strict": "expect_block",
+      "balanced": "expect_block",
+      "local": "expect_allow"
+    },
+    "tags": ["enforce"]
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "repair-001",
+    "category": "repair",
+    "prompt": "Return JSON",
+    "output": "```json\n{\"name\":\"Ada\"\n```",
+    "modes": {
+      "strict": "expect_allow",
+      "balanced": "expect_allow",
+      "local": "expect_allow"
+    },
+    "tags": ["fence", "retry"]
+  },
+  {
+    "id": "repair-002",
+    "category": "repair",
+    "prompt": "Return JSON",
+    "output": "{\"name\":\"Ada\",}",
+    "modes": {
+      "strict": "expect_allow",
+      "balanced": "expect_allow",
+      "local": "expect_allow"
+    },
+    "tags": ["trailing-comma"]
+  }
+]

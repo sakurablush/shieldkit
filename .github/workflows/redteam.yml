@@ -1,0 +1,59 @@
+name: Red Team
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  redteam:
+    name: Ollama adversarial red team
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Start Ollama
+        run: |
+          nohup ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:11434/api/tags && exit 0
+            sleep 2
+          done
+          echo "Ollama failed to start" && cat /tmp/ollama.log && exit 1
+
+      - name: Pull model
+        run: ollama pull llama3.2
+
+      - name: Run red team suite
+        env:
+          OLLAMA_HOST: http://127.0.0.1:11434
+          OLLAMA_MODEL: llama3.2
+          REDTEAM_STRICT: '0'
+        run: npm run test:redteam
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redteam-reports
+          path: test-results/
+          if-no-files-found: ignore
