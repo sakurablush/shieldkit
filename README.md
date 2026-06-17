@@ -4,7 +4,7 @@
 
 Production guardrails, structured output repair, and basic compliance for the [Vercel AI SDK](https://ai-sdk.dev/).
 
-Published on npm as **`shieldkit`**. Source repository: [sakurablush/shieldkit](https://github.com/sakurablush/shieldkit).
+Published on npm as **`shieldkit`**. Source repository: [sakurablush/shieldkit](https://github.com/sakurablush/shieldkit). **Documentation:** [sakurablush.github.io/shieldkit](https://sakurablush.github.io/shieldkit).
 
 Works with frontier models and local models (Ollama). Peer dependency: `ai >=6`, `zod`.
 
@@ -14,7 +14,9 @@ npm install shieldkit ai zod
 
 ## Documentation
 
-Full documentation lives in [`docs/`](docs/README.md):
+**Browse online:** [sakurablush.github.io/shieldkit](https://sakurablush.github.io/shieldkit)
+
+Source markdown lives in [`docs/`](docs/README.md):
 
 - [Getting started](docs/getting-started.md) — install and first request
 - [Architecture](docs/architecture/overview.md) — middleware chain and request lifecycle
