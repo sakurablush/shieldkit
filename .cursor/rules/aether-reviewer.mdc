@@ -88,6 +88,17 @@ Before delivering a review verdict — regardless of language or scope — run t
 
 If the gate cannot run, run the closest equivalent checks individually and note the limitation.
 
+## Version & CHANGELOG Review (MANDATORY)
+
+For changes that affect consumers, verify compliance with `shieldkit-release-changelog.mdc`:
+
+- Missing `[Unreleased]` entry when behavior/API/security changed → **High**
+- Wrong SemVer category for the described change → **Medium**
+- `package.json` version bumped without matching dated `CHANGELOG` section (or vice versa) → **High**
+- Release PR without updated footer compare links → **Medium**
+
+Explicitly note changelog/version status in the review verdict.
+
 ## Output Format
 
 For every issue provide:

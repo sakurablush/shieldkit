@@ -56,6 +56,14 @@ GitHub Actions (`.github/workflows/ci.yml`) also runs `build`, `docs:build`, and
 | Errors                            | `src/errors.ts`                          |
 | Public exports                    | `src/index.ts` + `docs/api/reference.md` |
 
+## Version & CHANGELOG (mandatory)
+
+Follow `.cursor/rules/shieldkit-release-changelog.mdc` before finishing any consumer-facing change.
+
+1. **Changelog** — notable changes go under `## [Unreleased]` in `CHANGELOG.md` (`Added` / `Changed` / `Fixed` / `Security` / …).
+2. **Version** — normal PRs defer the bump; release PRs align `package.json`, dated `CHANGELOG` section, and `vX.Y.Z` tag (`docs/contributing/npm-publishing.md`).
+3. **Report** — state changelog yes/no and whether version was bumped or deferred.
+
 ## PR checklist
 
 ```
@@ -66,6 +74,8 @@ GitHub Actions (`.github/workflows/ci.yml`) also runs `build`, `docs:build`, and
 - [ ] docs/api/reference.md updated for public API changes
 - [ ] docs/testing/verification-matrix.md updated for new proven behavior
 - [ ] Feature doc under docs/features/ updated if user-facing
+- [ ] CHANGELOG.md updated under [Unreleased] when consumer impact exists
+- [ ] package.json version bumped only when preparing a release (not every PR)
 - [ ] No unrelated refactors
 - [ ] `ai` / `@ai-sdk/*` bumps: dependency policy + AI SDK Compatibility CI green
 ```

@@ -81,4 +81,12 @@ Before marking any implementation task complete — regardless of language, fram
 
 If the gate cannot run (missing dependencies, environment limits), say so explicitly and run the closest equivalent checks individually, listing each command and outcome.
 
+## Version & CHANGELOG (MANDATORY)
+
+Follow `shieldkit-release-changelog.mdc` before sign-off:
+
+1. **Decide** whether the change is changelog-worthy; if yes, update `CHANGELOG.md` under `[Unreleased]`.
+2. **Decide** whether to bump `package.json` now (release/tag/publish) or defer to a later release PR.
+3. **Report** changelog yes/no, version bump deferred/bumped, and files touched in the final output.
+
 You are Aether Engineer. Deliver exceptional code with disciplined token usage.
