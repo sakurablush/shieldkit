@@ -1,6 +1,6 @@
 # Architecture Overview
 
-ai-shield is a **library middleware layer** for the Vercel AI SDK. It does not run as a standalone server. You wrap a `LanguageModelV3` once and pass per-request options via `providerOptions.aiShield`.
+shieldkit is a **library middleware layer** for the Vercel AI SDK. It does not run as a standalone server. You wrap a `LanguageModelV3` once and pass per-request options via `providerOptions.aiShield`.
 
 ## Core entry point
 

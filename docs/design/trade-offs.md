@@ -1,6 +1,6 @@
 # Trade-offs
 
-Explicit design decisions in ai-shield and their consequences.
+Explicit design decisions in shieldkit and their consequences.
 
 ## Regex-based injection detection
 
@@ -14,7 +14,7 @@ Explicit design decisions in ai-shield and their consequences.
 
 **Alternatives considered:** LLM-based classifiers (latency, cost, non-determinism), external WAF services (infrastructure dependency).
 
-**Recommendation:** Use ai-shield injection guards as a first line; add provider-level safety and human review for high-risk applications.
+**Recommendation:** Use shieldkit injection guards as a first line; add provider-level safety and human review for high-risk applications.
 
 ## In-memory session store
 

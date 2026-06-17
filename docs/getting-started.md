@@ -2,7 +2,7 @@
 
 Install **shieldkit** from npm and wrap your first language model in a few minutes.
 
-Source repository: [sakurablush/ai-shield](https://github.com/sakurablush/ai-shield).
+Source repository: [sakurablush/shieldkit](https://github.com/sakurablush/shieldkit).
 
 ## Prerequisites
 

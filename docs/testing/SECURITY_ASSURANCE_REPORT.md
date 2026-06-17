@@ -65,4 +65,4 @@ Set `TEST_VERBOSE=1` during `npm run test:adversarial` for contrast and audit JS
 
 - [Adversarial assurance plan](./adversarial-assurance-plan.md)
 - [Limitations](../design/limitations.md)
-- [SECURITY.md](https://github.com/sakurablush/ai-shield/blob/main/SECURITY.md)
+- [SECURITY.md](https://github.com/sakurablush/shieldkit/blob/main/SECURITY.md)

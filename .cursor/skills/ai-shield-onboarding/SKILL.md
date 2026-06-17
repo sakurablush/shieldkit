@@ -1,14 +1,14 @@
 ---
 name: ai-shield-onboarding
-description: Orients new contributors and testers to the ai-shield repository — what the library does, repo layout, first commands, and which Cursor skill to attach next. Use when someone is new to ai-shield, asks what the project is, or needs a quick start before coding or testing.
+description: Orients new contributors and testers to the shieldkit repository — what the library does, repo layout, first commands, and which Cursor skill to attach next. Use when someone is new to shieldkit, asks what the project is, or needs a quick start before coding or testing.
 disable-model-invocation: true
 ---
 
-# ai-shield Onboarding
+# shieldkit Onboarding
 
 ## What this project is
 
-**shieldkit** (npm) / **ai-shield** (repo) is a Vercel AI SDK middleware library that adds:
+**shieldkit** is a Vercel AI SDK middleware library that adds:
 
 - Input/output guardrails (injection, PII, keywords)
 - Structured JSON output repair
@@ -32,8 +32,8 @@ website/       # VitePress site
 ## First 5 minutes
 
 ```bash
-git clone https://github.com/sakurablush/ai-shield.git
-cd ai-shield
+git clone https://github.com/sakurablush/shieldkit.git
+cd shieldkit
 npm ci
 npm run ci        # all tests pass (Ollama integration skipped when unavailable)
 npm run build

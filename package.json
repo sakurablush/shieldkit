@@ -62,12 +62,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sakurablush/ai-shield.git"
+    "url": "git+https://github.com/sakurablush/shieldkit.git"
   },
   "bugs": {
-    "url": "https://github.com/sakurablush/ai-shield/issues"
+    "url": "https://github.com/sakurablush/shieldkit/issues"
   },
-  "homepage": "https://github.com/sakurablush/ai-shield#readme",
+  "homepage": "https://github.com/sakurablush/shieldkit#readme",
   "overrides": {
     "esbuild": "^0.28.1",
     "vite": "^6.4.3"

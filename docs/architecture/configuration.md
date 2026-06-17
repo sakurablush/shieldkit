@@ -1,6 +1,6 @@
 # Configuration
 
-ai-shield configuration has two layers: **shield-level config** passed to `shield(model, config?)`, and **per-request options** passed via `providerOptions.aiShield`.
+shieldkit configuration has two layers: **shield-level config** passed to `shield(model, config?)`, and **per-request options** passed via `providerOptions.aiShield`.
 
 ## Shield-level config
 

@@ -1,6 +1,6 @@
 # CI and automation
 
-This page is the **single map** of every automated pipeline in the ai-shield repository. Human contributors and Cursor agents should start here when asking “what runs when?” or “why did this workflow fail?”.
+This page is the **single map** of every automated pipeline in the shieldkit repository. Human contributors and Cursor agents should start here when asking “what runs when?” or “why did this workflow fail?”.
 
 Related deep-dives:
 

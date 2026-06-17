@@ -1,4 +1,4 @@
-# Contributing to ai-shield
+# Contributing to shieldkit
 
 Thank you for contributing. This guide covers local setup, the quality gate, and documentation expectations.
 
@@ -10,8 +10,8 @@ Thank you for contributing. This guide covers local setup, the quality gate, and
 ## Setup
 
 ```bash
-git clone https://github.com/sakurablush/ai-shield.git
-cd ai-shield
+git clone https://github.com/sakurablush/shieldkit.git
+cd shieldkit
 npm ci
 ```
 
@@ -103,7 +103,7 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 Root-level community files (GitHub Community Standards):
 
-- [Code of Conduct](https://github.com/sakurablush/ai-shield/blob/main/CODE_OF_CONDUCT.md)
-- [Contributors](https://github.com/sakurablush/ai-shield/blob/main/CONTRIBUTORS.md)
-- [Changelog](https://github.com/sakurablush/ai-shield/blob/main/CHANGELOG.md)
+- [Code of Conduct](https://github.com/sakurablush/shieldkit/blob/main/CODE_OF_CONDUCT.md)
+- [Contributors](https://github.com/sakurablush/shieldkit/blob/main/CONTRIBUTORS.md)
+- [Changelog](https://github.com/sakurablush/shieldkit/blob/main/CHANGELOG.md)
 - [Security policy](/security-policy)

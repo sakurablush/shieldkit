@@ -1,6 +1,6 @@
 # Request Lifecycle
 
-This document describes how a single request flows through ai-shield for the three main paths: synchronous generation, streaming, and structured output repair.
+This document describes how a single request flows through shieldkit for the three main paths: synchronous generation, streaming, and structured output repair.
 
 ## Synchronous generation (`generateText`)
 

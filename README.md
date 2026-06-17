@@ -4,7 +4,7 @@
 
 Production guardrails, structured output repair, and basic compliance for the [Vercel AI SDK](https://ai-sdk.dev/).
 
-Published on npm as **`shieldkit`**. Source repository: [sakurablush/ai-shield](https://github.com/sakurablush/ai-shield).
+Published on npm as **`shieldkit`**. Source repository: [sakurablush/shieldkit](https://github.com/sakurablush/shieldkit).
 
 Works with frontier models and local models (Ollama). Peer dependency: `ai >=6`, `zod`.
 
@@ -200,7 +200,7 @@ Keeping it current still has a real cost: tracking [Vercel AI SDK](https://ai-sd
 
 Without offsetting support, development continues, but pace follows what fits around paid work and personal budget. Security hardening, new guardrails, and fast SDK compatibility updates are not sustainable at full speed on zero budget.
 
-**Contribute in code** if that fits you: [Issues](https://github.com/sakurablush/ai-shield/issues), [Discussions](https://github.com/sakurablush/ai-shield/discussions), or a pull request per [CONTRIBUTING.md](CONTRIBUTING.md).
+**Contribute in code** if that fits you: [Issues](https://github.com/sakurablush/shieldkit/issues), [Discussions](https://github.com/sakurablush/shieldkit/discussions), or a pull request per [CONTRIBUTING.md](CONTRIBUTING.md).
 
 **Financial support** is optional — only if shieldkit saved you time or you want to help cover the next development cycle (research, inference, upkeep). No tiers, no perks, no obligation:
 

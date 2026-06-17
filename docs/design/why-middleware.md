@@ -1,6 +1,6 @@
 # Why Middleware?
 
-ai-shield is built on the Vercel AI SDK's `wrapLanguageModel` middleware API rather than as a standalone proxy or fork of the SDK.
+shieldkit is built on the Vercel AI SDK's `wrapLanguageModel` middleware API rather than as a standalone proxy or fork of the SDK.
 
 ## Design goals
 
@@ -53,7 +53,7 @@ Input guards use `transformParams` (runs before `wrapGenerate`), so they execute
 
 ## Relationship to AI SDK versions
 
-ai-shield targets AI SDK v5+ with `LanguageModelV3` middleware. Peer dependencies:
+shieldkit targets AI SDK v5+ with `LanguageModelV3` middleware. Peer dependencies:
 
 - `ai >= 5.0.0`
 - `zod ^3.25.0 || ^4.0.0`

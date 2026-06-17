@@ -1,4 +1,4 @@
-# Contributing to ai-shield
+# Contributing to shieldkit
 
 Thank you for contributing. This guide covers local setup, the quality gate, and documentation expectations.
 
@@ -10,8 +10,8 @@ Thank you for contributing. This guide covers local setup, the quality gate, and
 ## Setup
 
 ```bash
-git clone https://github.com/sakurablush/ai-shield.git
-cd ai-shield
+git clone https://github.com/sakurablush/shieldkit.git
+cd shieldkit
 npm ci
 ```
 

@@ -1,6 +1,6 @@
 # Running Tests
 
-ai-shield uses [Vitest](https://vitest.dev/) for unit and integration tests.
+shieldkit uses [Vitest](https://vitest.dev/) for unit and integration tests.
 
 ## CI pipeline
 

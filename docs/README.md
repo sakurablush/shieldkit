@@ -1,4 +1,4 @@
-# ai-shield Documentation
+# shieldkit Documentation
 
 Production guardrails, structured output repair, and basic compliance for the [Vercel AI SDK](https://ai-sdk.dev/).
 
@@ -22,7 +22,7 @@ Production guardrails, structured output repair, and basic compliance for the [V
 
 ## What is shieldkit?
 
-**shieldkit** is the npm package name for this library (repo: `ai-shield`). It wraps any `LanguageModelV3` (OpenAI, Anthropic, Ollama, etc.) with a middleware chain that provides:
+**shieldkit** is published on [npm](https://www.npmjs.com/package/shieldkit) and developed at [sakurablush/shieldkit](https://github.com/sakurablush/shieldkit). It wraps any `LanguageModelV3` (OpenAI, Anthropic, Ollama, etc.) with a middleware chain that provides:
 
 - **Input guardrails** — prompt injection detection, PII redaction, keyword deny lists
 - **Output guardrails** — PII/keyword filtering on model responses

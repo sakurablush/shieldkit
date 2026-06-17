@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2026-06-17
 
-Initial public release on npm as **shieldkit** (source repository: [ai-shield](https://github.com/sakurablush/ai-shield)).
+Initial public release on npm as **shieldkit** ([sakurablush/shieldkit](https://github.com/sakurablush/shieldkit)).
 
 ### Added
 
@@ -35,11 +35,11 @@ Initial public release on npm as **shieldkit** (source repository: [ai-shield](h
 
 ### Changed
 
-- npm package name is **shieldkit** (repository remains `ai-shield`).
+- npm package and GitHub repository: **shieldkit**.
 - Peer dependency `ai` is `>= 6.0.0` (AI SDK v6 / `LanguageModelV3` required).
 - `.gitignore` tracks `.cursor/skills/` and `.cursor/rules/`; ephemeral plan files remain ignored.
 - Dev toolchain: ESLint 10, TypeScript 6, `typescript-eslint` 8.61; `vite` override `^6.4.3` for VitePress transitive CVEs.
 - CI audits all dependencies (`npm audit --audit-level=moderate`, not `--omit=dev`).
 
-[Unreleased]: https://github.com/sakurablush/ai-shield/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/sakurablush/ai-shield/releases/tag/v0.1.0
+[Unreleased]: https://github.com/sakurablush/shieldkit/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/sakurablush/shieldkit/releases/tag/v0.1.0

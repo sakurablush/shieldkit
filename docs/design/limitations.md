@@ -1,10 +1,10 @@
 # Limitations
 
-What ai-shield does **not** guarantee. Read this before deploying to production.
+What shieldkit does **not** guarantee. Read this before deploying to production.
 
 ## Security scope
 
-ai-shield provides **basic compliance helpers**, not a complete security program.
+shieldkit provides **basic compliance helpers**, not a complete security program.
 
 | Provided                                             | Not provided                         |
 | ---------------------------------------------------- | ------------------------------------ |

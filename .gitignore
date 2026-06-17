@@ -1,5 +1,5 @@
 # =============================================================================
-# .gitignore — ai-shield (npm library + VitePress docs)
+# .gitignore — shieldkit (npm library + VitePress docs)
 # =============================================================================
 # Tracked on purpose: .cursor/skills/, .cursor/rules/ (shared agent playbooks)
 # Ignored: .cursor/plans/ and other ephemeral AI plan files

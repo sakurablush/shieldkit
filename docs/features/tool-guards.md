@@ -86,7 +86,7 @@ const tools = guardTools(
 await generateText({
   model: shield(baseModel),
   tools,
-  prompt: 'Search for ai-shield',
+  prompt: 'Search for shieldkit',
   providerOptions: {
     aiShield: { sessionId: 'user-123', requestId: 'req-abc' },
   },

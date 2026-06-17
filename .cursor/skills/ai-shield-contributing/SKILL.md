@@ -1,17 +1,17 @@
 ---
 name: ai-shield-contributing
-description: Guides development on the ai-shield library — setup, CI gate, code conventions, PR checklist, and where to change code. Use when contributing to ai-shield, fixing bugs, adding features, editing src/ or tests/, or preparing a pull request.
+description: Guides development on the shieldkit library — setup, CI gate, code conventions, PR checklist, and where to change code. Use when contributing to shieldkit, fixing bugs, adding features, editing src/ or tests/, or preparing a pull request.
 disable-model-invocation: true
 ---
 
-# ai-shield Contributing
+# shieldkit Contributing
 
 Human doc: `docs/contributing.md` · Skill index: `docs/contributing/cursor-skills.md`
 
 ## Quick start
 
 ```bash
-cd ai-shield
+cd shieldkit
 npm ci
 npm run ci          # must pass before PR
 npm run build       # also run in CI after ci

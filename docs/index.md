@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: ai-shield
+  name: shieldkit
   text: Production guardrails for the Vercel AI SDK
   tagline: Input/output safety, structured output repair, cost budgets, audit logging, and tool policies
   actions:

@@ -1,6 +1,6 @@
 # Deploying Documentation (GitHub Pages)
 
-ai-shield documentation is built with [VitePress](https://vitepress.dev/) from the `docs/` folder. The npm package does **not** include docs — only the static site is published.
+shieldkit documentation is built with [VitePress](https://vitepress.dev/) from the `docs/` folder. The npm package does **not** include docs — only the static site is published.
 
 ## Prerequisites
 
@@ -40,8 +40,8 @@ Opens VitePress at `http://localhost:5173` (default). Use `/` as base locally.
 ## Production build
 
 ```bash
-# Match GitHub Pages base path for a project site named "ai-shield":
-VITEPRESS_BASE=/ai-shield/ npm run docs:build
+# Match GitHub Pages base path for a project site named "shieldkit":
+VITEPRESS_BASE=/shieldkit/ npm run docs:build
 
 npm run docs:preview
 ```

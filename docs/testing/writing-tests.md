@@ -1,6 +1,6 @@
 # Writing Tests
 
-Patterns and conventions for adding tests to ai-shield.
+Patterns and conventions for adding tests to shieldkit.
 
 ## Test framework
 

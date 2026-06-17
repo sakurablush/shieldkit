@@ -1,6 +1,6 @@
 # Security Policy
 
-ai-shield provides **basic guardrails** for AI SDK applications. It is not a complete security product. Read [limitations](./design/limitations.md) before relying on it for compliance or threat prevention.
+shieldkit provides **basic guardrails** for AI SDK applications. It is not a complete security product. Read [limitations](./design/limitations.md) before relying on it for compliance or threat prevention.
 
 ## Supported versions
 
@@ -10,7 +10,7 @@ ai-shield provides **basic guardrails** for AI SDK applications. It is not a com
 
 ## Reporting a vulnerability
 
-If you believe you have found a security issue in ai-shield:
+If you believe you have found a security issue in shieldkit:
 
 1. **Do not** open a public GitHub issue for exploitable vulnerabilities.
 2. Contact the repository maintainer privately with:

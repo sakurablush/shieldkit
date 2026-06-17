@@ -1,6 +1,6 @@
 # Cursor Agent Skills
 
-This repository ships **project skills** for [Cursor](https://cursor.com/) — structured playbooks that teach the AI agent how to develop, test, and document ai-shield correctly.
+This repository ships **project skills** for [Cursor](https://cursor.com/) — structured playbooks that teach the AI agent how to develop, test, and document shieldkit correctly.
 
 Skills live in `.cursor/skills/` (not published to npm). They complement human docs in `docs/` and `.cursor/rules/` (Aether personas).
 
@@ -61,7 +61,7 @@ To allow ambient auto-invoke for a skill, remove `disable-model-invocation` from
 
 **Path:** `.cursor/skills/ai-shield-onboarding/SKILL.md`
 
-Orients newcomers: what ai-shield is, repo layout, first commands, and which skill to attach next.
+Orients newcomers: what shieldkit is, repo layout, first commands, and which skill to attach next.
 
 ### ai-shield-contributing
 

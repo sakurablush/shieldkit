@@ -1,6 +1,6 @@
 # Contributors
 
-Thank you to everyone who helps improve ai-shield.
+Thank you to everyone who helps improve shieldkit.
 
 ## How to contribute
 
@@ -10,7 +10,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, the CI gate, and pull request 
 
 Contributors are credited in:
 
-- **[GitHub Contributors](https://github.com/sakurablush/ai-shield/graphs/contributors)** — automatic for merged pull requests
+- **[GitHub Contributors](https://github.com/sakurablush/shieldkit/graphs/contributors)** — automatic for merged pull requests
 - **[CHANGELOG.md](CHANGELOG.md)** — notable changes per release
 
 We do not maintain a separate manual name list in this file; the GitHub graph is the source of truth after your PR merges.
