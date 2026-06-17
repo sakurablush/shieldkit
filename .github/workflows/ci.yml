@@ -5,15 +5,41 @@ on:
     branches: [master, main]
   pull_request:
     branches: [master, main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
 
 jobs:
   ci:
+    name: Lint · Typecheck · Test · Build · Docs · Audit
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-      - run: npm run ci
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint · format · typecheck · test · audit
+        run: npm run ci
+
+      - name: Build library
+        run: npm run build
+
+      - name: Build documentation
+        env:
+          VITEPRESS_BASE: /${{ github.event.repository.name }}/
+        run: npm run docs:build

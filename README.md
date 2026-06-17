@@ -4,6 +4,20 @@ Production guardrails, structured output repair, and basic compliance for the [V
 
 Works with frontier models and local models (Ollama). Peer dependency: `ai >=5`, `zod`.
 
+## Documentation
+
+Full documentation lives in [`docs/`](docs/README.md):
+
+- [Getting started](docs/getting-started.md) — install and first request
+- [Architecture](docs/architecture/overview.md) — middleware chain and request lifecycle
+- [Features](docs/features/input-guardrails.md) — guards, repair, cost, audit, tools
+- [Design](docs/design/why-middleware.md) — rationale, trade-offs, limitations
+- [Testing](docs/testing/running-tests.md) — how to run tests and [verification matrix](docs/testing/verification-matrix.md)
+- [API reference](docs/api/reference.md) — public exports
+- [Examples](docs/examples/index.md) — Next.js route and agent with tools
+
+Browse locally: `npm run docs:dev` (VitePress). Deploy: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Security: [SECURITY.md](SECURITY.md). See [Contributing](docs/contributing.md).
+
 ## Quick start
 
 ```ts

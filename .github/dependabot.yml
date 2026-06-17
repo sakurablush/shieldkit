@@ -1,0 +1,47 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: UTC
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: deps
+    labels:
+      - dependencies
+      - automated
+    groups:
+      ai-sdk:
+        applies-to: version-updates
+        patterns:
+          - ai
+          - '@ai-sdk/*'
+      testing:
+        applies-to: version-updates
+        patterns:
+          - vitest*
+          - '@vitest/*'
+      typescript-and-build:
+        applies-to: version-updates
+        patterns:
+          - typescript
+          - tsup
+          - esbuild
+      linting-and-formatting:
+        applies-to: version-updates
+        patterns:
+          - eslint*
+          - prettier*
+          - typescript-eslint*
+      docs:
+        applies-to: version-updates
+        patterns:
+          - vitepress
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'

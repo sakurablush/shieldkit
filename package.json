@@ -36,7 +36,10 @@
     "format:check": "prettier --check .",
     "test": "vitest",
     "test:run": "vitest run",
-    "ci": "npm run lint:check && npm run format:check && npm run typecheck && npm run test:run && npm audit --audit-level=moderate"
+    "docs:dev": "vitepress dev website",
+    "docs:build": "vitepress build website",
+    "docs:preview": "vitepress preview website",
+    "ci": "npm run lint:check && npm run format:check && npm run typecheck && npm run test:run && npm audit --audit-level=moderate --omit=dev"
   },
   "keywords": [
     "ai",
@@ -64,6 +67,7 @@
     "tsup": "^8.5.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.33.1",
+    "vitepress": "^1.6.3",
     "vitest": "^4.1.9",
     "zod": "^4.0.16"
   }

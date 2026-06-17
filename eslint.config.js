@@ -4,7 +4,13 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   eslint.configs.recommended,
   {
-    ignores: ['dist/**', 'node_modules/**', 'coverage/**'],
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      'coverage/**',
+      'website/.vitepress/dist/**',
+      'website/.vitepress/cache/**',
+    ],
   },
   {
     files: ['**/*.{js,mjs,cjs}'],
