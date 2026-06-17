@@ -97,16 +97,14 @@ Vercel AI SDK (`ai`) upgrades: [docs/contributing/dependency-policy.md](docs/con
 
 ## Publishing (maintainers)
 
-The library is published to npm as **`shieldkit`**:
+**Preferred:** merge to `main`, tag `vX.Y.Z`, push — [Publish workflow](.github/workflows/publish.yml) uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC, no `NPM_TOKEN`).
+
+Setup and exact npm form values: [docs/contributing/npm-publishing.md](docs/contributing/npm-publishing.md).
+
+**Fallback** (local `npm login`):
 
 ```bash
-npm login
 bash scripts/publish.sh   # or: .\scripts\publish.ps1 on Windows
-```
-
-The script runs the full CI gate, build, docs, dry-run pack, and `npm publish`. Then tag from `package.json` version:
-
-```bash
 git tag v$(node -p "require('./package.json').version")
 git push origin v$(node -p "require('./package.json').version")
 ```

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Publish shieldkit — run after `npm login` and full CI gate.
+# Fallback publish when trusted publishing is not configured.
+# Preferred: push tag v* after merge — see docs/contributing/npm-publishing.md
 VERSION="$(node -p "require('./package.json').version")"
 
 npm run ci
@@ -11,5 +12,4 @@ npm pack --dry-run
 npm publish --access public
 
 echo "Published shieldkit@${VERSION}"
-echo "Next: git tag v${VERSION} && git push origin v${VERSION}"
-echo "Then create GitHub Release from CHANGELOG [${VERSION}]"
+echo "Next: git tag v${VERSION} && git push origin v${VERSION} (or rely on publish.yml if already tagged)"

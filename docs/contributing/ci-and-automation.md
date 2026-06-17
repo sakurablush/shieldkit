@@ -44,6 +44,7 @@ flowchart TB
 | **CodeQL**               | [`codeql.yml`](../../.github/workflows/codeql.yml)               | Push / PR / schedule                              | Advisory                     | Static security analysis                                 |
 | **Red Team**             | [`redteam.yml`](../../.github/workflows/redteam.yml)             | Daily 04:00 UTC, manual                           | **No** (`continue-on-error`) | Live Ollama injection prompts                            |
 | **Labeler**              | [`labeler.yml`](../../.github/workflows/labeler.yml)             | PR opened / sync                                  | No                           | Auto-labels (`ci`, `tests`, `documentation`, …)          |
+| **Publish**              | [`publish.yml`](../../.github/workflows/publish.yml)             | Push tag `v*`, manual                             | N/A (release)                | npm trusted publishing via OIDC on tag push              |
 
 **Dependabot** ([`dependabot.yml`](../../.github/dependabot.yml)) is not a workflow but opens PRs weekly (Monday 06:00 UTC). The `ai-sdk` group bundles `ai` and `@ai-sdk/*`; those PRs should pass **CI** and **AI SDK Compatibility**.
 
@@ -125,6 +126,16 @@ Builds VitePress with `VITEPRESS_BASE` set for GitHub Pages project sites. Detai
 
 **File:** `.github/workflows/codeql.yml`  
 JavaScript/TypeScript analysis on `src/`. Results appear in the GitHub Security tab.
+
+## Publish (npm)
+
+**File:** `.github/workflows/publish.yml`  
+**Trigger:** push tag `v*` (or manual `workflow_dispatch`)  
+**Auth:** npm trusted publishing (OIDC) — requires one-time setup on npmjs.com
+
+Runs the same quality gate as CI, builds `dist/`, verifies `npm pack --dry-run`, then `npm publish`. Tag version must match `package.json`.
+
+Full setup (trusted publisher form fields, release checklist): **[npm publishing](./npm-publishing.md)**.
 
 ## Dependabot groups
 

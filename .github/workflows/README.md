@@ -7,6 +7,7 @@
 | Docs                 | [`docs.yml`](docs.yml)                   | [DEPLOYMENT.md](../../docs/DEPLOYMENT.md)                                           |
 | Red Team             | [`redteam.yml`](redteam.yml)             | [Security assurance report](../../docs/testing/SECURITY_ASSURANCE_REPORT.md)        |
 | CodeQL               | [`codeql.yml`](codeql.yml)               | [CI and automation](../../docs/contributing/ci-and-automation.md#codeql)            |
+| Publish              | [`publish.yml`](publish.yml)             | [npm publishing](../../docs/contributing/npm-publishing.md)                         |
 | Labeler              | [`labeler.yml`](labeler.yml)             | [CI and automation](../../docs/contributing/ci-and-automation.md#labels-automation) |
 
 **Dependabot:** [`../dependabot.yml`](../dependabot.yml)

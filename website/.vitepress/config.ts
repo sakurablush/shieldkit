@@ -36,6 +36,7 @@ export default defineConfig({
           { text: 'Deployment', link: '/DEPLOYMENT' },
           { text: 'Contributing', link: '/contributing' },
           { text: 'CI and automation', link: '/contributing/ci-and-automation' },
+          { text: 'npm publishing', link: '/contributing/npm-publishing' },
           { text: 'Dependency policy', link: '/contributing/dependency-policy' },
           { text: 'Cursor Agent Skills', link: '/contributing/cursor-skills' },
         ],
