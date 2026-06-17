@@ -7,19 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-- AI SDK Compatibility workflow (`.github/workflows/ai-sdk-compat.yml`) — weekly and PR matrix against lockfile pin and `ai@latest`.
-- `scripts/check-ai-sdk-version.mjs` and `npm run check:ai-sdk` / `verify:ai-sdk-latest`.
-- Documentation: [CI and automation](docs/contributing/ci-and-automation.md), [dependency policy](docs/contributing/dependency-policy.md).
-
-### Changed
-
-- Peer dependency `ai` corrected to `>=6.0.0` (v6 / `LanguageModelV3` required).
-
 ## [0.1.0] - 2026-06-17
 
-Initial public release on npm as **shieldkit** (source repo: `ai-shield`).
+Initial public release on npm as **shieldkit** (source repository: [ai-shield](https://github.com/sakurablush/ai-shield)).
 
 ### Added
 
@@ -30,19 +20,24 @@ Initial public release on npm as **shieldkit** (source repo: `ai-shield`).
 - `guardTools()` for tool allow/deny lists, call limits, and approval gates.
 - Mode presets: `balanced`, `strict`, `cheap`, `local`, `custom`.
 - `shieldGenerateText` and `shieldStreamText` helpers.
-- Full unit test matrix with positive and negative cases (`docs/testing/unit-coverage-audit.md`).
+- Full unit test matrix with positive and negative cases ([unit coverage audit](docs/testing/unit-coverage-audit.md)).
 - Adversarial test suite (`tests/adversarial/`) with fixture corpus and contrast harness.
 - Ollama red team workflow (`.github/workflows/redteam.yml`) and `npm run test:redteam`.
 - `TEST_VERBOSE=1` optional logging during tests.
-- `docs/testing/SECURITY_ASSURANCE_REPORT.md` and `docs/testing/adversarial-assurance-plan.md`.
-- Cursor Agent Skills in `.cursor/skills/` with documentation at `docs/contributing/cursor-skills.md`.
-- `.cursorignore` and `.kiloignore` for consistent AI indexing across tools.
-- `CODE_OF_CONDUCT.md`, `CONTRIBUTORS.md`, and `.github/CODEOWNERS`.
-- VitePress documentation site and hardened CI (lint, typecheck, test, build, docs, audit, CodeQL, Dependabot).
+- [Security assurance report](docs/testing/SECURITY_ASSURANCE_REPORT.md) and [adversarial assurance plan](docs/testing/adversarial-assurance-plan.md).
+- AI SDK Compatibility workflow — weekly and PR matrix against lockfile pin and `ai@latest`.
+- `scripts/check-ai-sdk-version.mjs`, `npm run check:ai-sdk`, and `npm run verify:ai-sdk-latest`.
+- Publish helpers: `scripts/publish.sh`, `scripts/publish.ps1`, and `prepublishOnly` build gate.
+- Documentation: [CI and automation](docs/contributing/ci-and-automation.md), [dependency policy](docs/contributing/dependency-policy.md).
+- Cursor Agent Skills in `.cursor/skills/` (including per-platform Ollama guides) and [cursor-skills.md](docs/contributing/cursor-skills.md).
+- `.cursorignore`, `.kiloignore`, `CODE_OF_CONDUCT.md`, `CONTRIBUTORS.md`, and `.github/CODEOWNERS`.
+- VitePress documentation site and hardened CI (lint, typecheck, test, build, docs, `npm pack --dry-run`, audit, CodeQL, Dependabot).
 
 ### Changed
 
-- `.gitignore` now tracks `.cursor/skills/` and `.cursor/rules/`; only ephemeral plan files are ignored.
+- npm package name is **shieldkit** (repository remains `ai-shield`).
+- Peer dependency `ai` is `>= 6.0.0` (AI SDK v6 / `LanguageModelV3` required).
+- `.gitignore` tracks `.cursor/skills/` and `.cursor/rules/`; ephemeral plan files remain ignored.
 
 [Unreleased]: https://github.com/sakurablush/ai-shield/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/sakurablush/ai-shield/releases/tag/v0.1.0

@@ -5,8 +5,9 @@ const base = process.env.VITEPRESS_BASE ?? '/';
 
 export default defineConfig({
   title: 'ai-shield',
+  titleTemplate: ':title · shieldkit docs',
   description:
-    'Production guardrails, structured output repair, and compliance for the Vercel AI SDK',
+    'shieldkit (npm) — production guardrails, structured output repair, and compliance for the Vercel AI SDK',
   base,
   srcDir: '../docs',
   outDir: '.vitepress/dist',
@@ -93,7 +94,7 @@ export default defineConfig({
     ],
     socialLinks: [],
     footer: {
-      message: 'MIT Licensed',
+      message: 'MIT Licensed · npm: shieldkit',
       copyright: 'ai-shield contributors',
     },
   },

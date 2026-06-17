@@ -10,7 +10,7 @@ Thank you for contributing. This guide covers local setup, the quality gate, and
 ## Setup
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/sakurablush/ai-shield.git
 cd ai-shield
 npm ci
 ```
@@ -101,13 +101,17 @@ The library is published to npm as **`shieldkit`**:
 
 ```bash
 npm login
-npm run ci && npm run build && npm run docs:build
-npm pack --dry-run
-npm publish --access public
-git tag v0.1.0 && git push origin v0.1.0
+bash scripts/publish.sh   # or: .\scripts\publish.ps1 on Windows
 ```
 
-See `scripts/publish.sh` for a single-script flow. `prepublishOnly` runs `npm run build` automatically.
+The script runs the full CI gate, build, docs, dry-run pack, and `npm publish`. Then tag from `package.json` version:
+
+```bash
+git tag v$(node -p "require('./package.json').version")
+git push origin v$(node -p "require('./package.json').version")
+```
+
+Create a GitHub Release from the matching `[version]` section in `CHANGELOG.md`. `prepublishOnly` runs `npm run build` automatically on publish.
 
 ## License
 

@@ -10,7 +10,7 @@ Thank you for contributing. This guide covers local setup, the quality gate, and
 ## Setup
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/sakurablush/ai-shield.git
 cd ai-shield
 npm ci
 ```

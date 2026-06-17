@@ -22,7 +22,7 @@
 3. **Contrast harness** writes `test-results/contrast-report.json`; console lines with `TEST_VERBOSE=1` (or `CONTRAST_VERBOSE=1`)
 4. **Ollama red team** compares strict shield vs raw model on all `expect_block` injection fixtures (7 prompts). Nightly CI uses `REDTEAM_STRICT=0` (advisory); local default is strict.
 
-Commit under test: local development tree. Re-run after changes to `src/guards/` or `src/middleware/`.
+**Release baseline:** `shieldkit@0.1.0` (2026-06-17), tagged at `v0.1.0`. Re-run assurance after changes to `src/guards/` or `src/middleware/`.
 
 ## Bypass registry (expected)
 

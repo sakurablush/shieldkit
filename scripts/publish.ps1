@@ -1,10 +1,13 @@
 # Publish shieldkit — run after `npm login` and full CI gate.
 $ErrorActionPreference = "Stop"
 
+$version = node -p "require('./package.json').version"
+
 npm run ci
 npm run build
 npm run docs:build
 npm pack --dry-run
 npm publish --access public
 
-Write-Host "Next: git tag v0.1.0; git push origin v0.1.0; create GitHub Release from CHANGELOG"
+Write-Host "Published shieldkit@$version"
+Write-Host "Next: git tag v$version; git push origin v$version; create GitHub Release from CHANGELOG [$version]"

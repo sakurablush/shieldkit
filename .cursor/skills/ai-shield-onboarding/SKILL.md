@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 ## What this project is
 
-**ai-shield** is a Vercel AI SDK middleware library that adds:
+**shieldkit** (npm) / **ai-shield** (repo) is a Vercel AI SDK middleware library that adds:
 
 - Input/output guardrails (injection, PII, keywords)
 - Structured JSON output repair
@@ -32,7 +32,7 @@ website/       # VitePress site
 ## First 5 minutes
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/sakurablush/ai-shield.git
 cd ai-shield
 npm ci
 npm run ci        # all tests pass (Ollama integration skipped when unavailable)
