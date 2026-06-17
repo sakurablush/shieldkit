@@ -57,7 +57,7 @@ flowchart TB
 | Step            | Command              | What it proves                                                                |
 | --------------- | -------------------- | ----------------------------------------------------------------------------- |
 | Install         | `npm ci`             | Reproducible lockfile                                                         |
-| Quality gate    | `npm run ci`         | Lint (0 warnings), Prettier, `tsc`, Vitest (149 tests), full-tree `npm audit` |
+| Quality gate    | `npm run ci`         | Lint (0 warnings), Prettier, `tsc`, Vitest (155 tests), full-tree `npm audit` |
 | Library         | `npm run build`      | `dist/` compiles via tsup                                                     |
 | Documentation   | `npm run docs:build` | VitePress links and MD valid                                                  |
 | Package tarball | `npm pack --dry-run` | npm publish surface = `dist` + README + LICENSE                               |
@@ -133,7 +133,7 @@ JavaScript/TypeScript analysis on `src/`. Results appear in the GitHub Security 
 **Trigger:** push tag `v*` (or manual `workflow_dispatch`)  
 **Auth:** npm trusted publishing (OIDC) — requires one-time setup on npmjs.com
 
-Runs the same quality gate as CI, builds `dist/`, verifies `npm pack --dry-run`, then `npm publish`. Tag version must match `package.json`.
+Runs the same quality gate as CI, builds `dist/`, verifies `npm pack --dry-run`, then `npm publish`. On tag push, also extracts the matching `CHANGELOG` section and creates a **GitHub Release** automatically.
 
 Full setup (trusted publisher form fields, release checklist): **[npm publishing](./npm-publishing.md)**.
 

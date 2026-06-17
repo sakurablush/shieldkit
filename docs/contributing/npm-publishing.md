@@ -33,10 +33,11 @@ Click **Set up connection** after merging `publish.yml` to `main`.
    git push origin v0.1.2
    ```
 
-3. **Publish** workflow runs automatically (`.github/workflows/publish.yml`).
-4. Create a **GitHub Release** from the tag using the matching `CHANGELOG` section.
+3. **Publish** workflow runs automatically (`.github/workflows/publish.yml`) — publishes to npm **and** creates a **GitHub Release** from the matching `CHANGELOG` section.
 
-The workflow runs `npm run ci`, `npm run build`, `npm pack --dry-run`, then `npm publish` via OIDC. npm attaches **provenance** automatically for public repos.
+The workflow runs `npm run ci`, `npm run build`, `npm pack --dry-run`, then `npm publish` via OIDC, then `softprops/action-gh-release` with notes from `scripts/extract-changelog-section.mjs`. npm attaches **provenance** automatically for public repos.
+
+**Manual GitHub Release is no longer required** when publishing via tag push.
 
 ## Manual publish (fallback)
 
