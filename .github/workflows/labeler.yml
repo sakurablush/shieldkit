@@ -16,9 +16,9 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout default branch config
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Apply path-based labels
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
         with:
           configuration-path: .github/labeler.yml
