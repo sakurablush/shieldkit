@@ -8,10 +8,10 @@ This is the central **"how we know it works"** artifact. Each row maps a capabil
 
 | Metric              | Count                         | Notes                                                                                           |
 | ------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------- |
-| Test files          | **37**                        | Under `tests/unit/`, `tests/integration/`, `tests/adversarial/`                                 |
-| Test cases          | **155**                       | All in the merge gate (`npm run ci`)                                                            |
-| CI without Ollama   | **151 passed**, **4 skipped** | `tests/integration/ollama.test.ts` skips when Ollama is unreachable (typical on GitHub Actions) |
-| CI with Ollama      | **155 passed**                | Run locally with Ollama up                                                                      |
+| Test files          | **38**                        | Under `tests/unit/`, `tests/integration/`, `tests/adversarial/`                                 |
+| Test cases          | **163**                       | All in the merge gate (`npm run ci`)                                                            |
+| CI without Ollama   | **159 passed**, **4 skipped** | `tests/integration/ollama.test.ts` skips when Ollama is unreachable (typical on GitHub Actions) |
+| CI with Ollama      | **163 passed**                | Run locally with Ollama up                                                                      |
 | Red team (optional) | **8** in **2** files          | `npm run test:redteam` — not part of `npm run ci`                                               |
 
 Vitest default config (`vitest.config.ts`) includes `tests/**/*.test.ts` and excludes `tests/redteam/`.

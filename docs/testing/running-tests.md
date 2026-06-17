@@ -6,10 +6,10 @@ shieldkit uses [Vitest](https://vitest.dev/) for unit and integration tests.
 
 | Command                | Test files | Test cases | In merge gate?                  |
 | ---------------------- | ---------- | ---------- | ------------------------------- |
-| `npm run test:run`     | 37         | 155        | Yes (`npm run ci`)              |
+| `npm run test:run`     | 38         | 163        | Yes (`npm run ci`)              |
 | `npm run test:redteam` | 2          | 8          | No (nightly workflow, advisory) |
 
-On GitHub Actions (no Ollama), `test:run` reports **151 passed** and **4 skipped** — the Ollama integration file. Locally with Ollama running, all **155** run.
+On GitHub Actions (no Ollama), `test:run` reports **159 passed** and **4 skipped** — the Ollama integration file. Locally with Ollama running, all **163** run.
 
 Details: [Verification matrix](./verification-matrix.md#test-inventory).
 

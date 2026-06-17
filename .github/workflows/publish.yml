@@ -69,5 +69,6 @@ jobs:
         with:
           body_path: release-notes.md
           generate_release_notes: false
+          tag_name: ${{ github.ref_name }}
           draft: false
           prerelease: false

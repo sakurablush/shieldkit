@@ -44,7 +44,7 @@ flowchart TB
 | **CodeQL**               | [`codeql.yml`](../../.github/workflows/codeql.yml)               | Push / PR / schedule                              | Advisory                     | Static security analysis                                 |
 | **Red Team**             | [`redteam.yml`](../../.github/workflows/redteam.yml)             | Daily 04:00 UTC, manual                           | **No** (`continue-on-error`) | Live Ollama injection prompts                            |
 | **Labeler**              | [`labeler.yml`](../../.github/workflows/labeler.yml)             | PR opened / sync                                  | No                           | Auto-labels (`ci`, `tests`, `documentation`, …)          |
-| **Publish**              | [`publish.yml`](../../.github/workflows/publish.yml)             | Push tag `v*`, manual                             | N/A (release)                | npm trusted publishing via OIDC on tag push              |
+| **Publish**              | [`publish.yml`](../../.github/workflows/publish.yml)             | Push tag `v*`, manual                             | N/A (release)                | npm OIDC publish + GitHub Release from `CHANGELOG`       |
 
 **Dependabot** ([`dependabot.yml`](../../.github/dependabot.yml)) is not a workflow but opens PRs weekly (Monday 06:00 UTC). The `ai-sdk` group bundles `ai` and `@ai-sdk/*`; those PRs should pass **CI** and **AI SDK Compatibility**.
 
@@ -57,7 +57,7 @@ flowchart TB
 | Step            | Command              | What it proves                                                                |
 | --------------- | -------------------- | ----------------------------------------------------------------------------- |
 | Install         | `npm ci`             | Reproducible lockfile                                                         |
-| Quality gate    | `npm run ci`         | Lint (0 warnings), Prettier, `tsc`, Vitest (155 tests), full-tree `npm audit` |
+| Quality gate    | `npm run ci`         | Lint (0 warnings), Prettier, `tsc`, Vitest (163 tests), full-tree `npm audit` |
 | Library         | `npm run build`      | `dist/` compiles via tsup                                                     |
 | Documentation   | `npm run docs:build` | VitePress links and MD valid                                                  |
 | Package tarball | `npm pack --dry-run` | npm publish surface = `dist` + README + LICENSE                               |

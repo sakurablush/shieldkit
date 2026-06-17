@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Security:** `inj-010` (homoglyph) and `inj-011` (zero-width) adversarial fixtures now `expect_block` in all modes.
-- Test inventory: **155** tests in merge gate (**37** files).
+- Test inventory: **163** tests in merge gate (**38** files).
 - README: `npm run demo` quick start, npm provenance badge.
 - [Getting started](docs/getting-started.md): full feature demo section.
 

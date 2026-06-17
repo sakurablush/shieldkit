@@ -29,8 +29,8 @@ Click **Set up connection** after merging `publish.yml` to `main`.
 2. Tag and push (version must match `package.json`):
 
    ```bash
-   git tag v0.1.2
-   git push origin v0.1.2
+   git tag v0.2.0
+   git push origin v0.2.0
    ```
 
 3. **Publish** workflow runs automatically (`.github/workflows/publish.yml`) — publishes to npm **and** creates a **GitHub Release** from the matching `CHANGELOG` section.

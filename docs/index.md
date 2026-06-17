@@ -25,7 +25,7 @@ features:
   - title: Tool guards
     details: Allow/deny lists, call limits, and approval gates
   - title: Verified
-    details: 155 automated tests in the CI merge gate — see the verification matrix
+    details: 163 automated tests in the CI merge gate — see the verification matrix
 ---
 
 ## Documentation map
