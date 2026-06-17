@@ -57,7 +57,7 @@ See [Trade-offs](../design/trade-offs.md) and [Limitations](../design/limitation
 ## Configuration
 
 ```ts
-import { createShieldContext, shield } from 'ai-shield';
+import { createShieldContext, shield } from 'shieldkit';
 
 createShieldContext('user-123');
 

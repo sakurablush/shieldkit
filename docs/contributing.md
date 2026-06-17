@@ -15,6 +15,12 @@ cd ai-shield
 npm ci
 ```
 
+## Cursor Agent Skills
+
+For [Cursor](https://cursor.com/) users, attach project skills in Agent chat (`@ai-shield-contributing`, etc.). Skills live in `.cursor/skills/` and mirror these docs as agent playbooks.
+
+See [Cursor Agent Skills](./contributing/cursor-skills.md) for the full catalog, usage examples, and `disable-model-invocation` policy.
+
 ## Quality gate
 
 All changes must pass the full CI gate before merge:
@@ -78,3 +84,12 @@ When adding or changing behavior:
 ## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
+
+## Community
+
+Root-level community files (GitHub Community Standards):
+
+- [Code of Conduct](https://github.com/sakurablush/ai-shield/blob/main/CODE_OF_CONDUCT.md)
+- [Contributors](https://github.com/sakurablush/ai-shield/blob/main/CONTRIBUTORS.md)
+- [Changelog](https://github.com/sakurablush/ai-shield/blob/main/CHANGELOG.md)
+- [Security policy](/security-policy)

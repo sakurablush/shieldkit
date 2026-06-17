@@ -34,6 +34,7 @@ export default defineConfig({
           { text: 'Examples', link: '/examples/' },
           { text: 'Deployment', link: '/DEPLOYMENT' },
           { text: 'Contributing', link: '/contributing' },
+          { text: 'Cursor Agent Skills', link: '/contributing/cursor-skills' },
         ],
       },
       {
@@ -69,6 +70,15 @@ export default defineConfig({
           { text: 'Running Tests', link: '/testing/running-tests' },
           { text: 'Writing Tests', link: '/testing/writing-tests' },
           { text: 'Verification Matrix', link: '/testing/verification-matrix' },
+          { text: 'Unit Coverage Audit', link: '/testing/unit-coverage-audit' },
+          {
+            text: 'Adversarial Assurance Plan',
+            link: '/testing/adversarial-assurance-plan',
+          },
+          {
+            text: 'Security Assurance Report',
+            link: '/testing/SECURITY_ASSURANCE_REPORT',
+          },
         ],
       },
       {

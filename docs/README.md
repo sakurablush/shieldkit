@@ -4,21 +4,23 @@ Production guardrails, structured output repair, and basic compliance for the [V
 
 ## Quick links
 
-| Section                                    | Description                                        |
-| ------------------------------------------ | -------------------------------------------------- |
-| [Getting started](./getting-started.md)    | Install, first call, mode presets                  |
-| [Architecture](./architecture/overview.md) | Middleware chain, request lifecycle, configuration |
-| [Features](./features/input-guardrails.md) | Guards, repair, cost, audit, tools                 |
-| [Design](./design/why-middleware.md)       | Rationale, trade-offs, limitations                 |
-| [Testing](./testing/running-tests.md)      | How to run tests and verify correctness            |
-| [API reference](./api/reference.md)        | Public exports                                     |
-| [Examples](./examples/index.md)            | Runnable examples in the repo                      |
-| [Deployment](./DEPLOYMENT.md)              | Publish docs to GitHub Pages                       |
-| [Security policy](./security-policy.md)    | Vulnerability reporting and scope                  |
+| Section                                                          | Description                                        |
+| ---------------------------------------------------------------- | -------------------------------------------------- |
+| [Getting started](./getting-started.md)                          | Install, first call, mode presets                  |
+| [Architecture](./architecture/overview.md)                       | Middleware chain, request lifecycle, configuration |
+| [Features](./features/input-guardrails.md)                       | Guards, repair, cost, audit, tools                 |
+| [Design](./design/why-middleware.md)                             | Rationale, trade-offs, limitations                 |
+| [Testing](./testing/running-tests.md)                            | How to run tests and verify correctness            |
+| [Adversarial assurance](./testing/adversarial-assurance-plan.md) | Hardcore tests, contrast harness, red team         |
+| [API reference](./api/reference.md)                              | Public exports                                     |
+| [Examples](./examples/index.md)                                  | Runnable examples in the repo                      |
+| [Deployment](./DEPLOYMENT.md)                                    | Publish docs to GitHub Pages                       |
+| [Cursor Agent Skills](./contributing/cursor-skills.md)           | AI playbooks for dev, test, docs (Cursor)          |
+| [Security policy](./security-policy.md)                          | Vulnerability reporting and scope                  |
 
-## What is ai-shield?
+## What is shieldkit?
 
-ai-shield wraps any `LanguageModelV3` (OpenAI, Anthropic, Ollama, etc.) with a middleware chain that provides:
+**shieldkit** is the npm package name for this library (repo: `ai-shield`). It wraps any `LanguageModelV3` (OpenAI, Anthropic, Ollama, etc.) with a middleware chain that provides:
 
 - **Input guardrails** — prompt injection detection, PII redaction, keyword deny lists
 - **Output guardrails** — PII/keyword filtering on model responses
@@ -29,7 +31,7 @@ ai-shield wraps any `LanguageModelV3` (OpenAI, Anthropic, Ollama, etc.) with a m
 
 ```ts
 import { generateText } from 'ai';
-import { shield } from 'ai-shield';
+import { shield } from 'shieldkit';
 
 const model = shield(yourModel, { mode: 'balanced' });
 
@@ -63,9 +65,13 @@ docs/
 ├── testing/
 │   ├── running-tests.md
 │   ├── writing-tests.md
-│   └── verification-matrix.md
+│   ├── verification-matrix.md
+│   ├── adversarial-assurance-plan.md
+│   └── SECURITY_ASSURANCE_REPORT.md
 ├── api/
 │   └── reference.md
+├── contributing/
+│   └── cursor-skills.md
 ├── DEPLOYMENT.md
 └── examples/
     └── index.md
@@ -78,3 +84,5 @@ See [security-policy.md](./security-policy.md) for vulnerability reporting and p
 ## Contributing
 
 See [Contributing](./contributing.md) for development setup and the quality gate (`npm run ci`).
+
+Using Cursor? Start with [Cursor Agent Skills](./contributing/cursor-skills.md).

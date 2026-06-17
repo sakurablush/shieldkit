@@ -11,7 +11,7 @@ App Router POST handler with session initialization and cost budget:
 ```ts
 import { generateText } from 'ai';
 import { ollama } from 'ollama-ai-provider-v2';
-import { createShieldContext, shield } from 'ai-shield';
+import { createShieldContext, shield } from 'shieldkit';
 
 const model = shield(ollama(process.env.OLLAMA_MODEL ?? 'llama3.2'), {
   mode: 'balanced',
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 - `maxCostPerSession` enforces per-user spending
 - `userId` appears in audit logs
 
-Copy into `app/api/chat/route.ts` in a Next.js project with `ai`, `zod`, and `ai-shield` installed.
+Copy into `app/api/chat/route.ts` in a Next.js project with `shieldkit`, `ai`, and `zod` installed.
 
 ## Agent with tools
 
@@ -53,7 +53,7 @@ Local Ollama model with `guardTools` and custom audit sink:
 import { generateText, tool } from 'ai';
 import { ollama } from 'ollama-ai-provider-v2';
 import { z } from 'zod';
-import { guardTools, shield } from 'ai-shield';
+import { guardTools, shield } from 'shieldkit';
 
 const model = shield(ollama(process.env.OLLAMA_MODEL ?? 'llama3.2'), {
   mode: 'local',

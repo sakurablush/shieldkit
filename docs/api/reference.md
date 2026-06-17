@@ -1,6 +1,6 @@
 # API Reference
 
-Public exports from `ai-shield` (`src/index.ts`).
+Public exports from the **shieldkit** npm package (`src/index.ts`).
 
 ## Functions
 

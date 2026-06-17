@@ -1,8 +1,16 @@
-# ai-shield
+# shieldkit
+
+[![npm version](https://img.shields.io/npm/v/shieldkit.svg)](https://www.npmjs.com/package/shieldkit)
 
 Production guardrails, structured output repair, and basic compliance for the [Vercel AI SDK](https://ai-sdk.dev/).
 
+Published on npm as **`shieldkit`**. Source repository: [sakurablush/ai-shield](https://github.com/sakurablush/ai-shield).
+
 Works with frontier models and local models (Ollama). Peer dependency: `ai >=5`, `zod`.
+
+```bash
+npm install shieldkit ai zod
+```
 
 ## Documentation
 
@@ -18,12 +26,24 @@ Full documentation lives in [`docs/`](docs/README.md):
 
 Browse locally: `npm run docs:dev` (VitePress). Deploy: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Security: [SECURITY.md](SECURITY.md). See [Contributing](docs/contributing.md).
 
+**Cursor users:** project [Agent Skills](docs/contributing/cursor-skills.md) in `.cursor/skills/` guide the AI through development, testing, and docs — attach with `@ai-shield-contributing`, `@ai-shield-local-testing`, etc.
+
+## Community
+
+| Document                                 | Purpose                            |
+| ---------------------------------------- | ---------------------------------- |
+| [CONTRIBUTING.md](CONTRIBUTING.md)       | Development setup and PR checklist |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community standards                |
+| [CONTRIBUTORS.md](CONTRIBUTORS.md)       | How contributors are recognized    |
+| [CHANGELOG.md](CHANGELOG.md)             | Release history                    |
+| [SECURITY.md](SECURITY.md)               | Vulnerability reporting            |
+
 ## Quick start
 
 ```ts
 import { generateText } from 'ai';
 import { ollama } from 'ollama-ai-provider-v2';
-import { shield } from 'ai-shield';
+import { shield } from 'shieldkit';
 
 const model = shield(ollama('llama3.2'));
 
@@ -107,7 +127,7 @@ Input guards run before streaming. Output repair runs **after the stream complet
 Pre-call token estimates use model-specific chars-per-token ratios for common models (GPT-4o, Claude, Gemini, Llama, etc.), falling back to chars/4.
 
 ```ts
-import { createShieldContext, shield } from 'ai-shield';
+import { createShieldContext, shield } from 'shieldkit';
 
 createShieldContext('user-123');
 
@@ -119,7 +139,7 @@ const model = shield(ollama('llama3.2'), {
 ## Tool guards
 
 ```ts
-import { guardTools, shield } from 'ai-shield';
+import { guardTools, shield } from 'shieldkit';
 import { tool } from 'ai';
 import { z } from 'zod';
 
@@ -161,6 +181,8 @@ The middleware still wraps models used with deprecated `generateObject` / `strea
 npm run ci      # lint, format, typecheck, test, audit
 npm run build   # tsup → dist/
 ```
+
+Using [Cursor](https://cursor.com/)? See [Cursor Agent Skills](docs/contributing/cursor-skills.md) for attachable playbooks (`@ai-shield-onboarding`, `@ai-shield-contributing`, `@ai-shield-local-testing`, `@ai-shield-docs`).
 
 Ollama integration tests skip automatically when Ollama is unavailable:
 

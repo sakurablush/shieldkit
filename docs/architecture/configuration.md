@@ -141,7 +141,7 @@ await generateText({
 ### Session management
 
 ```ts
-import { createShieldContext, resetSession } from 'ai-shield';
+import { createShieldContext, resetSession } from 'shieldkit';
 
 createShieldContext('user-123'); // initialize or reset session state
 resetSession('user-123'); // delete session from store

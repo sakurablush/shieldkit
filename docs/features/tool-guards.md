@@ -54,7 +54,7 @@ Policies are orthogonal to prompt/output guards: you may block dangerous tools w
 ## Configuration
 
 ```ts
-import { guardTools, shield } from 'ai-shield';
+import { guardTools, shield } from 'shieldkit';
 import { tool, generateText } from 'ai';
 import { z } from 'zod';
 

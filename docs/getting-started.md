@@ -1,6 +1,8 @@
 # Getting Started
 
-Install ai-shield and wrap your first language model in a few minutes.
+Install **shieldkit** from npm and wrap your first language model in a few minutes.
+
+Source repository: [sakurablush/ai-shield](https://github.com/sakurablush/ai-shield).
 
 ## Prerequisites
 
@@ -10,7 +12,7 @@ Install ai-shield and wrap your first language model in a few minutes.
 ## Installation
 
 ```bash
-npm install ai-shield ai zod
+npm install shieldkit ai zod
 ```
 
 For local models, add an Ollama provider (optional):
@@ -26,7 +28,7 @@ Wrap any `LanguageModelV3` with `shield()` and pass a session ID per request:
 ```ts
 import { generateText } from 'ai';
 import { ollama } from 'ollama-ai-provider-v2';
-import { shield } from 'ai-shield';
+import { shield } from 'shieldkit';
 
 const model = shield(ollama('llama3.2'));
 
@@ -104,7 +106,7 @@ Details: [Structured output](./features/structured-output.md)
 ### Session budgets
 
 ```ts
-import { createShieldContext, shield } from 'ai-shield';
+import { createShieldContext, shield } from 'shieldkit';
 
 createShieldContext('user-123');
 
@@ -118,7 +120,7 @@ Details: [Cost tracking](./features/cost-tracking.md)
 ### Tool policies
 
 ```ts
-import { guardTools, shield } from 'ai-shield';
+import { guardTools, shield } from 'shieldkit';
 
 const tools = guardTools(myTools, {
   allow: ['search'],
@@ -150,7 +152,7 @@ import {
   ShieldBudgetError,
   ShieldRepairError,
   ShieldToolError,
-} from 'ai-shield';
+} from 'shieldkit';
 
 try {
   await generateText({ model, prompt });
