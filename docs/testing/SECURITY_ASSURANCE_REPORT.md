@@ -1,6 +1,6 @@
 # Security Assurance Report
 
-**Status:** living document · **Last updated:** 2026-06-17 (shieldkit@0.1.1)  
+**Status:** living document · **Last updated:** 2026-06-18 (shieldkit@0.2.0)  
 **Methodology:** Tier A adversarial corpus (mock model) + Tier B contrast harness + optional Tier C Ollama red team
 
 ## Executive summary
@@ -22,17 +22,17 @@
 3. **Contrast harness** writes `test-results/contrast-report.json`; console lines with `TEST_VERBOSE=1` (or `CONTRAST_VERBOSE=1`)
 4. **Ollama red team** compares strict shield vs raw model on all `expect_block` injection fixtures (7 prompts). Nightly CI uses `REDTEAM_STRICT=0` (advisory); local default is strict.
 
-**Release baseline:** `shieldkit@0.1.1` (2026-06-17). Re-run assurance after changes to `src/guards/` or `src/middleware/`.
+**Release baseline:** `shieldkit@0.2.0` (2026-06-18). Re-run assurance after changes to `src/guards/` or `src/middleware/`.
 
 ## Bypass registry (expected)
 
 These corpus cases **do not** trigger pattern guards — documented honestly:
 
-| ID      | Category  | Reason                       |
-| ------- | --------- | ---------------------------- |
-| inj-010 | injection | Unicode homoglyph evasion    |
-| inj-011 | injection | Zero-width character evasion |
-| inj-012 | injection | Non-English phrasing         |
+| ID      | Category  | Reason               |
+| ------- | --------- | -------------------- |
+| inj-012 | injection | Non-English phrasing |
+
+**Fixed in 0.2.0:** `inj-010` (homoglyph) and `inj-011` (zero-width) — blocked via `normalizeGuardText()` before injection/keyword matching.
 
 ## Contrast highlights
 
@@ -48,11 +48,11 @@ Set `TEST_VERBOSE=1` during `npm run test:adversarial` for contrast and audit JS
 
 ## Findings
 
-| ID    | Severity | Component          | Status                                                                                  |
-| ----- | -------- | ------------------ | --------------------------------------------------------------------------------------- |
-| F-001 | Info     | Repair retry       | **Accepted** — retries call `model.doGenerate` bypassing input guards (see limitations) |
-| F-002 | Medium   | Injection patterns | **Open** — homoglyph / multilingual bypasses in registry                                |
-| F-003 | Info     | Stream block       | AI SDK may wrap `ShieldBlockedError` in `NoOutputGeneratedError` on stream path         |
+| ID    | Severity | Component          | Status                                                                                           |
+| ----- | -------- | ------------------ | ------------------------------------------------------------------------------------------------ |
+| F-001 | Info     | Repair retry       | **Accepted** — retries call `model.doGenerate` bypassing input guards (see limitations)          |
+| F-002 | Medium   | Injection patterns | **Partial** — homoglyph / zero-width mitigated in 0.2.0; multilingual bypass remains (`inj-012`) |
+| F-003 | Info     | Stream block       | AI SDK may wrap `ShieldBlockedError` in `NoOutputGeneratedError` on stream path                  |
 
 ## Regression checklist
 
