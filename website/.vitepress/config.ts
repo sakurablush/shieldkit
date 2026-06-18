@@ -135,7 +135,7 @@ export default defineConfig({
     ],
     footer: {
       message:
-        'MIT Licensed · <a href="https://www.npmjs.com/package/shieldkit" target="_blank" rel="noreferrer">npm: shieldkit@0.2.0</a>',
+        'MIT Licensed · <a href="https://www.npmjs.com/package/shieldkit" target="_blank" rel="noreferrer">npm: shieldkit</a>',
       copyright: 'shieldkit contributors',
     },
     outline: [2, 3],

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `normalizeGuardText()` — strips zero-width characters and folds common Cyrillic homoglyphs before injection/keyword guards.
+- Internal `normalizeGuardText()` utility (`src/utils/guard-normalize.ts`) — strips zero-width characters and folds common Cyrillic homoglyphs before injection/keyword guards (not exported from the public API).
 - GitHub **Release automation** on tag publish (`scripts/extract-changelog-section.mjs` + `softprops/action-gh-release`).
 - Extended `shieldStreamText` tests (strict injection block on stream path, homoglyph block, audit lifecycle).
 - Unit tests for `scripts/extract-changelog-section.mjs` (release notes extraction).
@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Test inventory: **163** tests in merge gate (**38** files).
 - README: `npm run demo` quick start, npm provenance badge.
 - [Getting started](docs/getting-started.md): full feature demo section.
+- VitePress docs site: refreshed home page, logo, theme, and v0.2.0 release highlights.
+- Cursor contributor workflows: optimized rules/skills triggering, pre-commit quality gate, ship-release and review-before-merge skills ([cursor-skills.md](docs/contributing/cursor-skills.md)).
 
 ### Security
 
