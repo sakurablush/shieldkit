@@ -13,7 +13,7 @@ Works with frontier models and local models (Ollama). Peer dependency: `ai >=6`,
 npm install shieldkit ai zod
 ```
 
-**Try the full feature tour locally** (mock + optional Ollama):
+**Try the full feature tour locally** (mock + optional Ollama, 31 automated checks):
 
 ```bash
 git clone https://github.com/sakurablush/shieldkit.git && cd shieldkit && npm ci && npm run demo

@@ -176,7 +176,7 @@ npm ci
 npm run demo
 ```
 
-Nine labeled sections — sections 1–8 use a mock model; section 9 needs Ollama. See [Examples](./examples/index.md) for the full list and `agent-with-tools.ts`.
+Nine labeled sections with **31 automated PASS/FAIL checks** — sections 1–8 use a mock model; section 9 needs Ollama. Exits `1` on failure. See [Examples](./examples/index.md) for the full list and `agent-with-tools.ts`.
 
 ## Next steps
 

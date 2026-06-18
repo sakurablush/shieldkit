@@ -10,18 +10,18 @@ Human doc: `docs/testing/running-tests.md` · Skill index: `docs/contributing/cu
 
 ## What gets tested
 
-| Layer       | Command                                | Hardware     | Proves                                                                 |
-| ----------- | -------------------------------------- | ------------ | ---------------------------------------------------------------------- |
-| CI gate     | `npm run ci`                           | CPU          | lint, types, **163 tests**, full-tree audit                            |
-| Build       | `npm run build`                        | CPU          | `dist/` compiles                                                       |
-| Docs        | `npm run docs:build`                   | CPU          | VitePress links valid                                                  |
-| Package     | `npm pack --dry-run`                   | CPU          | tarball = dist + README + LICENSE                                      |
-| Integration | `npm run test:run` + Ollama            | GPU optional | live Ollama E2E (`tests/integration/`)                                 |
-| Adversarial | `npm run test:adversarial`             | CPU          | fixture corpus + contrast harness                                      |
-| Red team    | `npm run test:redteam`                 | GPU optional | live injection prompts                                                 |
-| Assurance   | `npm run test:assurance`               | GPU optional | adversarial + red team                                                 |
-| Smoke       | `npx tsx examples/agent-with-tools.ts` | GPU optional | tools + shield manual path                                             |
-| Full demo   | `npm run demo`                         | GPU optional | 9-section tour: injection, evasion, PII, repair, tools, budget, Ollama |
+| Layer       | Command                                | Hardware     | Proves                                             |
+| ----------- | -------------------------------------- | ------------ | -------------------------------------------------- |
+| CI gate     | `npm run ci`                           | CPU          | lint, types, **163 tests**, full-tree audit        |
+| Build       | `npm run build`                        | CPU          | `dist/` compiles                                   |
+| Docs        | `npm run docs:build`                   | CPU          | VitePress links valid                              |
+| Package     | `npm pack --dry-run`                   | CPU          | tarball = dist + README + LICENSE                  |
+| Integration | `npm run test:run` + Ollama            | GPU optional | live Ollama E2E (`tests/integration/`)             |
+| Adversarial | `npm run test:adversarial`             | CPU          | fixture corpus + contrast harness                  |
+| Red team    | `npm run test:redteam`                 | GPU optional | live injection prompts                             |
+| Assurance   | `npm run test:assurance`               | GPU optional | adversarial + red team                             |
+| Smoke       | `npx tsx examples/agent-with-tools.ts` | GPU optional | tools + shield manual path                         |
+| Full demo   | `npm run demo`                         | GPU optional | 9 sections, **31 PASS/FAIL checks**, mock + Ollama |
 
 **Full local acceptance:** `npm run ci` green; `npm run test:adversarial` green (includes homoglyph `inj-010` and zero-width `inj-011` evasion cases since 0.2.0); all tests in `npm run test:run` pass when Ollama is available (integration file skipped otherwise); `npm run test:assurance` optional.
 

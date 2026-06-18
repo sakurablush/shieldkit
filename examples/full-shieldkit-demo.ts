@@ -331,12 +331,15 @@ section('5/9 Structured output repair');
     prompt: 'Return JSON',
     providerOptions: { aiShield: { sessionId: 'demo-repair', outputSchema: schema } },
   });
-  const parsed = schema.safeParse(JSON.parse(result.text));
-  check(
-    'repair produced valid JSON',
-    parsed.success && parsed.data.name === 'Ada' && parsed.data.age === 42,
-    result.text,
-  );
+  const repairValid = (() => {
+    try {
+      const parsed = schema.safeParse(JSON.parse(result.text));
+      return parsed.success && parsed.data.name === 'Ada' && parsed.data.age === 42;
+    } catch {
+      return false;
+    }
+  })();
+  check('repair produced valid JSON', repairValid, result.text);
   check('repair retried model', calls === 2, `model invocations=${calls}`);
   check(
     'repair.success in audit',

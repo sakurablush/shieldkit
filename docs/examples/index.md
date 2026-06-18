@@ -113,7 +113,7 @@ Walks through all major shieldkit capabilities with labeled console output:
 
 Sections 1–8 use a mock model (no GPU). Section 9 needs `ollama pull llama3.2`.
 
-Each section prints **✅ PASS / ❌ FAIL** with audit evidence. The script exits `1` if any check fails.
+Each section prints **✅ PASS / ❌ FAIL** with audit evidence (**31 checks** total). The script exits `1` if any check fails.
 
 ```bash
 OLLAMA_MODEL=llama3.2 npm run demo

@@ -37,7 +37,7 @@ cd shieldkit
 npm ci
 npm run ci        # all tests pass (Ollama integration skipped when unavailable)
 npm run build
-npm run demo      # optional — 9-section feature tour (sections 1–8 mock-only)
+npm run demo      # optional — 9 sections, 31 PASS/FAIL checks (sections 1–8 mock-only)
 ```
 
 ## Choose your path

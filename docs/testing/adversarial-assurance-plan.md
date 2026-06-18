@@ -1,6 +1,6 @@
-# Adversarial Assurance Plan
+﻿# Adversarial Assurance Plan
 
-**Status:** implemented (MVP corpus) � **Last updated:** 2026-06-18 (shieldkit@0.2.0)
+**Status:** implemented (MVP corpus) · **Last updated:** 2026-06-18 (shieldkit@0.2.0)
 
 Hardcore adversarial tests with a **contrast harness** (with `shield()` vs without), optional Ollama red team, runtime logging, and a living [Security assurance report](./SECURITY_ASSURANCE_REPORT.md).
 
@@ -8,17 +8,17 @@ Hardcore adversarial tests with a **contrast harness** (with `shield()` vs witho
 
 This release ships a **focused corpus** (~46 adversarial cases in CI), not the full 150+ fixture ambition. The structure supports growth: add rows to `tests/fixtures/adversarial/*.json`, extend tests, update the bypass registry.
 
-| Category  | Fixtures file    | Cases (approx.)                     |
-| --------- | ---------------- | ----------------------------------- |
-| Injection | `injection.json` | 12 (+ 1 documented bypass: inj-012) |
-| PII       | `pii.json`       | 6                                   |
-| Keywords  | `keywords.json`  | 4                                   |
-| Repair    | `repair.json`    | 4                                   |
-| Tools     | `tools.json`     | 6                                   |
-| Budget    | `budget.json`    | 4                                   |
-| Stream    | inline tests     | 2                                   |
-| Contrast  | canonical subset | 9                                   |
-| Integrity | loader smoke     | 1                                   |
+| Category  | Fixtures file                | Cases (approx.)                     |
+| --------- | ---------------------------- | ----------------------------------- |
+| Injection | `injection.json`             | 12 (+ 1 documented bypass: inj-012) |
+| PII       | `pii.json`                   | 6                                   |
+| Keywords  | `keywords.json`              | 4                                   |
+| Repair    | `repair.json`                | 4                                   |
+| Tools     | `tools.json`                 | 6                                   |
+| Budget    | `budget.json`                | 4                                   |
+| Stream    | inline tests                 | 2                                   |
+| Contrast  | canonical + benign injection | 4                                   |
+| Integrity | loader smoke                 | 1                                   |
 
 ## Four tiers
 

@@ -48,7 +48,7 @@ Node **22**. Must pass with **zero errors and zero warnings**.
 | `npm run test:adversarial`     | Adversarial corpus + contrast harness (mock model)                 |
 | `npm run test:redteam`         | Ollama live red team (skipped if Ollama off)                       |
 | `npm run test:assurance`       | Adversarial + red team combined                                    |
-| `npm run demo`                 | Full 9-section feature tour (mock + optional Ollama)               |
+| `npm run demo`                 | 9-section tour, **31 PASS/FAIL checks** (mock + optional Ollama)   |
 | `npm run ci`                   | Full quality gate (lint, format, typecheck, test, full-tree audit) |
 | `npm run check:ai-sdk`         | Compare lockfile `ai` pin vs npm latest                            |
 | `npm run verify:ai-sdk-latest` | Typecheck + test + build on `ai@latest` (run `npm ci` after)       |
