@@ -101,10 +101,10 @@ npx tsx examples/agent-with-tools.ts
 
 Walks through all major shieldkit capabilities with labeled console output:
 
-1. Input injection block (strict)
-2. Injection evasion — homoglyph & zero-width (**0.2.0+**)
+1. Input injection block (strict) + benign allow contrast
+2. Injection evasion — homoglyph, zero-width, `shieldStreamText` stream path (**0.2.0+**)
 3. Input PII redact
-4. Input keyword deny
+4. Input keyword deny (latin + homoglyph с→c)
 5. Structured output repair (mock retry)
 6. Output PII redact (stream)
 7. `guardTools` (allow / deny / max calls)
@@ -112,6 +112,8 @@ Walks through all major shieldkit capabilities with labeled console output:
 9. Live Ollama agent (skipped when Ollama is off)
 
 Sections 1–8 use a mock model (no GPU). Section 9 needs `ollama pull llama3.2`.
+
+Each section prints **✅ PASS / ❌ FAIL** with audit evidence. The script exits `1` if any check fails.
 
 ```bash
 OLLAMA_MODEL=llama3.2 npm run demo

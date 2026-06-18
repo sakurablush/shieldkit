@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Security:** `inj-010` (homoglyph) and `inj-011` (zero-width) adversarial fixtures now `expect_block` in all modes.
-- `npm run demo` — 9-section tour adds homoglyph and zero-width injection blocks (`examples/full-shieldkit-demo.ts`).
+- `npm run demo` — 9-section tour with **31 automated checks** (PASS/FAIL + audit evidence); homoglyph/zero-width/stream evasion blocks.
 - [Input guardrails](docs/features/input-guardrails.md) documents `normalizeGuardText()` before pattern matching.
 - Test inventory: **163** tests in merge gate (**38** files).
 - README: `npm run demo` quick start, npm provenance badge.
