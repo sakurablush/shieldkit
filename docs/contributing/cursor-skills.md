@@ -9,25 +9,30 @@ They complement human docs in `docs/`. Official references: [Cursor Rules](https
 
 ## Quick reference — skills
 
-| Skill                     | When it loads                                                  | Invoke manually            |
-| ------------------------- | -------------------------------------------------------------- | -------------------------- |
-| `ai-shield-contributing`  | Auto when editing `src/`, `tests/`, `examples/`, release files | `/ai-shield-contributing`  |
-| `ai-shield-docs`          | Auto when editing `docs/`, `website/`, `.cursor/skills/`       | `/ai-shield-docs`          |
-| `ai-shield-local-testing` | Never auto — explicit only                                     | `/ai-shield-local-testing` |
-| `ai-shield-onboarding`    | Never auto — explicit only                                     | `/ai-shield-onboarding`    |
+| Skill                           | When it loads                                                  | Invoke manually                  |
+| ------------------------------- | -------------------------------------------------------------- | -------------------------------- |
+| `ai-shield-contributing`        | Auto when editing `src/`, `tests/`, `examples/`, release files | `/ai-shield-contributing`        |
+| `ai-shield-docs`                | Auto when editing `docs/`, `website/`, `.cursor/skills/`       | `/ai-shield-docs`                |
+| `ai-shield-pre-commit-ci`       | Auto when editing `src/`, `tests/`, `examples/`, skills        | `/ai-shield-pre-commit-ci`       |
+| `ai-shield-release-versioning`  | Auto when editing `CHANGELOG.md`, `package.json`, `README.md`  | `/ai-shield-release-versioning`  |
+| `ai-shield-local-testing`       | Never auto — explicit only                                     | `/ai-shield-local-testing`       |
+| `ai-shield-onboarding`          | Never auto — explicit only                                     | `/ai-shield-onboarding`          |
+| `ai-shield-ship-release`        | Never auto — explicit only                                     | `/ai-shield-ship-release`        |
+| `ai-shield-review-before-merge` | Never auto — explicit only                                     | `/ai-shield-review-before-merge` |
 
 ## Quick reference — rules
 
-| Rule                          | Trigger type      | When it applies                                                                              |
-| ----------------------------- | ----------------- | -------------------------------------------------------------------------------------------- |
-| `shieldkit-release-changelog` | **File patterns** | Auto when editing `src/`, `tests/`, `examples/`, `CHANGELOG.md`, `package.json`, `README.md` |
-| `aether-engineer`             | **Manual** (`@`)  | Agent implementation with plan tracking                                                      |
-| `aether-planner`              | **Manual** (`@`)  | Plan mode — architecture without code                                                        |
-| `aether-reviewer`             | **Manual** (`@`)  | Code or PR review                                                                            |
-| `aether-debugger`             | **Manual** (`@`)  | Debug mode — root cause analysis                                                             |
-| `aether-test-engineer`        | **Manual** (`@`)  | Deep test design / QA review                                                                 |
-| `aether-security-auditor`     | **Manual** (`@`)  | Security audit or threat modeling                                                            |
-| `aether-advisor`              | **Manual** (`@`)  | Ask mode — technical Q&A without code changes                                                |
+| Rule                          | Trigger type      | When it applies                                                                                     |
+| ----------------------------- | ----------------- | --------------------------------------------------------------------------------------------------- |
+| `pre-commit-quality-gate`     | **File patterns** | Auto when editing `src/`, `tests/`, `examples/`, `.cursor/skills/` — run `npm run ci` before commit |
+| `shieldkit-release-changelog` | **File patterns** | Auto when editing library or release files — CHANGELOG + semver decision                            |
+| `aether-engineer`             | **Manual** (`@`)  | Agent implementation with plan tracking                                                             |
+| `aether-planner`              | **Manual** (`@`)  | Plan mode — architecture without code                                                               |
+| `aether-reviewer`             | **Manual** (`@`)  | Code or PR review                                                                                   |
+| `aether-debugger`             | **Manual** (`@`)  | Debug mode — root cause analysis                                                                    |
+| `aether-test-engineer`        | **Manual** (`@`)  | Deep test design / QA review                                                                        |
+| `aether-security-auditor`     | **Manual** (`@`)  | Security audit or threat modeling                                                                   |
+| `aether-advisor`              | **Manual** (`@`)  | Ask mode — technical Q&A without code changes                                                       |
 
 **No rule uses `alwaysApply: true`** — context stays lean; policies attach when files match or you `@`-mention a persona.
 
@@ -44,6 +49,10 @@ They complement human docs in `docs/`. Official references: [Cursor Rules](https
 @ai-shield-onboarding I'm new — what should I run first?
 
 /ai-shield-local-testing Run npm run demo and the Ollama smoke suite
+
+/ai-shield-ship-release Prepare release 0.3.0 end-to-end
+
+/ai-shield-review-before-merge Review this branch before I open a PR
 
 @aether-reviewer Review my guard changes before I open a PR
 
@@ -62,12 +71,16 @@ Per [Cursor Skills docs](https://cursor.com/docs/context/skills):
 | `disable-model-invocation: true`    | Skill loads only via `/skill-name` — never auto from chat context |
 | _(omit `disable-model-invocation`)_ | Agent may auto-apply when description + paths match the task      |
 
-| Skill                     | `paths`                                                             | `disable-model-invocation` | Rationale                                            |
-| ------------------------- | ------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------- |
-| `ai-shield-contributing`  | `src/**`, `tests/**`, `examples/**`, `CHANGELOG.md`, `package.json` | **off**                    | Dev workflow should follow you into library code     |
-| `ai-shield-docs`          | `docs/**`, `website/**`, `.cursor/skills/**`                        | **off**                    | Doc workflow when editing docs or skills             |
-| `ai-shield-local-testing` | —                                                                   | **on**                     | Long Ollama/env playbook — invoke when running tests |
-| `ai-shield-onboarding`    | —                                                                   | **on**                     | Router/index — invoke when orienting, not every chat |
+| Skill                           | `paths`                                                             | `disable-model-invocation` | Rationale                                        |
+| ------------------------------- | ------------------------------------------------------------------- | -------------------------- | ------------------------------------------------ |
+| `ai-shield-contributing`        | `src/**`, `tests/**`, `examples/**`, `CHANGELOG.md`, `package.json` | **off**                    | Dev workflow in library code                     |
+| `ai-shield-docs`                | `docs/**`, `website/**`, `.cursor/skills/**`                        | **off**                    | Doc workflow when editing docs or skills         |
+| `ai-shield-pre-commit-ci`       | `src/**`, `tests/**`, `examples/**`, `.cursor/skills/**`            | **off**                    | CI gate before commit (pairs with rule)          |
+| `ai-shield-release-versioning`  | `CHANGELOG.md`, `package.json`, `package-lock.json`, `README.md`    | **off**                    | Release cut and version sync                     |
+| `ai-shield-local-testing`       | —                                                                   | **on**                     | Ollama/demo playbook — invoke when running tests |
+| `ai-shield-onboarding`          | —                                                                   | **on**                     | Router — invoke when orienting                   |
+| `ai-shield-ship-release`        | —                                                                   | **on**                     | Full release branch workflow                     |
+| `ai-shield-review-before-merge` | —                                                                   | **on**                     | Bugbot + security before merge                   |
 
 Descriptions are written in **third person** with both **what** the skill does and **when** to use it — required for agent discovery.
 
@@ -84,6 +97,7 @@ Per [Cursor Rules docs](https://cursor.com/docs/rules):
 
 | Rule                          | Config                                                                       |
 | ----------------------------- | ---------------------------------------------------------------------------- |
+| `pre-commit-quality-gate`     | `alwaysApply: false` + `globs` on `src/`, `tests/`, `examples/`, skills      |
 | `shieldkit-release-changelog` | `alwaysApply: false` + `globs` on library and release files + `description`  |
 | `aether-*` personas           | `alwaysApply: false`, no `description`, no `globs` → manual `@aether-*` only |
 
@@ -122,6 +136,32 @@ Full local validation without paid APIs:
 **Path:** `.cursor/skills/ai-shield-docs/SKILL.md`
 
 Documentation and VitePress: `docs/` map, `npm run docs:build`, verification matrix and API reference sync, CHANGELOG / GitHub Release notes (`npm-publishing.md`).
+
+Documentation and VitePress: `docs/` map, `npm run docs:build`, verification matrix and API reference sync, CHANGELOG / GitHub Release notes (`npm-publishing.md`).
+
+### ai-shield-pre-commit-ci
+
+**Path:** `.cursor/skills/ai-shield-pre-commit-ci/SKILL.md`
+
+Runs `npm run ci` before commit; pairs with `pre-commit-quality-gate` rule. Docs and release extras (`docs:build`, `demo`, adversarial).
+
+### ai-shield-release-versioning
+
+**Path:** `.cursor/skills/ai-shield-release-versioning/SKILL.md`
+
+SemVer decision, CHANGELOG sections, tag publish, `extract-changelog-section.mjs`. Pairs with `shieldkit-release-changelog` rule.
+
+### ai-shield-ship-release
+
+**Path:** `.cursor/skills/ai-shield-ship-release/SKILL.md`
+
+End-to-end release branch: implement → CI → adversarial + demo → docs → version bump → optional review → tag.
+
+### ai-shield-review-before-merge
+
+**Path:** `.cursor/skills/ai-shield-review-before-merge/SKILL.md`
+
+CI first, then Bugbot subagent, optional security/adversarial when guards changed.
 
 ## Aether persona rules
 

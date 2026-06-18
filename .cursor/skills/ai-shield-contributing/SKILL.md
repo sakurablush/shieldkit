@@ -93,7 +93,7 @@ Follow `.cursor/rules/shieldkit-release-changelog.mdc` before finishing any cons
 2. Add unit test in `tests/unit/` using `createMockModel` when possible
 3. Add row to `docs/testing/verification-matrix.md`
 4. Update feature doc and API reference as needed
-5. Run full CI gate
+5. Run full CI gate — see `.cursor/skills/ai-shield-pre-commit-ci/SKILL.md` (`npm run ci`)
 
 For live-model behavior, extend `tests/integration/ollama.test.ts` — attach `@ai-shield-local-testing`.
 

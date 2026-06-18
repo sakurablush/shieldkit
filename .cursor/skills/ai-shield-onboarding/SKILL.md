@@ -43,13 +43,15 @@ npm run demo      # optional — 9 sections, 31 PASS/FAIL checks (sections 1–8
 
 ## Choose your path
 
-| Goal                   | Attach skill               | Human doc                             |
-| ---------------------- | -------------------------- | ------------------------------------- |
-| Change code, open PR   | `@ai-shield-contributing`  | `docs/contributing.md`                |
-| Run all tests + Ollama | `@ai-shield-local-testing` | `docs/testing/running-tests.md`       |
-| Edit documentation     | `@ai-shield-docs`          | `docs/contributing/cursor-skills.md`  |
-| Understand the API     | —                          | `docs/getting-started.md`             |
-| How we know it works   | —                          | `docs/testing/verification-matrix.md` |
+| Goal                   | Attach skill / rule              | Human doc                             |
+| ---------------------- | -------------------------------- | ------------------------------------- |
+| Change code, open PR   | `@ai-shield-contributing`        | `docs/contributing.md`                |
+| Run all tests + Ollama | `/ai-shield-local-testing`       | `docs/testing/running-tests.md`       |
+| Ship a release         | `/ai-shield-ship-release`        | `docs/contributing/npm-publishing.md` |
+| Pre-merge review       | `/ai-shield-review-before-merge` | —                                     |
+| Edit documentation     | `@ai-shield-docs`                | `docs/contributing/cursor-skills.md`  |
+| Understand the API     | —                                | `docs/getting-started.md`             |
+| How we know it works   | —                                | `docs/testing/verification-matrix.md` |
 
 Full skill index: `docs/contributing/cursor-skills.md`
 
