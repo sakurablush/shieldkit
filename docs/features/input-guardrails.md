@@ -27,6 +27,8 @@ Implemented in `src/middleware/input-guardrails.ts` using the AI SDK `transformP
 
 `src/guards/injection.ts` uses weighted regex patterns. Scores accumulate; when total ≥ threshold, the guard triggers.
 
+Before matching, prompt text is normalized via `normalizeGuardText()` in `src/utils/guard-normalize.ts` — zero-width characters are stripped and common Cyrillic homoglyphs are folded to Latin lookalikes. PII guards do **not** use this normalization.
+
 Example patterns (weight):
 
 - `ignore previous instructions` (1.0)
@@ -42,7 +44,7 @@ Redacted text uses placeholders: `[REDACTED_PII:email]`, `[REDACTED_PII:phone]`,
 
 ### Keyword matching
 
-`src/guards/keywords.ts` uses word-boundary regex (`\bkeyword\b`) case-insensitively.
+`src/guards/keywords.ts` uses word-boundary regex (`\bkeyword\b`) case-insensitively. Deny-list matching uses the same `normalizeGuardText()` preprocessing as injection guards.
 
 ## Why this approach
 
@@ -94,6 +96,7 @@ Mode presets set defaults — see [Configuration](../architecture/configuration.
 | Test file                                        | What it proves                                               |
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | `tests/unit/guards.test.ts`                      | Injection pattern detection; PII redaction; keyword matching |
+| `tests/unit/utils/guard-normalize.test.ts`       | Homoglyph / zero-width normalization; inj-009/010/011/012    |
 | `tests/unit/middleware/input-guardrails.test.ts` | Block injection; redact PII in prompt and per-part           |
 | `tests/unit/middleware/input-warn.test.ts`       | Warn action allows request                                   |
 | `tests/integration/ollama.test.ts`               | Live injection block in strict mode                          |

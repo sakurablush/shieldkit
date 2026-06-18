@@ -6,10 +6,10 @@ shieldkit uses [Vitest](https://vitest.dev/) for unit and integration tests.
 
 | Command                | Test files | Test cases | In merge gate?                  |
 | ---------------------- | ---------- | ---------- | ------------------------------- |
-| `npm run test:run`     | 36         | 149        | Yes (`npm run ci`)              |
+| `npm run test:run`     | 38         | 163        | Yes (`npm run ci`)              |
 | `npm run test:redteam` | 2          | 8          | No (nightly workflow, advisory) |
 
-On GitHub Actions (no Ollama), `test:run` reports **145 passed** and **4 skipped** — the Ollama integration file. Locally with Ollama running, all **149** run.
+On GitHub Actions (no Ollama), `test:run` reports **159 passed** and **4 skipped** — the Ollama integration file. Locally with Ollama running, all **163** run.
 
 Details: [Verification matrix](./verification-matrix.md#test-inventory).
 
@@ -48,7 +48,7 @@ Node **22**. Must pass with **zero errors and zero warnings**.
 | `npm run test:adversarial`     | Adversarial corpus + contrast harness (mock model)                 |
 | `npm run test:redteam`         | Ollama live red team (skipped if Ollama off)                       |
 | `npm run test:assurance`       | Adversarial + red team combined                                    |
-| `npm run demo`                 | Full feature tour with audit logs (mock + optional Ollama)         |
+| `npm run demo`                 | 9-section tour, **31 PASS/FAIL checks** (mock + optional Ollama)   |
 | `npm run ci`                   | Full quality gate (lint, format, typecheck, test, full-tree audit) |
 | `npm run check:ai-sdk`         | Compare lockfile `ai` pin vs npm latest                            |
 | `npm run verify:ai-sdk-latest` | Typecheck + test + build on `ai@latest` (run `npm ci` after)       |

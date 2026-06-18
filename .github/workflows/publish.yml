@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  contents: write
   id-token: write # Required for npm trusted publishing (OIDC)
 
 jobs:
@@ -58,3 +58,18 @@ jobs:
 
       - name: Publish to npm (OIDC — no NPM_TOKEN)
         run: npm publish --access public
+
+      - name: Extract release notes from CHANGELOG
+        if: github.event_name == 'push'
+        run: node scripts/extract-changelog-section.mjs "${GITHUB_REF#refs/tags/v}"
+
+      - name: Create GitHub Release
+        if: github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: shieldkit ${{ github.ref_name }}
+          body_path: release-notes.md
+          generate_release_notes: false
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false

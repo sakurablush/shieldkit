@@ -19,7 +19,7 @@ npm ci
 
 For [Cursor](https://cursor.com/) users, attach project skills in Agent chat (`@ai-shield-contributing`, etc.). Skills live in `.cursor/skills/` and mirror these docs as agent playbooks.
 
-See [Cursor Agent Skills](./contributing/cursor-skills.md) for the full catalog, usage examples, and `disable-model-invocation` policy.
+See [Cursor Agent Skills & Rules](./contributing/cursor-skills.md) for skills, Aether persona rules, trigger policies (`paths`, `globs`, `alwaysApply`), and usage examples.
 
 ## Quality gate
 
@@ -39,16 +39,17 @@ This runs, in order:
 
 Individual commands:
 
-| Command                | Purpose                                 |
-| ---------------------- | --------------------------------------- |
-| `npm run build`        | Build library to `dist/`                |
-| `npm run test`         | Vitest watch mode                       |
-| `npm run test:run`     | Single test run                         |
-| `npm run lint`         | Auto-fix lint issues                    |
-| `npm run format`       | Auto-format with Prettier               |
-| `npm run docs:dev`     | VitePress local preview                 |
-| `npm run docs:build`   | Build static documentation site         |
-| `npm run check:ai-sdk` | Compare lockfile `ai` pin vs npm latest |
+| Command                | Purpose                                                          |
+| ---------------------- | ---------------------------------------------------------------- |
+| `npm run build`        | Build library to `dist/`                                         |
+| `npm run test`         | Vitest watch mode                                                |
+| `npm run test:run`     | Single test run                                                  |
+| `npm run lint`         | Auto-fix lint issues                                             |
+| `npm run format`       | Auto-format with Prettier                                        |
+| `npm run docs:dev`     | VitePress local preview                                          |
+| `npm run docs:build`   | Build static documentation site                                  |
+| `npm run demo`         | 9-section tour, **31 PASS/FAIL checks** (mock + optional Ollama) |
+| `npm run check:ai-sdk` | Compare lockfile `ai` pin vs npm latest                          |
 
 ## Vercel AI SDK updates
 

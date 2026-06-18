@@ -4,7 +4,7 @@ Explicit design decisions in shieldkit and their consequences.
 
 ## Regex-based injection detection
 
-**Decision:** Weighted regex patterns with a cumulative score threshold (`src/guards/injection.ts`).
+**Decision:** Weighted regex patterns with a cumulative score threshold (`src/guards/injection.ts`). Since **0.2.0**, prompt text is normalized (`normalizeGuardText()` in `src/utils/guard-normalize.ts`) before matching — zero-width characters stripped, common Cyrillic homoglyphs folded to Latin. PII guards intentionally skip normalization.
 
 | Benefit                              | Cost                                             |
 | ------------------------------------ | ------------------------------------------------ |

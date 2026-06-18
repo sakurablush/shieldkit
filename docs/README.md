@@ -12,6 +12,7 @@ Production guardrails, structured output repair, and basic compliance for the [V
 | [Design](./design/why-middleware.md)                             | Rationale, trade-offs, limitations                 |
 | [Testing](./testing/running-tests.md)                            | How to run tests and verify correctness            |
 | [CI and automation](./contributing/ci-and-automation.md)         | GitHub Actions, Dependabot, schedules              |
+| [npm publishing](./contributing/npm-publishing.md)               | Version tags, GitHub Release from CHANGELOG        |
 | [Dependency policy](./contributing/dependency-policy.md)         | Vercel AI SDK version strategy                     |
 | [Adversarial assurance](./testing/adversarial-assurance-plan.md) | Hardcore tests, contrast harness, red team         |
 | [API reference](./api/reference.md)                              | Public exports                                     |
@@ -24,13 +25,13 @@ Production guardrails, structured output repair, and basic compliance for the [V
 
 **shieldkit** is published on [npm](https://www.npmjs.com/package/shieldkit) and developed at [sakurablush/shieldkit](https://github.com/sakurablush/shieldkit). It wraps any `LanguageModelV3` (OpenAI, Anthropic, Ollama, etc.) with a middleware chain that provides:
 
-- **Input guardrails** — prompt injection detection, PII redaction, keyword deny lists
+- **Input guardrails** — prompt injection detection (with homoglyph/zero-width normalization since 0.2.0), PII redaction, keyword deny lists
 - **Output guardrails** — PII/keyword filtering on model responses
 - **Structured output repair** — JSON repair and Zod schema validation with retries
 - **Cost tracking** — per-session token and USD budgets
 - **Audit logging** — structured lifecycle events to console or custom sinks
 - **Tool guards** — allow/deny lists, call limits, approval gates
-- **Verified** — [149 automated tests](./testing/verification-matrix.md#test-inventory) in the CI merge gate
+- **Verified** — [163 automated tests](./testing/verification-matrix.md#test-inventory) in the CI merge gate
 
 ```ts
 import { generateText } from 'ai';
@@ -76,6 +77,7 @@ docs/
 ├── contributing/
 │   ├── ci-and-automation.md
 │   ├── dependency-policy.md
+│   ├── npm-publishing.md
 │   └── cursor-skills.md
 ├── DEPLOYMENT.md
 └── examples/

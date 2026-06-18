@@ -1,7 +1,12 @@
 ---
 name: ai-shield-contributing
-description: Guides development on the shieldkit library — setup, CI gate, code conventions, PR checklist, and where to change code. Use when contributing to shieldkit, fixing bugs, adding features, editing src/ or tests/, or preparing a pull request.
-disable-model-invocation: true
+description: Guides shieldkit library development — npm run ci gate, ESM conventions, PR checklist, verification matrix, and where to change src/. Use when contributing, fixing bugs, adding guards or middleware, editing tests/examples, or preparing a pull request.
+paths:
+  - src/**
+  - tests/**
+  - examples/**
+  - CHANGELOG.md
+  - package.json
 ---
 
 # shieldkit Contributing
@@ -46,15 +51,16 @@ GitHub Actions (`.github/workflows/ci.yml`) also runs `build`, `docs:build`, and
 
 ## Where to change what
 
-| Change                            | Location                                 |
-| --------------------------------- | ---------------------------------------- |
-| Shield wrapper / middleware chain | `src/shield.ts`, `src/middleware/`       |
-| Guard logic (patterns, PII)       | `src/guards/`                            |
-| JSON repair                       | `src/repair/`                            |
-| Tool policies                     | `src/tools/guard-tools.ts`               |
-| Config presets                    | `src/config.ts`                          |
-| Errors                            | `src/errors.ts`                          |
-| Public exports                    | `src/index.ts` + `docs/api/reference.md` |
+| Change                            | Location                                      |
+| --------------------------------- | --------------------------------------------- |
+| Shield wrapper / middleware chain | `src/shield.ts`, `src/middleware/`            |
+| Guard logic (patterns, PII)       | `src/guards/`, `src/utils/guard-normalize.ts` |
+| JSON repair                       | `src/repair/`                                 |
+| Tool policies                     | `src/tools/guard-tools.ts`                    |
+| Config presets                    | `src/config.ts`                               |
+| Errors                            | `src/errors.ts`                               |
+| Release changelog extract         | `scripts/extract-changelog-section.mjs`       |
+| Public exports                    | `src/index.ts` + `docs/api/reference.md`      |
 
 ## Version & CHANGELOG (mandatory)
 
@@ -74,6 +80,7 @@ Follow `.cursor/rules/shieldkit-release-changelog.mdc` before finishing any cons
 - [ ] docs/api/reference.md updated for public API changes
 - [ ] docs/testing/verification-matrix.md updated for new proven behavior
 - [ ] Feature doc under docs/features/ updated if user-facing
+- [ ] `npm run demo` passes when `examples/` or demo behavior changed
 - [ ] CHANGELOG.md updated under [Unreleased] when consumer impact exists
 - [ ] package.json version bumped only when preparing a release (not every PR)
 - [ ] No unrelated refactors
@@ -86,19 +93,21 @@ Follow `.cursor/rules/shieldkit-release-changelog.mdc` before finishing any cons
 2. Add unit test in `tests/unit/` using `createMockModel` when possible
 3. Add row to `docs/testing/verification-matrix.md`
 4. Update feature doc and API reference as needed
-5. Run full CI gate
+5. Run full CI gate — see `.cursor/skills/ai-shield-pre-commit-ci/SKILL.md` (`npm run ci`)
 
 For live-model behavior, extend `tests/integration/ollama.test.ts` — attach `@ai-shield-local-testing`.
 
 ## Useful commands
 
-| Command                   | Purpose                                       |
-| ------------------------- | --------------------------------------------- |
-| `npm run dev`             | `tsup --watch` for library development        |
-| `npm run test`            | Vitest watch mode                             |
-| `npm run lint` / `format` | Auto-fix before `ci`                          |
-| `npm pack --dry-run`      | Verify tarball (dist + README + LICENSE only) |
-| `npm run check:ai-sdk`    | Lockfile `ai` vs npm latest                   |
+| Command                    | Purpose                                                          |
+| -------------------------- | ---------------------------------------------------------------- |
+| `npm run demo`             | 9-section tour, **31 PASS/FAIL checks** (mock + optional Ollama) |
+| `npm run test:adversarial` | Adversarial corpus + contrast harness                            |
+| `npm run dev`              | `tsup --watch` for library development                           |
+| `npm run test`             | Vitest watch mode                                                |
+| `npm run lint` / `format`  | Auto-fix before `ci`                                             |
+| `npm pack --dry-run`       | Verify tarball (dist + README + LICENSE only)                    |
+| `npm run check:ai-sdk`     | Lockfile `ai` vs npm latest                                      |
 
 ## Related
 

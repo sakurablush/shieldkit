@@ -19,6 +19,7 @@ shieldkit provides **basic compliance helpers**, not a complete security program
 ## Injection guard limitations
 
 - Pattern-based detection only; novel attacks may not match
+- **0.2.0+:** homoglyph and zero-width evasion normalized before pattern scan; multilingual phrasing may still bypass
 - Threshold tuning required (`0.4` strict, `0.5` default, `0.6` local)
 - `warn` action logs but does not block
 - Repair retry prompts can re-send model output that bypassed input guards on retry
@@ -50,7 +51,7 @@ Streaming is **buffered** for repair and output guards. Clients do not receive p
 - Retries bypass input guards and pre-call budget checks
 - `maxAttempts` caps total tries (first attempt + retries)
 - Schema validation requires valid JSON after repair; severely malformed output may still fail
-- `shieldStreamText` merges `outputSchema` into provider options but has no dedicated test coverage
+- `shieldStreamText` merges `outputSchema` into provider options; strict injection blocking on stream is covered in `shield-stream-text.test.ts`
 
 ## Provider coverage
 

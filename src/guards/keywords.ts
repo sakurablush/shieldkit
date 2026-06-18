@@ -1,4 +1,5 @@
 import type { GuardAction, GuardResult } from '../types.js';
+import { normalizeGuardText } from '../utils/guard-normalize.js';
 
 export function keywordGuard(
   text: string,
@@ -11,7 +12,7 @@ export function keywordGuard(
     return { guard: 'keywords', triggered: false, action };
   }
 
-  const lowerText = text.toLowerCase();
+  const lowerText = normalizeGuardText(text).toLowerCase();
   const matched: string[] = [];
 
   for (const keyword of deny) {

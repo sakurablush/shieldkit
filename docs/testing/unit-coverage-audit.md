@@ -1,6 +1,6 @@
 # Unit Coverage Audit
 
-**Status:** complete · **Last updated:** 2026-06-17 (shieldkit@0.1.1)  
+**Status:** complete · **Last updated:** 2026-06-18 (shieldkit@0.2.0)  
 **Policy:** every implemented runtime capability in `src/` has **positive (+)** and **negative (−)** unit tests in `tests/unit/`. Adversarial/integration layers add breadth; they do not replace this matrix.
 
 ## Sign-off checklist
@@ -13,21 +13,21 @@
 
 ## Public API
 
-| Module / API                                       | Positive (+)                 | Negative (−)                               | Unit test file                              | Status  |
-| -------------------------------------------------- | ---------------------------- | ------------------------------------------ | ------------------------------------------- | ------- |
-| `shield()`                                         | passthrough generation       | strict injection block                     | `config.test.ts`                            | covered |
-| `resolveConfig` balanced/strict/cheap/local/custom | preset values                | —                                          | `config.test.ts`                            | covered |
-| `shieldGenerateText`                               | valid output, repair success | repair exhausted, non-repair error rethrow | `shield-generate.test.ts`                   | covered |
-| `shieldStreamText`                                 | schema merge + stream        | —                                          | `shield-stream-text.test.ts`                | covered |
-| `guardTools`                                       | allow, approval, audit       | deny, max calls, require approval          | `guard-tools.test.ts`                       | covered |
-| `createShieldContext` / `getOrCreateSession`       | create + reuse               | —                                          | `context.test.ts`                           | covered |
-| `resetSession`                                     | clears session               | —                                          | `context.test.ts`, `cost-tracking.test.ts`  | covered |
-| `recordSessionUsage`                               | increments totals            | —                                          | `context.test.ts`                           | covered |
-| `createRequestContext`                             | defaults + overrides         | —                                          | `context.test.ts`                           | covered |
-| `ShieldBlockedError`                               | properties                   | —                                          | `errors.test.ts`                            | covered |
-| `ShieldBudgetError`                                | properties                   | —                                          | `errors.test.ts`, `cost-tracking.test.ts`   | covered |
-| `ShieldRepairError`                                | properties                   | —                                          | `errors.test.ts`, `shield-generate.test.ts` | covered |
-| `ShieldToolError`                                  | properties                   | —                                          | `errors.test.ts`, `guard-tools.test.ts`     | covered |
+| Module / API                                       | Positive (+)                           | Negative (−)                               | Unit test file                              | Status  |
+| -------------------------------------------------- | -------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------- |
+| `shield()`                                         | passthrough generation                 | strict injection block                     | `config.test.ts`                            | covered |
+| `resolveConfig` balanced/strict/cheap/local/custom | preset values                          | —                                          | `config.test.ts`                            | covered |
+| `shieldGenerateText`                               | valid output, repair success           | repair exhausted, non-repair error rethrow | `shield-generate.test.ts`                   | covered |
+| `shieldStreamText`                                 | schema merge + stream, homoglyph block | strict injection block on stream           | `shield-stream-text.test.ts`                | covered |
+| `guardTools`                                       | allow, approval, audit                 | deny, max calls, require approval          | `guard-tools.test.ts`                       | covered |
+| `createShieldContext` / `getOrCreateSession`       | create + reuse                         | —                                          | `context.test.ts`                           | covered |
+| `resetSession`                                     | clears session                         | —                                          | `context.test.ts`, `cost-tracking.test.ts`  | covered |
+| `recordSessionUsage`                               | increments totals                      | —                                          | `context.test.ts`                           | covered |
+| `createRequestContext`                             | defaults + overrides                   | —                                          | `context.test.ts`                           | covered |
+| `ShieldBlockedError`                               | properties                             | —                                          | `errors.test.ts`                            | covered |
+| `ShieldBudgetError`                                | properties                             | —                                          | `errors.test.ts`, `cost-tracking.test.ts`   | covered |
+| `ShieldRepairError`                                | properties                             | —                                          | `errors.test.ts`, `shield-generate.test.ts` | covered |
+| `ShieldToolError`                                  | properties                             | —                                          | `errors.test.ts`, `guard-tools.test.ts`     | covered |
 
 ## Guards
 
@@ -60,16 +60,23 @@
 
 ## Utils
 
-| Module                | Positive (+)                      | Negative (−)                  | Unit test file                   | Status  |
-| --------------------- | --------------------------------- | ----------------------------- | -------------------------------- | ------- |
-| `usage.ts`            | merge, counts, normalize          | empty usage                   | `utils/usage.test.ts`            | covered |
-| `prompt.ts`           | extract, merge, redact, transform | invalid provider options      | `utils/prompt.test.ts`           | covered |
-| `deep-merge.ts`       | nested merge                      | undefined skip, array replace | `utils/deep-merge.test.ts`       | covered |
-| `output-guards.ts`    | generate redact                   | keyword block                 | `utils/output-guards.test.ts`    | covered |
-| `audit.ts`            | console basic/detailed            | disabled, sink swallow        | `utils/audit.test.ts`            | covered |
-| `stream-collector.ts` | collect text + usage              | —                             | `utils/stream-collector.test.ts` | covered |
-| `token-estimator.ts`  | known/unknown models              | zero cost/text                | `token-estimator.test.ts`        | covered |
-| `json-repair.ts`      | repair + validate                 | invalid schema                | `json-repair.test.ts`            | covered |
+| Module                | Positive (+)                                | Negative (−)                  | Unit test file                   | Status  |
+| --------------------- | ------------------------------------------- | ----------------------------- | -------------------------------- | ------- |
+| `usage.ts`            | merge, counts, normalize                    | empty usage                   | `utils/usage.test.ts`            | covered |
+| `prompt.ts`           | extract, merge, redact, transform           | invalid provider options      | `utils/prompt.test.ts`           | covered |
+| `deep-merge.ts`       | nested merge                                | undefined skip, array replace | `utils/deep-merge.test.ts`       | covered |
+| `output-guards.ts`    | generate redact                             | keyword block                 | `utils/output-guards.test.ts`    | covered |
+| `audit.ts`            | console basic/detailed                      | disabled, sink swallow        | `utils/audit.test.ts`            | covered |
+| `stream-collector.ts` | collect text + usage                        | —                             | `utils/stream-collector.test.ts` | covered |
+| `guard-normalize.ts`  | homoglyph + zero-width fold, inj-009 benign | —                             | `utils/guard-normalize.test.ts`  | covered |
+| `token-estimator.ts`  | known/unknown models                        | zero cost/text                | `token-estimator.test.ts`        | covered |
+| `json-repair.ts`      | repair + validate                           | invalid schema                | `json-repair.test.ts`            | covered |
+
+## Release tooling
+
+| Script / workflow                         | Positive (+)                | Negative (−)              | Unit test file                              | Status  |
+| ----------------------------------------- | --------------------------- | ------------------------- | ------------------------------------------- | ------- |
+| `extract-changelog-section.mjs` + publish | section extract, `v` prefix | missing / invalid version | `scripts/extract-changelog-section.test.ts` | covered |
 
 ## Explicit non-goals (no unit tests required)
 

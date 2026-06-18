@@ -15,16 +15,21 @@ cd shieldkit
 npm ci
 ```
 
-## Cursor Agent Skills
+## Cursor skills & rules
 
-This repo includes project skills in `.cursor/skills/` for AI-assisted development. Attach in Agent chat with `@`:
+Project **skills** (`.cursor/skills/`) and **rules** (`.cursor/rules/`) guide AI-assisted work. Contributing and docs skills auto-load when you edit matching files; use `/skill-name` or `@rule-name` for explicit control.
 
-| Skill                     | Use for                     |
-| ------------------------- | --------------------------- |
-| `ai-shield-onboarding`    | New to the repo             |
-| `ai-shield-contributing`  | Code changes and PRs        |
-| `ai-shield-local-testing` | Tests and Ollama setup      |
-| `ai-shield-docs`          | Documentation and VitePress |
+| Skill / rule                    | Use for                                           |
+| ------------------------------- | ------------------------------------------------- |
+| `ai-shield-onboarding`          | New to the repo (`/ai-shield-onboarding`)         |
+| `ai-shield-contributing`        | Code changes and PRs (auto on `src/`, tests)      |
+| `ai-shield-pre-commit-ci`       | Before commit — `npm run ci`                      |
+| `ai-shield-release-versioning`  | CHANGELOG and version bump                        |
+| `ai-shield-ship-release`        | Full release workflow (`/ai-shield-ship-release`) |
+| `ai-shield-review-before-merge` | Bugbot review before PR                           |
+| `ai-shield-local-testing`       | Tests, Ollama, `npm run demo`                     |
+| `ai-shield-docs`                | Docs and VitePress (auto on `docs/`)              |
+| `@aether-reviewer` etc.         | Optional persona rules (manual `@` only)          |
 
 Full guide: [docs/contributing/cursor-skills.md](docs/contributing/cursor-skills.md).
 
@@ -46,15 +51,16 @@ This runs, in order:
 
 Individual commands:
 
-| Command              | Purpose                         |
-| -------------------- | ------------------------------- |
-| `npm run build`      | Build library to `dist/`        |
-| `npm run test`       | Vitest watch mode               |
-| `npm run test:run`   | Single test run                 |
-| `npm run lint`       | Auto-fix lint issues            |
-| `npm run format`     | Auto-format with Prettier       |
-| `npm run docs:dev`   | VitePress local preview         |
-| `npm run docs:build` | Build static documentation site |
+| Command              | Purpose                                                          |
+| -------------------- | ---------------------------------------------------------------- |
+| `npm run build`      | Build library to `dist/`                                         |
+| `npm run test`       | Vitest watch mode                                                |
+| `npm run test:run`   | Single test run                                                  |
+| `npm run lint`       | Auto-fix lint issues                                             |
+| `npm run format`     | Auto-format with Prettier                                        |
+| `npm run docs:dev`   | VitePress local preview                                          |
+| `npm run docs:build` | Build static documentation site                                  |
+| `npm run demo`       | 9-section tour, **31 PASS/FAIL checks** (mock + optional Ollama) |
 
 ## Ollama integration tests
 
@@ -109,7 +115,7 @@ git tag v$(node -p "require('./package.json').version")
 git push origin v$(node -p "require('./package.json').version")
 ```
 
-Create a GitHub Release from the matching `[version]` section in `CHANGELOG.md`. `prepublishOnly` runs `npm run build` automatically on publish.
+Tag push triggers [Publish workflow](.github/workflows/publish.yml) — npm OIDC publish **and** GitHub Release from `CHANGELOG` (via `scripts/extract-changelog-section.mjs`). Manual release notes are not required. `prepublishOnly` runs `npm run build` automatically on publish.
 
 ## License
 

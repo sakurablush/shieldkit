@@ -1,6 +1,7 @@
 # shieldkit
 
 [![npm version](https://img.shields.io/npm/v/shieldkit.svg)](https://www.npmjs.com/package/shieldkit)
+[![npm provenance](https://img.shields.io/badge/provenance-SLSA-blue)](https://www.npmjs.com/package/shieldkit)
 
 Production guardrails, structured output repair, and basic compliance for the [Vercel AI SDK](https://ai-sdk.dev/).
 
@@ -10,6 +11,12 @@ Works with frontier models and local models (Ollama). Peer dependency: `ai >=6`,
 
 ```bash
 npm install shieldkit ai zod
+```
+
+**Try the full feature tour locally** (mock + optional Ollama, 31 automated checks):
+
+```bash
+git clone https://github.com/sakurablush/shieldkit.git && cd shieldkit && npm ci && npm run demo
 ```
 
 ## Documentation
@@ -68,6 +75,8 @@ const { text } = await generateText({
 | `strict`             | injection block (strict), PII block; add keyword deny list to enable | 3 attempts, no partial in retry prompts | enforce $0.50        | detailed           |
 | `cheap`              | injection warn only                                                  | 1 attempt                               | enforce $0.10        | basic, console off |
 | `local`              | injection warn, PII redact                                           | 3 attempts                              | track only           | detailed           |
+
+**0.2.0+:** injection and keyword guards normalize homoglyphs and zero-width characters before pattern matching (PII guards stay literal).
 
 ```ts
 const model = shield(ollama('llama3.2'), { mode: 'local' });

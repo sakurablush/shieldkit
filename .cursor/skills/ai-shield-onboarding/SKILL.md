@@ -1,6 +1,6 @@
 ---
 name: ai-shield-onboarding
-description: Orients new contributors and testers to the shieldkit repository — what the library does, repo layout, first commands, and which Cursor skill to attach next. Use when someone is new to shieldkit, asks what the project is, or needs a quick start before coding or testing.
+description: Orients new contributors to the shieldkit repository — what the library does, repo layout, first commands, and which skill or rule to attach next. Use when someone is new to shieldkit, asks what the project is, or needs a quick start before coding or testing.
 disable-model-invocation: true
 ---
 
@@ -11,6 +11,7 @@ disable-model-invocation: true
 **shieldkit** is a Vercel AI SDK middleware library that adds:
 
 - Input/output guardrails (injection, PII, keywords)
+- **0.2.0+:** homoglyph and zero-width normalization before injection/keyword matching
 - Structured JSON output repair
 - Session cost budgets and audit logging
 - Tool call policies (`guardTools`)
@@ -37,17 +38,20 @@ cd shieldkit
 npm ci
 npm run ci        # all tests pass (Ollama integration skipped when unavailable)
 npm run build
+npm run demo      # optional — 9 sections, 31 PASS/FAIL checks (sections 1–8 mock-only)
 ```
 
 ## Choose your path
 
-| Goal                   | Attach skill               | Human doc                             |
-| ---------------------- | -------------------------- | ------------------------------------- |
-| Change code, open PR   | `@ai-shield-contributing`  | `docs/contributing.md`                |
-| Run all tests + Ollama | `@ai-shield-local-testing` | `docs/testing/running-tests.md`       |
-| Edit documentation     | `@ai-shield-docs`          | `docs/contributing/cursor-skills.md`  |
-| Understand the API     | —                          | `docs/getting-started.md`             |
-| How we know it works   | —                          | `docs/testing/verification-matrix.md` |
+| Goal                   | Attach skill / rule              | Human doc                             |
+| ---------------------- | -------------------------------- | ------------------------------------- |
+| Change code, open PR   | `@ai-shield-contributing`        | `docs/contributing.md`                |
+| Run all tests + Ollama | `/ai-shield-local-testing`       | `docs/testing/running-tests.md`       |
+| Ship a release         | `/ai-shield-ship-release`        | `docs/contributing/npm-publishing.md` |
+| Pre-merge review       | `/ai-shield-review-before-merge` | —                                     |
+| Edit documentation     | `@ai-shield-docs`                | `docs/contributing/cursor-skills.md`  |
+| Understand the API     | —                                | `docs/getting-started.md`             |
+| How we know it works   | —                                | `docs/testing/verification-matrix.md` |
 
 Full skill index: `docs/contributing/cursor-skills.md`
 
@@ -74,6 +78,8 @@ await generateText({
 | Concept                    | Detail                                                                            |
 | -------------------------- | --------------------------------------------------------------------------------- |
 | `shield(model, config)`    | Wrapped model for `generateText` / `streamText`                                   |
+| `shieldStreamText`         | Stream helper — merges `outputSchema` into `providerOptions.aiShield`             |
+| `shieldGenerateText`       | Generate helper — extra repair retry handling                                     |
 | `mode`                     | `balanced`, `strict`, `cheap`, `local`, `custom`                                  |
 | `providerOptions.aiShield` | Per-request `sessionId`, `userId`, `outputSchema`                                 |
 | `guardTools`               | Allow/deny lists, max calls, approval gates                                       |
@@ -81,4 +87,4 @@ await generateText({
 
 ## Peer dependencies
 
-Consumers install: `ai-shield`, `ai` (≥5), `zod` (^3.25 or ^4). Ollama is optional (`ollama-ai-provider-v2`).
+Consumers install: `shieldkit`, `ai` (≥6), `zod` (^3.25 or ^4). Ollama is optional (`ollama-ai-provider-v2`).

@@ -1,4 +1,5 @@
 import type { GuardAction, GuardResult } from '../types.js';
+import { normalizeGuardText } from '../utils/guard-normalize.js';
 
 const INJECTION_PATTERNS: Array<{ pattern: RegExp; weight: number; label: string }> = [
   {
@@ -44,12 +45,13 @@ export function injectionGuard(
 ): GuardResult {
   const threshold = options.threshold ?? 0.5;
   const action = options.action ?? 'block';
+  const normalizedText = normalizeGuardText(text);
 
   let score = 0;
   const matches: string[] = [];
 
   for (const { pattern, weight, label } of INJECTION_PATTERNS) {
-    if (pattern.test(text)) {
+    if (pattern.test(normalizedText)) {
       score += weight;
       matches.push(label);
     }

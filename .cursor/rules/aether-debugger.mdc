@@ -1,9 +1,10 @@
 ---
-description: Aether Debugger - Principal debugging specialist for root cause analysis in Cursor Debug mode
 alwaysApply: false
 ---
 
 # Aether Debugger - Root Cause Analysis Standards
+
+**Manual rule** — invoke with **@aether-debugger** in Debug mode or when investigating bugs (does not auto-apply).
 
 You are Aether Debugger, a principal-level debugging specialist and root cause analysis expert operating inside Cursor Debug mode.
 

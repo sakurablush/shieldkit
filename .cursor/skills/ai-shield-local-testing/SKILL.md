@@ -1,6 +1,6 @@
 ---
 name: ai-shield-local-testing
-description: Runs and validates ai-shield tests locally — CPU CI suite, Ollama integration (OLLAMA_HOST, OLLAMA_MODEL), smoke examples, GPU warm-up, and troubleshooting. Use when testing ai-shield, setting up Ollama, running integration tests, validating without paid API keys, or debugging test timeouts.
+description: Runs and validates shieldkit locally — npm run ci, npm run demo (31 checks), test:adversarial, Ollama integration (OLLAMA_HOST, OLLAMA_MODEL), smoke examples, GPU warm-up, and troubleshooting. Use when running tests, setting up Ollama, validating before release, or debugging test timeouts.
 disable-model-invocation: true
 ---
 
@@ -10,20 +10,20 @@ Human doc: `docs/testing/running-tests.md` · Skill index: `docs/contributing/cu
 
 ## What gets tested
 
-| Layer       | Command                                | Hardware     | Proves                                       |
-| ----------- | -------------------------------------- | ------------ | -------------------------------------------- |
-| CI gate     | `npm run ci`                           | CPU          | lint, types, **149 tests**, full-tree audit  |
-| Build       | `npm run build`                        | CPU          | `dist/` compiles                             |
-| Docs        | `npm run docs:build`                   | CPU          | VitePress links valid                        |
-| Package     | `npm pack --dry-run`                   | CPU          | tarball = dist + README + LICENSE            |
-| Integration | `npm run test:run` + Ollama            | GPU optional | live Ollama E2E (`tests/integration/`)       |
-| Adversarial | `npm run test:adversarial`             | CPU          | fixture corpus + contrast harness            |
-| Red team    | `npm run test:redteam`                 | GPU optional | live injection prompts                       |
-| Assurance   | `npm run test:assurance`               | GPU optional | adversarial + red team                       |
-| Smoke       | `npx tsx examples/agent-with-tools.ts` | GPU optional | tools + shield manual path                   |
-| Full demo   | `npm run demo`                         | GPU optional | all features with audit logs (mock + Ollama) |
+| Layer       | Command                                | Hardware     | Proves                                                |
+| ----------- | -------------------------------------- | ------------ | ----------------------------------------------------- |
+| CI gate     | `npm run ci`                           | CPU          | lint, types, **163 tests**, full-tree audit           |
+| Build       | `npm run build`                        | CPU          | `dist/` compiles                                      |
+| Docs        | `npm run docs:build`                   | CPU          | VitePress links valid                                 |
+| Package     | `npm pack --dry-run`                   | CPU          | tarball = dist + README + LICENSE                     |
+| Integration | `npm run test:run` + Ollama            | GPU optional | live Ollama E2E (`tests/integration/`)                |
+| Adversarial | `npm run test:adversarial`             | CPU          | fixture corpus + contrast harness                     |
+| Red team    | `npm run test:redteam`                 | GPU optional | live injection prompts                                |
+| Assurance   | `npm run test:assurance`               | GPU optional | adversarial + red team                                |
+| Smoke       | `npx tsx examples/agent-with-tools.ts` | GPU optional | Ollama agent smoke — audit evidence, `exit 1` on fail |
+| Full demo   | `npm run demo`                         | GPU optional | 9 sections, **31 PASS/FAIL checks**, mock + Ollama    |
 
-**Full local acceptance:** `npm run ci` green; `npm run test:adversarial` green; all tests in `npm run test:run` pass when Ollama is available (integration file skipped otherwise); `npm run test:assurance` optional.
+**Full local acceptance:** `npm run ci` green; `npm run test:adversarial` green (includes homoglyph `inj-010` and zero-width `inj-011` evasion cases since 0.2.0); all tests in `npm run test:run` pass when Ollama is available (integration file skipped otherwise); `npm run test:assurance` optional.
 
 ## OLLAMA_MODEL — what it means
 
@@ -127,9 +127,17 @@ $env:OLLAMA_MODEL = "llama3.2"
 npx tsx examples/agent-with-tools.ts
 ```
 
-**Expected:** `getTime` tool called, audit events, exit 0, no `ShieldToolError`.
+**Expected:** `✅ agent-with-tools smoke passed` — final text, tool steps, full audit trail; `exit 1` on failure.
 
 **Not runnable:** `examples/nextjs-api-route.ts` (copy-paste for Next.js).
+
+## Full demo (`npm run demo`)
+
+```bash
+npm run demo   # sections 1–8 mock-only; section 9 needs Ollama
+```
+
+**Expected:** `Demo summary — 31/31 checks passed` and `All checks passed. shieldkit demo complete.` Covers injection (incl. homoglyph/zero-width/`shieldStreamText`), PII, keywords, repair, tools, budget, live agent.
 
 ## Troubleshooting
 
@@ -163,7 +171,8 @@ Logs contrast, red team, and unit audit decisions. Silent by default in CI.
 - [ ] npm pack --dry-run
 - [ ] Ollama + llama3.2 pulled
 - [ ] npm run test:adversarial → contrast report in test-results/
-- [ ] Optional: npm run test:redteam with Ollama
+- [ ] Optional: npm run test:redteam with Ollama (9 injection prompts expect block in strict mode)
+- [ ] npm run demo → 31/31 checks (sections 1–8 mock-only; section 9 needs Ollama)
 - [ ] npx tsx examples/agent-with-tools.ts
 ```
 

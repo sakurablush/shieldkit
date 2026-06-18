@@ -12,4 +12,5 @@ npm pack --dry-run
 npm publish --access public
 
 echo "Published shieldkit@${VERSION}"
-echo "Next: git tag v${VERSION} && git push origin v${VERSION} (or rely on publish.yml if already tagged)"
+echo "Next: git tag v${VERSION} && git push origin v${VERSION}"
+echo "Tag push creates npm release + GitHub Release via publish.yml (preferred)."

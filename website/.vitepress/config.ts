@@ -7,11 +7,33 @@ export default defineConfig({
   title: 'shieldkit',
   titleTemplate: ':title · shieldkit docs',
   description:
-    'shieldkit (npm) — production guardrails, structured output repair, and compliance for the Vercel AI SDK',
+    'shieldkit (npm) — production guardrails, structured output repair, and compliance for the Vercel AI SDK. v0.2.0: homoglyph evasion hardening, 31-check demo tour, GitHub Release automation.',
   base,
   srcDir: '../docs',
   outDir: '.vitepress/dist',
   cleanUrls: true,
+  head: [
+    ['meta', { name: 'theme-color', content: '#4f46e5' }],
+    [
+      'meta',
+      {
+        name: 'description',
+        content:
+          'Production guardrails for the Vercel AI SDK — injection, PII, keywords, structured output repair, cost budgets, audit logging, and tool policies.',
+      },
+    ],
+    ['meta', { property: 'og:title', content: 'shieldkit — AI SDK guardrails' }],
+    [
+      'meta',
+      {
+        property: 'og:description',
+        content:
+          'Wrap any LanguageModel with shield() for input/output safety, JSON repair, session budgets, and audit trails. Verified with 163 automated tests.',
+      },
+    ],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+  ],
   vite: {
     esbuild: {
       target: 'esnext',
@@ -21,11 +43,25 @@ export default defineConfig({
     },
   },
   themeConfig: {
+    logo: '/logo.svg',
+    siteTitle: 'shieldkit',
     nav: [
       { text: 'Getting Started', link: '/getting-started' },
-      { text: 'Architecture', link: '/architecture/overview' },
+      { text: 'Features', link: '/features/input-guardrails' },
+      { text: 'Examples', link: '/examples/' },
       { text: 'API', link: '/api/reference' },
       { text: 'Testing', link: '/testing/running-tests' },
+      {
+        text: 'v0.2.0',
+        items: [
+          {
+            text: 'Changelog',
+            link: 'https://github.com/sakurablush/shieldkit/blob/main/CHANGELOG.md#020---2026-06-18',
+          },
+          { text: 'npm package', link: 'https://www.npmjs.com/package/shieldkit' },
+          { text: 'npm publishing guide', link: '/contributing/npm-publishing' },
+        ],
+      },
     ],
     sidebar: [
       {
@@ -93,10 +129,18 @@ export default defineConfig({
         ],
       },
     ],
-    socialLinks: [{ icon: 'github', link: 'https://github.com/sakurablush/shieldkit' }],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/sakurablush/shieldkit' },
+      { icon: 'npm', link: 'https://www.npmjs.com/package/shieldkit' },
+    ],
     footer: {
-      message: 'MIT Licensed · npm: shieldkit',
+      message:
+        'MIT Licensed · <a href="https://www.npmjs.com/package/shieldkit" target="_blank" rel="noreferrer">npm: shieldkit</a>',
       copyright: 'shieldkit contributors',
+    },
+    outline: [2, 3],
+    search: {
+      provider: 'local',
     },
   },
 });
