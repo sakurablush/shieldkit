@@ -1,6 +1,6 @@
 ---
 name: ai-shield-onboarding
-description: Orients new contributors and testers to the shieldkit repository — what the library does, repo layout, first commands, and which Cursor skill to attach next. Use when someone is new to shieldkit, asks what the project is, or needs a quick start before coding or testing.
+description: Orients new contributors to the shieldkit repository — what the library does, repo layout, first commands, and which skill or rule to attach next. Use when someone is new to shieldkit, asks what the project is, or needs a quick start before coding or testing.
 disable-model-invocation: true
 ---
 

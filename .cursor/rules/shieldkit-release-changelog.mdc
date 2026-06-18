@@ -1,9 +1,12 @@
 ---
-description: Mandatory version and CHANGELOG decisions for every shieldkit change
-alwaysApply: true
+description: Mandatory CHANGELOG and semver decisions when finishing shieldkit library, example, or release file changes.
+globs: src/**,examples/**,tests/**,CHANGELOG.md,package.json,package-lock.json,README.md
+alwaysApply: false
 ---
 
 # shieldkit — Version & CHANGELOG (MANDATORY)
+
+Auto-attaches when editing matched library or release files. Invoke manually with **@shieldkit-release-changelog** if needed.
 
 Before marking **any** implementation task complete, decide changelog and version impact. Do not skip this step.
 

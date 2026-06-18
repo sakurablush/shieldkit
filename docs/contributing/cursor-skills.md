@@ -1,61 +1,91 @@
-# Cursor Agent Skills
+# Cursor Agent Skills & Rules
 
-This repository ships **project skills** for [Cursor](https://cursor.com/) — structured playbooks that teach the AI agent how to develop, test, and document shieldkit correctly.
+This repository ships **project skills** and **project rules** for [Cursor](https://cursor.com/) — structured playbooks that teach the agent how to develop, test, and document shieldkit correctly.
 
-Skills live in `.cursor/skills/` (not published to npm). They complement human docs in `docs/` and `.cursor/rules/` (Aether personas).
+- Skills: `.cursor/skills/` (workflows, checklists)
+- Rules: `.cursor/rules/` (personas, mandatory policies)
 
-## Quick reference
+They complement human docs in `docs/`. Official references: [Cursor Rules](https://cursor.com/docs/rules) · [Agent Skills](https://cursor.com/docs/context/skills).
 
-| Skill                                               | Attach when…                  | Human doc equivalent                                     |
-| --------------------------------------------------- | ----------------------------- | -------------------------------------------------------- |
-| [ai-shield-onboarding](#ai-shield-onboarding)       | New to the repo               | [Getting started](../getting-started.md)                 |
-| [ai-shield-contributing](#ai-shield-contributing)   | Changing `src/`, opening a PR | [Contributing](../contributing.md)                       |
-| [ai-shield-local-testing](#ai-shield-local-testing) | Running tests, Ollama setup   | [Running tests](../testing/running-tests.md)             |
-| [ai-shield-docs](#ai-shield-docs)                   | Editing `docs/` or VitePress  | [Contributing](../contributing.md#documentation-changes) |
+## Quick reference — skills
+
+| Skill                     | When it loads                                                  | Invoke manually            |
+| ------------------------- | -------------------------------------------------------------- | -------------------------- |
+| `ai-shield-contributing`  | Auto when editing `src/`, `tests/`, `examples/`, release files | `/ai-shield-contributing`  |
+| `ai-shield-docs`          | Auto when editing `docs/`, `website/`, `.cursor/skills/`       | `/ai-shield-docs`          |
+| `ai-shield-local-testing` | Never auto — explicit only                                     | `/ai-shield-local-testing` |
+| `ai-shield-onboarding`    | Never auto — explicit only                                     | `/ai-shield-onboarding`    |
+
+## Quick reference — rules
+
+| Rule                          | Trigger type      | When it applies                                                                              |
+| ----------------------------- | ----------------- | -------------------------------------------------------------------------------------------- |
+| `shieldkit-release-changelog` | **File patterns** | Auto when editing `src/`, `tests/`, `examples/`, `CHANGELOG.md`, `package.json`, `README.md` |
+| `aether-engineer`             | **Manual** (`@`)  | Agent implementation with plan tracking                                                      |
+| `aether-planner`              | **Manual** (`@`)  | Plan mode — architecture without code                                                        |
+| `aether-reviewer`             | **Manual** (`@`)  | Code or PR review                                                                            |
+| `aether-debugger`             | **Manual** (`@`)  | Debug mode — root cause analysis                                                             |
+| `aether-test-engineer`        | **Manual** (`@`)  | Deep test design / QA review                                                                 |
+| `aether-security-auditor`     | **Manual** (`@`)  | Security audit or threat modeling                                                            |
+| `aether-advisor`              | **Manual** (`@`)  | Ask mode — technical Q&A without code changes                                                |
+
+**No rule uses `alwaysApply: true`** — context stays lean; policies attach when files match or you `@`-mention a persona.
 
 ## How to use in Cursor
 
 1. Open the repo in Cursor.
-2. In Agent chat, attach a skill:
-   - Type `@` and search for the skill name (e.g. `ai-shield-local-testing`), or
-   - Use the Skills picker if your Cursor version exposes it.
-3. Ask your question — the agent follows the skill's checklist and conventions.
+2. **Skills:** type `/` + skill name, or let the agent auto-load scoped skills when you edit matching files.
+3. **Rules:** type `@` + rule name for Aether personas; `shieldkit-release-changelog` attaches when you touch library or release files.
+4. View everything in **Cursor Settings → Rules** (Project Rules + Agent Decides skills).
 
 **Example prompts:**
 
 ```
 @ai-shield-onboarding I'm new — what should I run first?
 
-@ai-shield-contributing Add a new guard and prepare a PR
+/ai-shield-local-testing Run npm run demo and the Ollama smoke suite
 
-@ai-shield-local-testing Run the full free validation suite with Ollama
+@aether-reviewer Review my guard changes before I open a PR
 
-@ai-shield-docs Update the verification matrix after adding a test
-
-@ai-shield-local-testing Run npm run demo and agent-with-tools smoke before release
+@aether-engineer Implement the feature with a tracked execution plan
 ```
 
-Skills are **optional accelerators**. Everything in a skill is also documented in `docs/` for non-Cursor workflows.
+Skills and rules are **optional accelerators**. Everything they contain is also documented in `docs/` for non-Cursor workflows.
 
-## `disable-model-invocation` policy
+## Skills — invocation policy
 
-Per [Cursor skill conventions](https://cursor.com/docs), skills support:
+Per [Cursor Skills docs](https://cursor.com/docs/context/skills):
 
-```yaml
-disable-model-invocation: true # load only when you @-attach the skill
-# omit the field              # agent may auto-apply when description matches
-```
+| Mechanism                           | Effect                                                            |
+| ----------------------------------- | ----------------------------------------------------------------- |
+| `paths` (globs)                     | Skill surfaces only when the agent works with matching files      |
+| `disable-model-invocation: true`    | Skill loads only via `/skill-name` — never auto from chat context |
+| _(omit `disable-model-invocation`)_ | Agent may auto-apply when description + paths match the task      |
 
-| Skill                     | Setting | Why                                                  |
-| ------------------------- | ------- | ---------------------------------------------------- |
-| `ai-shield-onboarding`    | `true`  | Index/router — attach when orienting, not every chat |
-| `ai-shield-contributing`  | `true`  | Long PR playbook — attach for code changes           |
-| `ai-shield-local-testing` | `true`  | Ollama/env specifics — attach for test runs          |
-| `ai-shield-docs`          | `true`  | Doc/VitePress workflow — attach for doc edits        |
+| Skill                     | `paths`                                                             | `disable-model-invocation` | Rationale                                            |
+| ------------------------- | ------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------- |
+| `ai-shield-contributing`  | `src/**`, `tests/**`, `examples/**`, `CHANGELOG.md`, `package.json` | **off**                    | Dev workflow should follow you into library code     |
+| `ai-shield-docs`          | `docs/**`, `website/**`, `.cursor/skills/**`                        | **off**                    | Doc workflow when editing docs or skills             |
+| `ai-shield-local-testing` | —                                                                   | **on**                     | Long Ollama/env playbook — invoke when running tests |
+| `ai-shield-onboarding`    | —                                                                   | **on**                     | Router/index — invoke when orienting, not every chat |
 
-We default to **explicit invocation** so skills do not compete for context in unrelated conversations. Rich descriptions still help discovery when you search `@` in chat.
+Descriptions are written in **third person** with both **what** the skill does and **when** to use it — required for agent discovery.
 
-To allow ambient auto-invoke for a skill, remove `disable-model-invocation` from its `SKILL.md` frontmatter.
+## Rules — trigger policy
+
+Per [Cursor Rules docs](https://cursor.com/docs/rules):
+
+| `alwaysApply` | `description` | `globs` | Behavior                                 |
+| ------------- | ------------- | ------- | ---------------------------------------- |
+| `true`        | —             | —       | Every chat (we avoid this)               |
+| `false`       | yes           | yes     | Auto when matching files are in context  |
+| `false`       | yes           | no      | Agent decides relevance from description |
+| `false`       | no            | no      | **Manual only** — `@rule-name` in chat   |
+
+| Rule                          | Config                                                                       |
+| ----------------------------- | ---------------------------------------------------------------------------- |
+| `shieldkit-release-changelog` | `alwaysApply: false` + `globs` on library and release files + `description`  |
+| `aether-*` personas           | `alwaysApply: false`, no `description`, no `globs` → manual `@aether-*` only |
 
 ## Skill catalog
 
@@ -93,23 +123,29 @@ Full local validation without paid APIs:
 
 Documentation and VitePress: `docs/` map, `npm run docs:build`, verification matrix and API reference sync, CHANGELOG / GitHub Release notes (`npm-publishing.md`).
 
+## Aether persona rules
+
+**Path:** `.cursor/rules/aether-*.mdc`
+
+Optional principal-engineer personas for specialized modes. They do **not** auto-apply — attach with `@aether-engineer`, `@aether-reviewer`, etc., when you want that voice and checklist.
+
 ## Directory layout
 
 ```
 .cursor/
-├── skills/         # Tracked — Cursor Agent Skills (shared with contributors)
-├── rules/          # Tracked — Aether persona rules
+├── skills/         # Agent Skills (SKILL.md + optional scripts/references)
+├── rules/          # Project rules (.mdc with frontmatter)
 └── plans/          # Gitignored — ephemeral agent plans (local only)
 ```
 
-## Maintaining skills
+## Maintaining skills and rules
 
-When you change workflows (CI steps, test env vars, doc paths):
+When you change workflows (CI steps, test env vars, doc paths, trigger policy):
 
-1. Update the relevant `SKILL.md` (and `ollama-*.md` platform guides if install paths or commands change).
-2. Update this page if skill names, attach guidance, or invocation policy changes.
+1. Update the relevant `SKILL.md` or `.mdc` rule frontmatter (`paths`, `globs`, `description`).
+2. Update this page if names, attach guidance, or invocation policy changes.
 3. Sync canonical human docs (`docs/testing/`, `docs/contributing.md`, `CONTRIBUTING.md`).
-4. Keep skills concise — link to `docs/` for long explanations; skills are checklists, not duplicates.
+4. Keep skills and rules concise — link to `docs/` for long explanations.
 
 **Do not** create skills in `~/.cursor/skills-cursor/` — that directory is reserved for Cursor built-ins.
 

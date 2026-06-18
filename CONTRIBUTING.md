@@ -15,16 +15,17 @@ cd shieldkit
 npm ci
 ```
 
-## Cursor Agent Skills
+## Cursor skills & rules
 
-This repo includes project skills in `.cursor/skills/` for AI-assisted development. Attach in Agent chat with `@`:
+Project **skills** (`.cursor/skills/`) and **rules** (`.cursor/rules/`) guide AI-assisted work. Contributing and docs skills auto-load when you edit matching files; use `/skill-name` or `@rule-name` for explicit control.
 
-| Skill                     | Use for                     |
-| ------------------------- | --------------------------- |
-| `ai-shield-onboarding`    | New to the repo             |
-| `ai-shield-contributing`  | Code changes and PRs        |
-| `ai-shield-local-testing` | Tests and Ollama setup      |
-| `ai-shield-docs`          | Documentation and VitePress |
+| Skill / rule              | Use for                                      |
+| ------------------------- | -------------------------------------------- |
+| `ai-shield-onboarding`    | New to the repo (`/ai-shield-onboarding`)    |
+| `ai-shield-contributing`  | Code changes and PRs (auto on `src/`, tests) |
+| `ai-shield-local-testing` | Tests, Ollama, `npm run demo`                |
+| `ai-shield-docs`          | Docs and VitePress (auto on `docs/`)         |
+| `@aether-reviewer` etc.   | Optional persona rules (manual `@` only)     |
 
 Full guide: [docs/contributing/cursor-skills.md](docs/contributing/cursor-skills.md).
 

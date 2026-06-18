@@ -1,7 +1,12 @@
 ---
 name: ai-shield-contributing
-description: Guides development on the shieldkit library — setup, CI gate, code conventions, PR checklist, and where to change code. Use when contributing to shieldkit, fixing bugs, adding features, editing src/ or tests/, or preparing a pull request.
-disable-model-invocation: true
+description: Guides shieldkit library development — npm run ci gate, ESM conventions, PR checklist, verification matrix, and where to change src/. Use when contributing, fixing bugs, adding guards or middleware, editing tests/examples, or preparing a pull request.
+paths:
+  - src/**
+  - tests/**
+  - examples/**
+  - CHANGELOG.md
+  - package.json
 ---
 
 # shieldkit Contributing

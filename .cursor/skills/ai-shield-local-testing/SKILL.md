@@ -1,6 +1,6 @@
 ---
 name: ai-shield-local-testing
-description: Runs and validates ai-shield tests locally — CPU CI suite, Ollama integration (OLLAMA_HOST, OLLAMA_MODEL), smoke examples, GPU warm-up, and troubleshooting. Use when testing ai-shield, setting up Ollama, running integration tests, validating without paid API keys, or debugging test timeouts.
+description: Runs and validates shieldkit locally — npm run ci, npm run demo (31 checks), test:adversarial, Ollama integration (OLLAMA_HOST, OLLAMA_MODEL), smoke examples, GPU warm-up, and troubleshooting. Use when running tests, setting up Ollama, validating before release, or debugging test timeouts.
 disable-model-invocation: true
 ---
 

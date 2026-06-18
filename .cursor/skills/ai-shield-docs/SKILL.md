@@ -1,7 +1,10 @@
 ---
 name: ai-shield-docs
-description: Updates ai-shield documentation and VitePress site — docs structure, build commands, verification matrix, API reference sync, and cursor-skills maintenance. Use when editing docs/, website/, feature documentation, VitePress config, or CONTRIBUTING for ai-shield.
-disable-model-invocation: true
+description: Updates shieldkit documentation and the VitePress site — docs map, npm run docs:build, verification matrix, API reference sync, cursor-skills maintenance, and release notes docs. Use when editing docs/, website/, feature pages, or documentation-only CHANGELOG entries.
+paths:
+  - docs/**
+  - website/**
+  - .cursor/skills/**
 ---
 
 # ai-shield Documentation
@@ -56,7 +59,7 @@ CI sets `VITEPRESS_BASE=/${{ github.event.repository.name }}/` for GitHub Pages.
 6. Architecture / design — if trade-offs change
 7. README — if install or quick-start changes
 8. CHANGELOG — version sections for releases; `scripts/extract-changelog-section.mjs` feeds GitHub Release body on tag publish
-9. Cursor skills — if workflows change (`.cursor/skills/`, `docs/contributing/cursor-skills.md`)
+9. Cursor skills and rules — if workflows or trigger policy change (`.cursor/skills/`, `.cursor/rules/`, `docs/contributing/cursor-skills.md`)
 10. CI / automation docs — if GitHub Actions or Dependabot change (`docs/contributing/ci-and-automation.md`, `docs/contributing/npm-publishing.md`, `.github/workflows/README.md`)
 
 ## Verification matrix

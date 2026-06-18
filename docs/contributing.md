@@ -19,7 +19,7 @@ npm ci
 
 For [Cursor](https://cursor.com/) users, attach project skills in Agent chat (`@ai-shield-contributing`, etc.). Skills live in `.cursor/skills/` and mirror these docs as agent playbooks.
 
-See [Cursor Agent Skills](./contributing/cursor-skills.md) for the full catalog, usage examples, and `disable-model-invocation` policy.
+See [Cursor Agent Skills & Rules](./contributing/cursor-skills.md) for skills, Aether persona rules, trigger policies (`paths`, `globs`, `alwaysApply`), and usage examples.
 
 ## Quality gate
 
