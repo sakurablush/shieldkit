@@ -31,6 +31,8 @@ Skills live in `.cursor/skills/` (not published to npm). They complement human d
 @ai-shield-local-testing Run the full free validation suite with Ollama
 
 @ai-shield-docs Update the verification matrix after adding a test
+
+@ai-shield-local-testing Run npm run demo and agent-with-tools smoke before release
 ```
 
 Skills are **optional accelerators**. Everything in a skill is also documented in `docs/` for non-Cursor workflows.
@@ -67,7 +69,7 @@ Orients newcomers: what shieldkit is, repo layout, first commands, and which ski
 
 **Path:** `.cursor/skills/ai-shield-contributing/SKILL.md`
 
-Development workflow: `npm run ci`, code conventions (ESM, `.js` imports), where to edit `src/`, PR checklist, verification matrix updates.
+Development workflow: `npm run ci`, code conventions (ESM, `.js` imports), where to edit `src/`, PR checklist, verification matrix updates, release changelog extract (`scripts/extract-changelog-section.mjs`).
 
 ### ai-shield-local-testing
 
@@ -75,10 +77,12 @@ Development workflow: `npm run ci`, code conventions (ESM, `.js` imports), where
 
 Full local validation without paid APIs:
 
-- CPU suite (`ci`, `build`, `docs:build`, `npm pack --dry-run`)
+- CPU suite (`ci`, `build`, `docs:build`, `npm pack --dry-run`) — **163 tests** in merge gate
 - Ollama integration when Ollama is running (`tests/integration/ollama.test.ts`)
+- Adversarial corpus (`npm run test:adversarial`) — homoglyph `inj-010` and zero-width `inj-011` blocked since **0.2.0**
+- Full demo (`npm run demo`) — **31 PASS/FAIL checks** across 9 sections (mock + optional Ollama)
 - `OLLAMA_HOST` and `OLLAMA_MODEL` explained
-- Smoke example (`examples/agent-with-tools.ts`)
+- Smoke example (`examples/agent-with-tools.ts`) — audit evidence footer, `exit 1` on failure
 - Troubleshooting (cold GPU timeouts, Windows PATH)
 
 **Platform supplements:** `.cursor/skills/ai-shield-local-testing/ollama-windows.md`, `ollama-linux.md`, `ollama-macos.md`
@@ -87,7 +91,7 @@ Full local validation without paid APIs:
 
 **Path:** `.cursor/skills/ai-shield-docs/SKILL.md`
 
-Documentation and VitePress: `docs/` map, `npm run docs:build`, verification matrix and API reference sync.
+Documentation and VitePress: `docs/` map, `npm run docs:build`, verification matrix and API reference sync, CHANGELOG / GitHub Release notes (`npm-publishing.md`).
 
 ## Directory layout
 

@@ -127,9 +127,17 @@ $env:OLLAMA_MODEL = "llama3.2"
 npx tsx examples/agent-with-tools.ts
 ```
 
-**Expected:** `getTime` tool called, audit events, exit 0, no `ShieldToolError`.
+**Expected:** `✅ agent-with-tools smoke passed` — final text, tool steps, full audit trail; `exit 1` on failure.
 
 **Not runnable:** `examples/nextjs-api-route.ts` (copy-paste for Next.js).
+
+## Full demo (`npm run demo`)
+
+```bash
+npm run demo   # sections 1–8 mock-only; section 9 needs Ollama
+```
+
+**Expected:** `Demo summary — 31/31 checks passed` and `All checks passed. shieldkit demo complete.` Covers injection (incl. homoglyph/zero-width/`shieldStreamText`), PII, keywords, repair, tools, budget, live agent.
 
 ## Troubleshooting
 
@@ -163,7 +171,8 @@ Logs contrast, red team, and unit audit decisions. Silent by default in CI.
 - [ ] npm pack --dry-run
 - [ ] Ollama + llama3.2 pulled
 - [ ] npm run test:adversarial → contrast report in test-results/
-- [ ] Optional: npm run test:redteam with Ollama
+- [ ] Optional: npm run test:redteam with Ollama (9 injection prompts expect block in strict mode)
+- [ ] npm run demo → 31/31 checks (sections 1–8 mock-only; section 9 needs Ollama)
 - [ ] npx tsx examples/agent-with-tools.ts
 ```
 

@@ -11,6 +11,7 @@ disable-model-invocation: true
 **shieldkit** is a Vercel AI SDK middleware library that adds:
 
 - Input/output guardrails (injection, PII, keywords)
+- **0.2.0+:** homoglyph and zero-width normalization before injection/keyword matching
 - Structured JSON output repair
 - Session cost budgets and audit logging
 - Tool call policies (`guardTools`)
@@ -75,6 +76,8 @@ await generateText({
 | Concept                    | Detail                                                                            |
 | -------------------------- | --------------------------------------------------------------------------------- |
 | `shield(model, config)`    | Wrapped model for `generateText` / `streamText`                                   |
+| `shieldStreamText`         | Stream helper — merges `outputSchema` into `providerOptions.aiShield`             |
+| `shieldGenerateText`       | Generate helper — extra repair retry handling                                     |
 | `mode`                     | `balanced`, `strict`, `cheap`, `local`, `custom`                                  |
 | `providerOptions.aiShield` | Per-request `sessionId`, `userId`, `outputSchema`                                 |
 | `guardTools`               | Allow/deny lists, max calls, approval gates                                       |

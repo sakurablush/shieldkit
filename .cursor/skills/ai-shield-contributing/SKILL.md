@@ -54,6 +54,7 @@ GitHub Actions (`.github/workflows/ci.yml`) also runs `build`, `docs:build`, and
 | Tool policies                     | `src/tools/guard-tools.ts`                    |
 | Config presets                    | `src/config.ts`                               |
 | Errors                            | `src/errors.ts`                               |
+| Release changelog extract         | `scripts/extract-changelog-section.mjs`       |
 | Public exports                    | `src/index.ts` + `docs/api/reference.md`      |
 
 ## Version & CHANGELOG (mandatory)
@@ -74,6 +75,7 @@ Follow `.cursor/rules/shieldkit-release-changelog.mdc` before finishing any cons
 - [ ] docs/api/reference.md updated for public API changes
 - [ ] docs/testing/verification-matrix.md updated for new proven behavior
 - [ ] Feature doc under docs/features/ updated if user-facing
+- [ ] `npm run demo` passes when `examples/` or demo behavior changed
 - [ ] CHANGELOG.md updated under [Unreleased] when consumer impact exists
 - [ ] package.json version bumped only when preparing a release (not every PR)
 - [ ] No unrelated refactors
@@ -92,13 +94,15 @@ For live-model behavior, extend `tests/integration/ollama.test.ts` — attach `@
 
 ## Useful commands
 
-| Command                   | Purpose                                       |
-| ------------------------- | --------------------------------------------- |
-| `npm run dev`             | `tsup --watch` for library development        |
-| `npm run test`            | Vitest watch mode                             |
-| `npm run lint` / `format` | Auto-fix before `ci`                          |
-| `npm pack --dry-run`      | Verify tarball (dist + README + LICENSE only) |
-| `npm run check:ai-sdk`    | Lockfile `ai` vs npm latest                   |
+| Command                    | Purpose                                                          |
+| -------------------------- | ---------------------------------------------------------------- |
+| `npm run demo`             | 9-section tour, **31 PASS/FAIL checks** (mock + optional Ollama) |
+| `npm run test:adversarial` | Adversarial corpus + contrast harness                            |
+| `npm run dev`              | `tsup --watch` for library development                           |
+| `npm run test`             | Vitest watch mode                                                |
+| `npm run lint` / `format`  | Auto-fix before `ci`                                             |
+| `npm pack --dry-run`       | Verify tarball (dist + README + LICENSE only)                    |
+| `npm run check:ai-sdk`     | Lockfile `ai` vs npm latest                                      |
 
 ## Related
 
