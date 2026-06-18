@@ -12,9 +12,10 @@ Human docs: `docs/` · Skill index: `docs/contributing/cursor-skills.md`
 
 ```
 docs/                    # Markdown source (not published to npm)
+  public/                # Static assets (logo.svg) — served at site root
 website/                 # VitePress site root
-  .vitepress/config.ts   # Nav, sidebar, base path
-.cursor/skills/          # Cursor Agent Skills
+  .vitepress/config.ts   # Nav, sidebar, base path, head meta
+  .vitepress/theme/      # custom.css + theme extension
 ```
 
 **npm package ships only:** `dist/`, `README.md`, `LICENSE`.
@@ -40,6 +41,7 @@ CI sets `VITEPRESS_BASE=/${{ github.event.repository.name }}/` for GitHub Pages.
 | API reference     | `docs/api/reference.md`                  |
 | Testing           | `docs/testing/`                          |
 | CI / automation   | `docs/contributing/ci-and-automation.md` |
+| npm publishing    | `docs/contributing/npm-publishing.md`    |
 | Dependency policy | `docs/contributing/dependency-policy.md` |
 | Deployment        | `docs/DEPLOYMENT.md`                     |
 | Security          | `docs/security-policy.md`, `SECURITY.md` |
@@ -50,10 +52,12 @@ CI sets `VITEPRESS_BASE=/${{ github.event.repository.name }}/` for GitHub Pages.
 2. API reference — `docs/api/reference.md`
 3. Verification matrix — `docs/testing/verification-matrix.md`
 4. Examples — `docs/examples/index.md`, `examples/*.ts`
-5. Architecture / design — if trade-offs change
-6. README — if install or quick-start changes
-7. Cursor skills — if workflows change (`.cursor/skills/`, `docs/contributing/cursor-skills.md`)
-8. CI / automation docs — if GitHub Actions or Dependabot change (`docs/contributing/ci-and-automation.md`, `.github/workflows/README.md`)
+5. Examples — `docs/examples/index.md`, `examples/*.ts`; run `npm run demo` when demo behavior changes
+6. Architecture / design — if trade-offs change
+7. README — if install or quick-start changes
+8. CHANGELOG — version sections for releases; `scripts/extract-changelog-section.mjs` feeds GitHub Release body on tag publish
+9. Cursor skills — if workflows change (`.cursor/skills/`, `docs/contributing/cursor-skills.md`)
+10. CI / automation docs — if GitHub Actions or Dependabot change (`docs/contributing/ci-and-automation.md`, `docs/contributing/npm-publishing.md`, `.github/workflows/README.md`)
 
 ## Verification matrix
 
@@ -74,6 +78,7 @@ After link or sidebar changes: `npm run docs:build`.
 - [ ] verification-matrix.md updated if coverage changed
 - [ ] API reference matches src/index.ts exports
 - [ ] cursor-skills.md updated if skill workflows changed
+- [ ] npm run demo passes if examples/ or demo script changed
 - [ ] No docs/ in package.json "files"
 ```
 

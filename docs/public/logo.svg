@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="shieldkit">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" d="M64 8L20 28v36c0 28.2 18.8 54.6 44 56 25.2-1.4 44-27.8 44-56V28L64 8z"/>
+  <path fill="#fff" fill-opacity=".95" d="M64 34a18 18 0 1 0 0 36 18 18 0 0 0 0-36zm0 8a10 10 0 1 1 0 20 10 10 0 0 1 0-20z"/>
+  <path fill="#fff" fill-opacity=".85" d="M48 78h32v6a16 16 0 0 1-32 0v-6z"/>
+</svg>

@@ -98,7 +98,7 @@ npx tsx examples/agent-with-tools.ts
 
 Expected tail: `✅ agent-with-tools smoke passed`
 
-## Full feature demo
+## Full feature demo {#full-feature-demo}
 
 **File:** `examples/full-shieldkit-demo.ts` · **Command:** `npm run demo`
 
