@@ -88,12 +88,15 @@ const result = await generateText({
 - `local` mode: warn-only injection, track-only budgets, detailed audit
 - `guardTools` with allow list and per-request call limit
 - Dual audit output (console + custom sink)
+- Smoke footer: final text, tool steps, audit trail — exits `1` if checks fail
 
 Run directly (requires Ollama):
 
 ```bash
 npx tsx examples/agent-with-tools.ts
 ```
+
+Expected tail: `✅ agent-with-tools smoke passed`
 
 ## Full feature demo
 

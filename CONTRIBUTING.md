@@ -46,16 +46,16 @@ This runs, in order:
 
 Individual commands:
 
-| Command              | Purpose                                    |
-| -------------------- | ------------------------------------------ |
-| `npm run build`      | Build library to `dist/`                   |
-| `npm run test`       | Vitest watch mode                          |
-| `npm run test:run`   | Single test run                            |
-| `npm run lint`       | Auto-fix lint issues                       |
-| `npm run format`     | Auto-format with Prettier                  |
-| `npm run docs:dev`   | VitePress local preview                    |
-| `npm run docs:build` | Build static documentation site            |
-| `npm run demo`       | Full feature tour (mock + optional Ollama) |
+| Command              | Purpose                                                          |
+| -------------------- | ---------------------------------------------------------------- |
+| `npm run build`      | Build library to `dist/`                                         |
+| `npm run test`       | Vitest watch mode                                                |
+| `npm run test:run`   | Single test run                                                  |
+| `npm run lint`       | Auto-fix lint issues                                             |
+| `npm run format`     | Auto-format with Prettier                                        |
+| `npm run docs:dev`   | VitePress local preview                                          |
+| `npm run docs:build` | Build static documentation site                                  |
+| `npm run demo`       | 9-section tour, **31 PASS/FAIL checks** (mock + optional Ollama) |
 
 ## Ollama integration tests
 

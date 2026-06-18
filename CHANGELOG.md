@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Security:** `inj-010` (homoglyph) and `inj-011` (zero-width) adversarial fixtures now `expect_block` in all modes.
 - `npm run demo` — 9-section tour with **31 automated checks** (PASS/FAIL + audit evidence); homoglyph/zero-width/stream evasion blocks.
+- `examples/agent-with-tools.ts` — Ollama smoke with audit evidence and `exit 1` on failure.
+- Publish helpers (`scripts/publish.sh`, `scripts/publish.ps1`) — note tag push creates npm release + GitHub Release via CI.
 - [Input guardrails](docs/features/input-guardrails.md) documents `normalizeGuardText()` before pattern matching.
 - Test inventory: **163** tests in merge gate (**38** files).
 - README: `npm run demo` quick start, npm provenance badge.
