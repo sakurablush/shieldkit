@@ -48,7 +48,11 @@ features:
 - **Interactive demo** — `npm run demo` runs a 9-section tour with **31 automated checks** and audit evidence (mock + optional Ollama)
 - **Release automation** — tagging `v*` publishes to npm and creates a GitHub Release from `CHANGELOG.md`
 
+<div class="release-banner-links">
+
 [Read the changelog on GitHub](https://github.com/sakurablush/shieldkit/blob/main/CHANGELOG.md#020---2026-06-18) · [Input guardrails docs](./features/input-guardrails.md) · [npm publishing](./contributing/npm-publishing.md)
+
+</div>
 
 </div>
 
