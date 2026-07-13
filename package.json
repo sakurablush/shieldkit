@@ -83,7 +83,7 @@
     "@types/node": "^22.19.21",
     "ai": "^6.0.207",
     "eslint": "^10.5.0",
-    "ollama-ai-provider-v2": "^3.6.0",
+    "ollama-ai-provider-v2": "^4.0.1",
     "prettier": "^3.8.4",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
